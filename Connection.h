@@ -2,10 +2,12 @@
 #define CONNECTION_H
 
 #include <iostream>
+#include <unistd.h>
 #include <string>
 #include <cerrno>
 #include <cstring>
 #include <sys/socket.h>
+#include <sys/types.h>
 #include <netinet/in.h>
 #include <netinet/sctp.h>
 #include <arpa/inet.h>
@@ -53,6 +55,32 @@ public:
         if(ret < 0)
         {
             std::cout << "coudn't listen!: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
+        }
+        
+        bool msgRx = false;
+        while(!msgRx)
+        {
+            struct sctp_sndrcvinfo sndrcv;
+            char buf[1024];
+
+            std::cout << "waiting for connection..." << std:: endl;
+
+            int connFd = accept(listenFd,(struct sockaddr*)NULL,NULL);
+
+            if(connFd < 0)
+            {
+                std::cout << "coudn't accept connection: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
+            }
+            int flags;
+            int in = sctp_recvmsg(connFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
+            if(in > 0)
+            {
+                std::cout << "rx msg: " << buf << std::endl;
+            }
+
+            close(connFd);
+
+
         }
     }
 

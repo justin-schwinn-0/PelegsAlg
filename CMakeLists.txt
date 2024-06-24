@@ -13,4 +13,8 @@ set(Headers
     Node.h
 )
 
+find_library(SCTP_LIB libsctp.so)
+
+
 add_executable(${PROJECT_NAME} ${Sources} ${Headers})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${SCTP_LIB})
