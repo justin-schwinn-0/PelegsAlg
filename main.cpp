@@ -157,7 +157,7 @@ Node readConfig(std::string configFile, int popId)
             }
         }
 
-        std::cout << "could not find id: " << popId  
+        std::cout << "could not find id: " << popId << std::endl; 
 
     for(auto n : nodes)
     {
