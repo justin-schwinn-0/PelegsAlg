@@ -34,6 +34,7 @@ std::vector<std::string> split(std::string str, std::string delim)
 template<typename T>
 void printVector(std::vector<T> vec)
 {
+    std::cout << "it prints" << std::endl;
     for(auto t : vec)
     {
         std::cout << t << "\n"; 
@@ -78,6 +79,9 @@ Node readConfig(std::string configFile, int popId = -1)
            }
         }
     }
+    std::cout << __LINE__ << " gets here" << std::endl;
+    std::cout << __LINE__ << " gets here" << std::endl;
+    std::cout << __LINE__ << " gets here" << std::endl;
     std::cout << __LINE__ << " gets here" << std::endl;
     printVector(lines);
 
