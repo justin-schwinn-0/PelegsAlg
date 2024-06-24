@@ -96,7 +96,6 @@ void readConfig(std::string configFile)
 
     }
 
-    std::cout << "num Nodes: " << numNodes << std::endl;
     std::vector<Node> nodes;
     for(int i = 1; i < numNodes+1;i++)
     {
@@ -114,7 +113,7 @@ void readConfig(std::string configFile)
 
             Node n(uid,{splitNode[1],port});
             nodes.push_back(n);
-            std::cout << "adding node " << uid << std::endl;
+            //std::cout << "adding node " << uid << std::endl;
 
         }
         else
@@ -124,18 +123,55 @@ void readConfig(std::string configFile)
         
     }
 
+    for(int i = 0; i < nodes.size(); i++)
+    {
+        auto connections = split(lines[i+numNodes+1]," ");
+
+        for(auto c : connections)
+        {
+            std::istringstream uidSS(c); 
+
+            int neighborId;
+            uidSS >> neighborId;
+
+
+            // search all nodes for the right Node Id, and add that connection 
+            for(auto n : nodes)
+            {
+                if(neighborId == n.getUid())
+                {
+                    nodes[i].addConnection(n.getOwnConnection());
+                    //std::cout << nodes[i].getUid() << " connects to " << neighborId << std::endl;
+                }
+            }
+        }
+    }
+
+    for(auto n : nodes)
+    {
+        n.print();
+    }
+
     //nodes[0].listen();
 
     Connection c = {"10.176.69.36",2234};
 
     c.Connect();
     c.sendMsg("test!");
-
-
 }
 
-int main()
+int main(int argc,char** argv)
 {
-    readConfig("testConfig.txt");
+    std::string host;
+    std::cout << argc << " args" << std::endl;
+    if(argc == 2)
+    {
+        host = argv[1];
+        std::cout << "populating " << host << std::endl;
+    }
+    else
+    {
+        readConfig("testConfig.txt");
+    }
     return 0;
 }

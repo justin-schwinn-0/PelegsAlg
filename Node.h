@@ -1,7 +1,10 @@
 #ifndef NODE_H
 #define NODE_H
 
+#include <vector>
+
 #include "Connection.h"
+
 class Node
 {
 public:
@@ -11,25 +14,17 @@ public:
     {
     }
 
-    void listen()
-    {
-       mListener.Listen(); 
-       std::cout << "I'm listening! " << mUid << std::endl;
-    }
+    void listen();
 
-    void connectNeighbors()
-    {
-        for(Connection con : mNeighbors)
-        {
-            con.Connect();
-        }
-    }
+    void connectNeighbors();
 
-    Connection getOwnConnection()
-    {
-        return mListener;
-    }
+    Connection getOwnConnection();
 
+    void addConnection(Connection c);
+
+    int getUid();
+
+    void print();
 private:
     int mUid;
     Connection mListener;
