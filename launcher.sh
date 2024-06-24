@@ -4,7 +4,7 @@
 netid=jts200006
 
 # Root directory of your project
-PROJDIR=/home/010/j/jt/jts200006/cs6380/PelegsAlg
+PROJDIR=/home/justin/Desktop/code/CS6380/Pelegs
 
 # Directory where the config file is located on your local system
 CONFIGLOCAL=$PROJDIR/testConfig.txt
@@ -27,7 +27,7 @@ cat $CONFIGLOCAL | sed -e "s/#.*//" | sed -e "/^\s*$/d" |
     	p=$( echo $line | awk '{ print $1 }' )
         host=$( echo $line | awk '{ print $2 }' )
 	
-	gnome-terminal -- "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $netid@$host $BINDIR/$PROG $p; exec bash" &
+	gnome-terminal -- ssh $netid@$host "echo test"; exec bash &
 
         n=$(( n + 1 ))
     done
