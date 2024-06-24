@@ -158,12 +158,9 @@ Node readConfig(std::string configFile, int popId = -1)
         }
 
         std::cout << "could not find id: " << popId << std::endl; 
+    }
 
-    for(auto n : nodes)
-    {
-        n.print();
-    }
-    }
+    return nodes[0];
 }
 
 int main(int argc,char** argv)
@@ -175,7 +172,7 @@ int main(int argc,char** argv)
         host = argv[1];
         std::cout << "populating " << host << std::endl;
 
-        auto n = readConfig("t",std::stoi(host));
+        auto n = readConfig("testConfig.txt",std::stoi(host));
 
         n.print();
     }
