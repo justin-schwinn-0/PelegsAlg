@@ -1,8 +1,6 @@
 #!/bin/bash
 
-# Change this to your netid:q
-# :q
-#
+# Change this to your netid
 netid=jts200006
 
 # Root directory of your project

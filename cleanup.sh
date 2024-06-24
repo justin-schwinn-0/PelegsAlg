@@ -2,15 +2,13 @@
 
 
 # Change this to your netid
-netid=sxg122830
+netid=jts200006
 
-#
 # Root directory of your project
-PROJDIR=$HOME/TestProj
+PROJDIR=/home/010/j/jt/jts200006/cs6380/PelegsAlg
 
-#
 # Directory where the config file is located on your local system
-CONFIGLOCAL=$HOME/launch/config.txt
+CONFIGLOCAL=$HOME/testConfig.txt
 
 n=0
 
