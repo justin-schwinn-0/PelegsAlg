@@ -6,6 +6,7 @@ project(Pelegs)
 
 set(Sources
     main.cpp
+    Node.cpp
 )
 
 set(Headers

@@ -124,7 +124,13 @@ void readConfig(std::string configFile)
         
     }
 
-    nodes[0].listen();
+    //nodes[0].listen();
+
+    Connection c = {"10.176.69.36",2234};
+
+    c.Connect();
+    c.sendMsg("test!");
+
 
 }
 

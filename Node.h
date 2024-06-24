@@ -25,6 +25,11 @@ public:
         }
     }
 
+    Connection getOwnConnection()
+    {
+        return mListener;
+    }
+
 private:
     int mUid;
     Connection mListener;
