@@ -58,31 +58,48 @@ public:
 
     void Connect()
     {
-        int connFd;
-
         struct sockaddr_in serverAddress;
         serverAddress.sin_family = AF_INET;
         serverAddress.sin_port = port;
         serverAddress.sin_addr.s_addr = inet_addr(hostname.c_str());
 
 
-        connFd= socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
-        if(connFd < 0)
+        mConFd= socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
+        if(mConFd < 0)
         {
             std::cout << "couldn't make SCTP socket!" << std::endl; 
         }
 
-        int ret = connect(connFd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
+        int ret = connect(mConFd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
         if(ret < 0)
         {
             std::cout << "coudn't connect to socket: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
         }
-
     }
+
+    void sendMsg(std::string msg)
+    {
+        if(mConFd < 0)
+        {
+            std::cout << "No connected to host!" << std::endl;
+        }
+        else
+        {
+            int ret = sctp_sendmsg(mConFd,(void *)msg.c_str(), strlen(msg.c_str())+1,NULL,0,0,0,0,0,0);
+            if( ret < 0)
+            {
+                std::cout << "couldn't send message: " << strerror(errno) << std::endl;
+            }
+        }
+    }
+
+
 
 private:
     // hostname/ip of connection
     std::string hostname;
+
+    int mConFd;
 
     uint32_t port;
 
