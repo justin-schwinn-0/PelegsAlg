@@ -34,7 +34,7 @@ std::vector<std::string> split(std::string str, std::string delim)
 template<typename T>
 void printVector(std::vector<T> vec)
 {
-    for(auto t : vec)
+    for(T t : vec)
     {
         std::cout << t << "\n"; 
     }

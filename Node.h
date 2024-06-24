@@ -19,7 +19,7 @@ public:
 
     void connectNeighbors()
     {
-        for(auto con : mNeighbors)
+        for(Connection con : mNeighbors)
         {
             con.Connect();
         }
