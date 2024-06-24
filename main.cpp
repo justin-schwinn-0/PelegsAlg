@@ -41,7 +41,7 @@ void printVector(std::vector<T> vec)
     std::cout << std::endl;
 }
 
-void readConfig(std::string configFile)
+Node readConfig(std::string configFile, int popId)
 {
     std::ifstream file(configFile) ;
     std::cout << "reading file: " << configFile << std::endl;
@@ -147,17 +147,23 @@ void readConfig(std::string configFile)
         }
     }
 
+    if(popId > 0)
+    {
+        for(auto n : nodes)
+        {
+            if(n.getUid() == popId)
+            {
+                return n;
+            }
+        }
+
+        std::cout << "could not find id: " << popId  
+
     for(auto n : nodes)
     {
         n.print();
     }
-
-    //nodes[0].listen();
-
-    Connection c = {"10.176.69.36",2234};
-
-    c.Connect();
-    c.sendMsg("test!");
+    }
 }
 
 int main(int argc,char** argv)
@@ -168,6 +174,10 @@ int main(int argc,char** argv)
     {
         host = argv[1];
         std::cout << "populating " << host << std::endl;
+
+        auto n = readConfig("t",std::stoi(host));
+
+        n.print();
     }
     else
     {
