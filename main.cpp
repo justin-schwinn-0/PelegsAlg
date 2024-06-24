@@ -49,7 +49,7 @@ Node readConfig(std::string configFile, int popId = -1)
     std::string wholeFile;
     std::string line;
     
-    std::cout << __LINE__ << "gets here" << std::endl;
+    std::cout << __LINE__ << " gets here" << std::endl;
     while(std::getline(file,line))
     {
         wholeFile += line + "\n";
@@ -57,7 +57,7 @@ Node readConfig(std::string configFile, int popId = -1)
     auto lines = split(wholeFile,"\n");
 
 
-    std::cout << __LINE__ << "gets here" << std::endl;
+    std::cout << __LINE__ << " gets here" << std::endl;
     // sanitize lines to remove comments
     
     for(auto it = lines.rbegin(); it != lines.rend(); it++)
@@ -78,11 +78,12 @@ Node readConfig(std::string configFile, int popId = -1)
            }
         }
     }
-    std::cout << __LINE__ << "gets here" << std::endl;
+    std::cout << __LINE__ << " gets here" << std::endl;
+    printVector(lines);
 
     // use lines to create N nodes, and return 1 for this process
     auto firstLine = split(lines[0]," ");
-    std::cout << __LINE__ << "gets here" << std::endl;
+    std::cout << __LINE__ << " gets here" << std::endl;
     int numNodes;
     if(firstLine.size() != 1)
     {
@@ -98,7 +99,7 @@ Node readConfig(std::string configFile, int popId = -1)
         iss >> numNodes;
 
     }
-    std::cout << __LINE__ << "gets here" << std::endl;
+    std::cout << __LINE__ << " gets here" << std::endl;
 
     std::vector<Node> nodes;
     for(int i = 1; i < numNodes+1;i++)
@@ -126,7 +127,7 @@ Node readConfig(std::string configFile, int popId = -1)
         }
         
     }
-    std::cout << __LINE__ << "gets here" << std::endl;
+    std::cout << __LINE__ << " gets here" << std::endl;
 
     for(int i = 0; i < nodes.size(); i++)
     {
