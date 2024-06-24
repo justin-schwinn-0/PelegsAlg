@@ -34,7 +34,8 @@ std::vector<std::string> split(std::string str, std::string delim)
 template<typename T>
 void printVector(std::vector<T> vec)
 {
-    std::cout << "it prints" << std::endl;
+    std::cout << "it prints " << vec.size()<< std::endl;
+
     for(auto t : vec)
     {
         std::cout << t << "\n"; 
