@@ -82,6 +82,7 @@ Node readConfig(std::string configFile, int popId = -1)
 
     // use lines to create N nodes, and return 1 for this process
     auto firstLine = split(lines[0]," ");
+    std::cout << __LINE__ << "gets here" << std::endl;
     int numNodes;
     if(firstLine.size() != 1)
     {
