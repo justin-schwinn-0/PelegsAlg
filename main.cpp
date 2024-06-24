@@ -41,7 +41,7 @@ void printVector(std::vector<T> vec)
     std::cout << std::endl;
 }
 
-Node readConfig(std::string configFile, int popId)
+Node readConfig(std::string configFile, int popId = -1)
 {
     std::ifstream file(configFile) ;
     std::cout << "reading file: " << configFile << std::endl;
