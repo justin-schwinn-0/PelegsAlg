@@ -22,7 +22,7 @@ cat $CONFIGLOCAL | sed -e "s/#.*//" | sed -e "/^\s*$/d" |
         host=$( echo $line | awk '{ print $2 }' )
 
         echo $host
-        gnome-terminal -- "ssh $netid@$host killall -u $netid" &
+        gnome-terminal -- "ssh $netid@$host echo test &"
         sleep 1
 
         n=$(( n + 1 ))
