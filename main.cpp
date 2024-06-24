@@ -28,6 +28,8 @@ std::vector<std::string> split(std::string str, std::string delim)
     {
         splits.push_back(str);
     }
+
+    std::cout << "splitting: " << str << " size()=" << splits.size()<<std::endl;
     return splits;
 }
 
