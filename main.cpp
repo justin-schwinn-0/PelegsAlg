@@ -80,10 +80,7 @@ Node readConfig(std::string configFile, int popId = -1)
            }
         }
     }
-    std::cout << __LINE__ << " gets here" << std::endl;
-    std::cout << __LINE__ << " gets here" << std::endl;
-    std::cout << __LINE__ << " gets here" << std::endl;
-    std::cout << __LINE__ << " gets here" << std::endl;
+    std::cout << lines.size() << std::endl;
     printVector(lines);
 
     // use lines to create N nodes, and return 1 for this process
