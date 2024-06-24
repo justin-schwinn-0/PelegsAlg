@@ -22,7 +22,6 @@ cat $CONFIGLOCAL | sed -e "s/#.*//" | sed -e "/^\s*$/d" |
 
         echo $host
         gnome-terminal -- ssh $netid@$host "killall -u ${netid}" &
-        sleep 1
 
         n=$(( n + 1 ))
     done
