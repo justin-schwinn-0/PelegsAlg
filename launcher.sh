@@ -7,7 +7,7 @@ netid=jts200006
 PROJDIR=/home/010/j/jt/jts200006/cs6380/PelegsAlg
 
 # Directory where the config file is located on your local system
-CONFIGLOCAL=$HOME/testConfig.txt
+CONFIGLOCAL=$PROJDIR/testConfig.txt
 
 # Directory your java classes are in
 BINDIR=$PROJDIR/build
