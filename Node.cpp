@@ -4,7 +4,7 @@
 
 void Node::listen()
 {
-   mListener.Listen(); 
+   mListener.openSocket(); 
    std::cout << "I'm listening! " << mUid << std::endl;
 }
 
@@ -43,4 +43,17 @@ void Node::print()
 void Node::addConnection(Connection c)
 {
     mNeighbors.push_back(c);
+}
+
+void Node::handleMsg()
+{
+    mListener.acceptMsg();
+}
+
+void Node::flood(std::string str)
+{
+    for(auto ne : mNeighbors)
+    {
+        ne.sendMsg(str);
+    }
 }

@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <thread>
 
 #include "Node.h"
 #include "Connection.h"
@@ -165,6 +166,16 @@ Node readConfig(std::string configFile, int popId = -1)
     return nodes[0];
 }
 
+void acceptMsgs(Node& n)
+{
+    while(true)
+    {
+        n.handleMsg();
+
+        std::cout << "got msg!" << std::endl;
+    }
+}
+
 int main(int argc,char** argv)
 {
     int uid;
@@ -177,6 +188,11 @@ int main(int argc,char** argv)
         auto n = readConfig("testConfig.txt",uid);
 
         n.listen();
+        
+        std::thread msgAccepter(acceptMsgs,std::ref(n));
+        msgAccepter.detach();
+
+        n.connectNeighbors();
     }
     else
     {

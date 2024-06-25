@@ -11,41 +11,45 @@
 #include <netinet/sctp.h>
 #include <arpa/inet.h>
 
-void Connection::Listen()
+void Connection::openSocket()
 {
-    int listenFd;
+    int mListenFd;
 
     struct sockaddr_in serverSocket = {AF_INET,INADDR_ANY};
     serverSocket.sin_port = port;
 
     struct sctp_initmsg init = {5,5,4};
 
-    listenFd = socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
+    mListenFd = socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
 
-    if(listenFd < 0)
+    if(mListenFd < 0)
     {
         std::cout << "couldn't make SCTP socket!" << std::endl; 
     }
 
-    int ret = bind(listenFd, (struct sockaddr*)&serverSocket,sizeof(serverSocket));
+    int ret = bind(mListenFd, (struct sockaddr*)&serverSocket,sizeof(serverSocket));
     if(ret < 0)
     {
         std::cout << "coudn't bind socket: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
     }
 
-    ret = setsockopt(listenFd, IPPROTO_SCTP, SCTP_INITMSG, &init,sizeof(init));
+    ret = setsockopt(mListenFd, IPPROTO_SCTP, SCTP_INITMSG, &init,sizeof(init));
     if(ret < 0)
     {
         std::cout << "coudn't set socket: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
     }
 
 
-    ret = listen(listenFd, init.sinit_max_instreams);
+    ret = listen(mListenFd, init.sinit_max_instreams);
     if(ret < 0)
     {
         std::cout << "coudn't listen!: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
     }
     
+}
+
+void Connection::acceptMsg()
+{
     bool msgRx = false;
     while(!msgRx)
     {
@@ -54,7 +58,7 @@ void Connection::Listen()
 
         std::cout << "waiting for connection..." << std:: endl;
 
-        int connFd = accept(listenFd,(struct sockaddr*)NULL,NULL);
+        int connFd = accept(mListenFd,(struct sockaddr*)NULL,NULL);
 
         if(connFd < 0)
         {

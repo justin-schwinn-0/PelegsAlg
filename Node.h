@@ -2,6 +2,7 @@
 #define NODE_H
 
 #include <vector>
+#include <string>
 
 #include "Connection.h"
 
@@ -25,6 +26,10 @@ public:
     int getUid();
 
     void print();
+
+    void handleMsg();
+
+    void flood(std::string str);
 private:
     int mUid;
     Connection mListener;

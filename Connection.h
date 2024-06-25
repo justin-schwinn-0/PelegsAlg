@@ -13,13 +13,15 @@ public:
 
     }
 
-    void Listen();
+    void openSocket();
 
     void Connect();
 
     void sendMsg(std::string msg);
 
     void print();
+
+    void acceptMsg();
 
 
 
@@ -28,6 +30,7 @@ private:
     std::string hostname;
 
     int mConFd;
+    int mListenFd;
 
     uint32_t port;
 
