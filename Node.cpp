@@ -70,7 +70,7 @@ void Node::acceptNeighbors()
 
     std::cout << "\n\nwaiting for connection..." << std:: endl;
     struct sockaddr socketAddress;
-    int addrLength;
+    socklen_t addrLength;
     int rxFd = accept(mListenFd,&socketAddress,&addrLength);
 
     if(rxFd < 0)
