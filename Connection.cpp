@@ -1,10 +1,6 @@
 
 #include "Connection.h"
 
-void Connection::acceptCon()
-{
-}
-
 void Connection::msgRx()
 {
     if(!hasAccepted())
@@ -24,16 +20,6 @@ void Connection::msgRx()
     {
         std::cout << "message error: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
     }
-}
-
-bool Connection::isConnected()
-{
-    return in_connected;
-}
-
-bool Connection::hasAccepted()
-{
-    return out_connected;
 }
 
 void Connection::outGoingConnect()

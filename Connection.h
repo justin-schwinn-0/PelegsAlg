@@ -14,8 +14,6 @@ public:
     }
 /*
 
-    void outGoingConnect();
-
     void sendMsg(std::string msg);
 
 
@@ -25,6 +23,9 @@ public:
     void resetRemoteConnection();
 
 */
+
+    void outGoingConnect();
+
     void setTxFd(int fd)
     { mTxFd = fd;}
 
