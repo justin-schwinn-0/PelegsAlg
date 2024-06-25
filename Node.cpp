@@ -62,26 +62,23 @@ void Node::connectNeighbors()
 
 void Node::acceptNeighbors()
 {
-    while(!inConnectedToNeighbors())
+    if(mListenFd < 0)
     {
-        if(mListenFd < 0)
-        {
-            std::cout << "bad listener!" << mListenFd << std::endl;
-            return;
-        }
-
-        std::cout << "\n\nwaiting for connection..." << std:: endl;
-
-        int rxFd = accept(mListenFd,(struct sockaddr*)NULL,NULL);
-
-        if(rxFd < 0)
-        {
-            std::cout << "coudn't accept connection: " << strerror(errno) << std::endl;
-            return;
-        }
-
-        //id which connetion was accepted and set stuff right from there
+        std::cout << "bad listener!" << mListenFd << std::endl;
+        return;
     }
+
+    std::cout << "\n\nwaiting for connection..." << std:: endl;
+
+    int rxFd = accept(mListenFd,(struct sockaddr*)NULL,NULL);
+
+    if(rxFd < 0)
+    {
+        std::cout << "coudn't accept connection: " << strerror(errno) << std::endl;
+        return;
+    }
+
+    //id which connetion was accepted and set stuff right from there
 }
 
 void Node::msgRx()
