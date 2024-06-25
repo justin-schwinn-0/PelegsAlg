@@ -75,7 +75,7 @@ void Connection::acceptCon()
     }
 }
 
-void Connectin::msgRx()
+void Connection::msgRx()
 {
     struct sctp_sndrcvinfo sndrcv;
     char buf[1024];
