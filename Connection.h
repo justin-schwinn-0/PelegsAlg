@@ -52,7 +52,7 @@ private:
     uint32_t port;
 
     int mTxFd = -1;
-    int mRxFd;
+    int mRxFd = -1;
 
 };
 
