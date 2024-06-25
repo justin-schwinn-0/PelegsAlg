@@ -101,7 +101,7 @@ void Connection::Connect()
 
     inet_ntop(result->ai_family, p, addr, 50);
 
-    std::cout << addr << "worked?S?S?" << std::endl;
+    std::cout << "try to conneto to " << addr << std::endl;
     return;
 
     struct sockaddr_in serverAddress;
