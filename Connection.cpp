@@ -14,8 +14,6 @@
 
 void Connection::openSocket()
 {
-    int mListenFd;
-
     struct sockaddr_in serverSocket = {AF_INET,INADDR_ANY};
     serverSocket.sin_port = port;
 
