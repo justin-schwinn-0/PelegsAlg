@@ -29,7 +29,6 @@ std::vector<std::string> split(std::string str, std::string delim)
         splits.push_back(str);
     }
 
-    std::cout << "splitting: " << str << " size()=" << splits.size()<<std::endl;
     return splits;
 }
 
@@ -50,13 +49,11 @@ Node readConfig(std::string configFile, int popId = -1)
 
     std::string wholeFile;
     std::string line;
-    
 
     while(std::getline(file,line))
     {
         wholeFile += line + "\n";
     }
-    std::cout << wholeFile << std::endl;
     auto lines = split(wholeFile,"\n");
 
 
@@ -81,9 +78,6 @@ Node readConfig(std::string configFile, int popId = -1)
            }
         }
     }
-    std::cout << lines.size() << std::endl;
-    printVector(lines);
-
     // use lines to create N nodes, and return 1 for this process
     auto firstLine = split(lines[0]," ");
 
@@ -173,14 +167,14 @@ Node readConfig(std::string configFile, int popId = -1)
 
 int main(int argc,char** argv)
 {
-    std::string host;
+    int uid;
     std::cout << argc << " args" << std::endl;
     if(argc == 2)
     {
-        host = argv[1];
-        std::cout << "populating " << host << std::endl;
+        uid = std::stoi(argv[1]);
+        std::cout << "populating " << uid << std::endl;
 
-        auto n = readConfig("testConfig.txt",std::stoi(host));
+        auto n = readConfig("testConfig.txt",uid);
 
         n.print();
     }
