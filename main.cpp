@@ -191,7 +191,7 @@ void outConnections(Node& n)
 void inConnections(Node& n)
 {
 
-    while(!n.hasAcceptedToNeighbors())
+    while(!n.hasAcceptedNeighbors())
     {
         n.acceptNeighbors();
         std::this_thread::sleep_for(std::chrono::milliseconds(1500));
