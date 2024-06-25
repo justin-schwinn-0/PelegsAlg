@@ -26,18 +26,21 @@ void Connection::openSocket()
     if(mListenFd < 0)
     {
         std::cout << "couldn't make SCTP socket!" << std::endl; 
+        return;
     }
 
     int ret = bind(mListenFd, (struct sockaddr*)&serverSocket,sizeof(serverSocket));
     if(ret < 0)
     {
         std::cout << "coudn't bind socket: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
+        return;
     }
 
     ret = setsockopt(mListenFd, IPPROTO_SCTP, SCTP_INITMSG, &init,sizeof(init));
     if(ret < 0)
     {
         std::cout << "coudn't set socket: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
+        return;
     }
 
 
@@ -45,6 +48,7 @@ void Connection::openSocket()
     if(ret < 0)
     {
         std::cout << "coudn't listen!: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
+        return;
     }
     
 }
@@ -66,6 +70,7 @@ void Connection::acceptMsg()
     if(connFd < 0)
     {
         std::cout << "coudn't accept connection: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
+        return;
     }
     int flags;
     int in = sctp_recvmsg(connFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
@@ -77,7 +82,6 @@ void Connection::acceptMsg()
 
 bool Connection::isConnected()
 {
-    std::cout << "test" << std::endl;
     if(mConFd == -1)
     {
         return false;
