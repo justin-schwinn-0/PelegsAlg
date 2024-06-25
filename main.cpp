@@ -177,12 +177,23 @@ void acceptMsgs(Node& n)
     }
 }
 
-void tryConnections(Node& n)
+void outConnections(Node& n)
 {
 
     while(!n.isConnectedToNeighbors())
     {
         n.connectNeighbors();
+        std::this_thread::sleep_for(std::chrono::milliseconds(1500));
+    }
+    std::cout << "fully connected!" << std::endl;
+}
+
+void inConnections(Node& n)
+{
+
+    while(!n.hasAcceptedToNeighbors())
+    {
+        n.acceptNeighbors();
         std::this_thread::sleep_for(std::chrono::milliseconds(1500));
     }
     std::cout << "fully connected!" << std::endl;

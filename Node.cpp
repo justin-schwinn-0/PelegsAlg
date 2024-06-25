@@ -12,7 +12,15 @@ void Node::connectNeighbors()
 {
     for(Connection& con : mNeighbors)
     {
-        con.Connect();
+        con.outGoingConnect();
+    }
+}
+
+void Node::connectNeighbors()
+{
+    for(Connection& con : mNeighbors)
+    {
+        con.acceptCon();
     }
 }
 
@@ -71,4 +79,18 @@ bool Node::isConnectedToNeighbors()
     }
 
     return con;
+}
+
+bool Node::isConnectedToNeighbors()
+{
+    bool accept = true;
+    for(auto& n : mNeighbors)
+    {
+        if(!n.hasAccepted())
+        {
+            accept = false;
+        }
+    }
+
+    return accept;
 }

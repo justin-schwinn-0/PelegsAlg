@@ -51,7 +51,7 @@ void Connection::openSocket()
     
 }
 
-void Connection::acceptMsg()
+void Connection::acceptCon()
 {
     if(mListenFd < 0)
     {
@@ -63,13 +63,17 @@ void Connection::acceptMsg()
 
     std::cout << "\n\nwaiting for connection..." << std:: endl;
 
-    int connFd = accept(mListenFd,(struct sockaddr*)NULL,NULL);
+    mRxFd = accept(mListenFd,(struct sockaddr*)NULL,NULL);
 
-    if(connFd < 0)
+    if(mRxFd < 0)
     {
         std::cout << "coudn't accept connection: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
         return;
     }
+}
+
+void Connectin::msgRx()
+{
     int flags;
     int in = sctp_recvmsg(connFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
     if(in != -1)
@@ -79,22 +83,28 @@ void Connection::acceptMsg()
     else
     {
         std::cout << "message error: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
-        return;
     }
-
-    close(connFd);
 }
 
 bool Connection::isConnected()
 {
-    if(mConFd == -1)
+    if(mTxFd == -1)
     {
         return false;
     }
     return true;
 }
 
-void Connection::Connect()
+bool Connection::isConnected()
+{
+    if(mRxFd == -1)
+    {
+        return false;
+    }
+    return true;
+}
+
+void Connection::outGoingConnect()
 {
     if(isConnected())
     {
@@ -126,15 +136,15 @@ void Connection::Connect()
     serverAddress.sin_port = port;
     serverAddress.sin_addr.s_addr = inet_addr(addr);
 
-    mConFd= socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
-    if(mConFd < 0)
+    mTxFd= socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
+    if(mTxFd < 0)
     {
         std::cout << "couldn't make SCTP socket!" << std::endl; 
         resetRemoteConnection();
         return;
     }
 
-    int ret = connect(mConFd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
+    int ret = connect(mTxFd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
     if(ret < 0)
     {
         std::cout << "coudn't connect to socket: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
@@ -142,23 +152,23 @@ void Connection::Connect()
         return;
     }
 
-    std::cout << "connected with fd " << mConFd << std::endl;
+    std::cout << "connected with fd " << mTxFd << std::endl;
 }
 
 void Connection::resetRemoteConnection()
 {
-    close(mConFd);
-    mConFd=-1;
+    close(mTxFd);
+    mTxFd=-1;
 }
 void Connection::sendMsg(std::string msg)
 {
-    if(mConFd < 0)
+    if(mTxFd < 0)
     {
         std::cout << "No connected to host!" << std::endl;
     }
     else
     {
-        int ret = sctp_sendmsg(mConFd,(void *)msg.c_str(), strlen(msg.c_str())+1,NULL,0,0,0,0,1000,0);
+        int ret = sctp_sendmsg(mTxFd,(void *)msg.c_str(), strlen(msg.c_str())+1,NULL,0,0,0,0,1000,0);
         if( ret < 0)
         {
             std::cout << "couldn't send message: " << strerror(errno) << std::endl;

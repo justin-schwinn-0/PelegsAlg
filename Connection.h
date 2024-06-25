@@ -21,20 +21,23 @@ public:
 
     void print();
 
-    void acceptMsg();
+    void acceptCon();
 
     void resetRemoteConnection();
 
     bool isConnected();
 
+    bool hasAccepted();
+
 private:
     // hostname/ip of connection
     std::string hostname;
-
-    int mConFd=-1;
-    int mListenFd=-1;
-
     uint32_t port;
+
+    int mTxFd =-1;
+    int mRxFd =-1;
+    int mListenFd =-1;
+
 };
 
 #endif
