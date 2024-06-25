@@ -207,6 +207,8 @@ int main(int argc,char** argv)
         std::thread msgAccepter(acceptMsgs,std::ref(n));
         msgAccepter.detach();
 
+        n.flood("hello from " + std::to_string(n.getUid()));
+
     }
     else
     {
