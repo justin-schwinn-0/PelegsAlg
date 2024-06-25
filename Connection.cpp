@@ -91,7 +91,8 @@ void Connection::Connect()
 
     if(err != 0)
     {
-        std::cout << "getaddrinfo failed" << err << strerror(errno) << std::endl;
+        std::cout << "getaddrinfo failed" << std::endl;
+        perror(err);
 
         return;
     }
