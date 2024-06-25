@@ -56,7 +56,7 @@ void Node::addConnection(Connection c)
 void Node::handleMsg()
 {
     std::cout << "node gets to line " << __LINE__ << std::endl;
-    mListener.acceptMsg();
+    mListener.msgRx();
 }
 
 void Node::flood(std::string str)
