@@ -48,6 +48,8 @@ void Connection::outGoingConnect()
     if(mTxFd < 0)
     {
         std::cout << "couldn't make SCTP socket!" << std::endl; 
+        close(mTxFd);
+        mTxFd = -1;
         return;
     }
 
@@ -55,6 +57,8 @@ void Connection::outGoingConnect()
     if(ret < 0)
     {
         std::cout << "coudn't connect to socket: " << strerror(errno) << std::endl;
+        close(mTxFd);
+        mTxFd = -1;
         return;
     }
 
