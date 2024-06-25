@@ -180,7 +180,7 @@ void tryConnections(Node& n)
 {
     while(!n.isConnectedToNeighbors())
     {
-        n.handleMsg();
+        n.connectNeighbors();
 
         std::cout << "fully connected!" << std::endl;
     }
