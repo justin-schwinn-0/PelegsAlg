@@ -77,7 +77,8 @@ void Connection::acceptMsg()
 
 bool Connection::isConnected()
 {
-    if(mConFd < 0)
+    std::cout << "test" << std::endl;
+    if(mConFd == -1)
     {
         return false;
     }
