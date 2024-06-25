@@ -170,6 +170,7 @@ Node readConfig(std::string configFile, int popId = -1)
 
 void acceptMsgs(Node& n)
 {
+    std::this_thread::sleep_for(std::chrono::seconds(5));
     while(true)
     {
         n.handleMsg();
