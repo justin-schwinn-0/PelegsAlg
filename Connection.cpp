@@ -77,10 +77,15 @@ void Connection::acceptCon()
 
 void Connection::msgRx()
 {
+    if(!hasAccepted())
+    {
+        std::cout << "incomming connection not connected!" << std::endl;
+        return;
+    }
     struct sctp_sndrcvinfo sndrcv;
     char buf[1024];
     int flags;
-    int in = sctp_recvmsg(connFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
+    int in = sctp_recvmsg(mRxFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
     if(in != -1)
     {
         std::cout << "rx msg: " << buf << std::endl;
