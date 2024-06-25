@@ -158,6 +158,10 @@ void Connection::sendMsg(std::string msg)
         {
             std::cout << "couldn't send message: " << strerror(errno) << std::endl;
         }
+        else
+        {
+            std::cout << "sent " << msg << " to " << hostname << std::endl;
+        }
     }
 }
 

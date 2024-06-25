@@ -173,8 +173,6 @@ void acceptMsgs(Node& n)
     while(true)
     {
         n.handleMsg();
-
-        std::cout << "got msg!" << std::endl;
     }
 }
 
