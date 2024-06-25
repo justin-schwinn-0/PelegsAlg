@@ -29,6 +29,9 @@ public:
     void setTxFd(int fd)
     { mTxFd = fd;}
 
+    void setRxFd(int fd)
+    { mRxFd = fd;}
+
     void setInCon(bool c)
     { in_connected = c; }
 
@@ -40,6 +43,9 @@ public:
 
     uint32_t getPort()
     { return port; }
+
+    const std::string& getHostname()
+    { return hostname; }
 
     void print();
 private:
