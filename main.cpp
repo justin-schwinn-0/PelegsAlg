@@ -209,7 +209,7 @@ int main(int argc,char** argv)
         auto n = readConfig("testConfig.txt",uid);
 
         n.print();
-        n.listen();
+        n.openSocket();
         
         std::thread outConnector(outConnections,std::ref(n));
         std::thread inConnector(inConnections,std::ref(n));
