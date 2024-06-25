@@ -58,7 +58,7 @@ void Node::flood(std::string str)
     }
 }
 
-void Node::isConnectedToNeighbors()
+bool Node::isConnectedToNeighbors()
 {
     bool con = true;
     for(auto n : mNeighbors)
