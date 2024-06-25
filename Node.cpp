@@ -76,13 +76,14 @@ void Node::acceptNeighbors()
     const int hostLen = 500;
     char hostname[hostLen];
     int err = getnameinfo((struct sockaddr*)&socketAddress,
-                          (socklen_t)sizeof(socketAddress),
-                          hostname,(socklen_t)hostLen,NULL,0,0); 
+                          sizeof(socketAddress),
+                          hostname,hostLen,
+                          NULL,0,0); 
 
 
     if(err != 0)
     {
-        std::cout << "getnameinfo failed" << err << gai_strerror(errno) << std::endl;
+        std::cout << "getnameinfo failed " << err << " " << gai_strerror(errno) << std::endl;
         close(rxFd);
 
         return;
