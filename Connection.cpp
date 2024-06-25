@@ -20,7 +20,7 @@ void Connection::outGoingConnect()
         return;
     }
 
-    struct addrinfo *result,hints;
+    struct addrinfo *result;
 
     int err = getaddrinfo(hostname.c_str(),NULL,NULL,&result); 
 

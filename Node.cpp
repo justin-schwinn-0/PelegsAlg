@@ -73,9 +73,17 @@ void Node::acceptNeighbors()
     int addrLength;
     int rxFd = accept(mListenFd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength);
 
-    std::string hostname = getaddrinfo(socketAddress.sin_addr.s_addr);
+    struct addrinfo *result;
+    int err = getnameinfo((struct sockaddr*)&socketAddress,NULL,NULL,&result); 
 
-    std::cout << "accept connection to " << hostname << std::endl;
+    if(err != 0)
+    {
+        std::cout << "getaddrinfo failed" << err << gai_strerror(errno) << std::endl;
+
+        return;
+    }
+
+    std::cout << "connection attempt from" << result->ai_canonname << std::endl;
 
     if(rxFd < 0)
     {
