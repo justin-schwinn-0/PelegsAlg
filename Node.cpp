@@ -94,7 +94,7 @@ void Node::acceptNeighbors()
     for(auto& con : mNeighbors)
     {
         // hoststr contains con.getHostname...
-        if(hoststr.find(con.getHostname()) != std::string::npos))
+        if(hoststr.find(con.getHostname()) != std::string::npos)
         {
             con.set
         }
