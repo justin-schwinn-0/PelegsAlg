@@ -16,7 +16,10 @@ set(Headers
 )
 
 find_library(SCTP_LIB libsctp.so)
+find_library(THREAD_LIB libpthread.so)
 
 
 add_executable(${PROJECT_NAME} ${Sources} ${Headers})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${SCTP_LIB})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${SCTP_LIB})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${THREAD_LIB})
