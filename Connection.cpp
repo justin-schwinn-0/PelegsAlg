@@ -51,29 +51,30 @@ void Connection::openSocket()
 
 void Connection::acceptMsg()
 {
-    bool msgRx = false;
-    while(!msgRx)
+    if(mListenFd < 0)
     {
-        struct sctp_sndrcvinfo sndrcv;
-        char buf[1024];
-
-        std::cout << "waiting for connection..." << std:: endl;
-
-        int connFd = accept(mListenFd,(struct sockaddr*)NULL,NULL);
-
-        if(connFd < 0)
-        {
-            std::cout << "coudn't accept connection: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
-        }
-        int flags;
-        int in = sctp_recvmsg(connFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
-        if(in > 0)
-        {
-            std::cout << "rx msg: " << buf << std::endl;
-        }
-
-        close(connFd);
+        std::cout << "bad listener!" << mListenFd << " " << hostname << std::endl;
+        return;
     }
+    struct sctp_sndrcvinfo sndrcv;
+    char buf[1024];
+
+    std::cout << "waiting for connection..." << std:: endl;
+
+    int connFd = accept(mListenFd,(struct sockaddr*)NULL,NULL);
+
+    if(connFd < 0)
+    {
+        std::cout << "coudn't accept connection: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
+    }
+    int flags;
+    int in = sctp_recvmsg(connFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
+    if(in > 0)
+    {
+        std::cout << "rx msg: " << buf << std::endl;
+    }
+
+    close(connFd);
 }
 
 bool Connection::isConnected()
