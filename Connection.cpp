@@ -105,7 +105,7 @@ bool Connection::isConnected()
     return true;
 }
 
-bool Connection::isConnected()
+bool Connection::hasAccepted()
 {
     if(mRxFd == -1)
     {
