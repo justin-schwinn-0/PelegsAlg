@@ -152,7 +152,6 @@ void Connection::resetRemoteConnection()
 }
 void Connection::sendMsg(std::string msg)
 {
-    std::cout << "sending msg: " << msg << std::endl;
     if(mConFd < 0)
     {
         std::cout << "No connected to host!" << std::endl;
