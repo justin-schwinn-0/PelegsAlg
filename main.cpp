@@ -216,7 +216,7 @@ int main(int argc,char** argv)
             inConnector.join();
         }
 
-        n.flood("hello from " + std::to_string(n.getUid()));
+        //n.flood("hello from " + std::to_string(n.getUid()));
         std::cout << "done" << std::endl;
 
     }
