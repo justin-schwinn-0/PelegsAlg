@@ -182,7 +182,7 @@ void tryConnections(Node& n)
 {
     while(!n.isConnectedToNeighbors())
     {
-        Sleep(2);
+        sleep(2);
         n.connectNeighbors();
     }
     std::cout << "fully connected!" << std::endl;
