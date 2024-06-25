@@ -85,11 +85,6 @@ void Node::acceptNeighbors()
 
 void Node::msgRx()
 {
-    if(!hasAccepted())
-    {
-        std::cout << "incomming connection not connected!" << std::endl;
-        return;
-    }
     struct sctp_sndrcvinfo sndrcv;
     char buf[1024];
     int flags;
@@ -100,7 +95,7 @@ void Node::msgRx()
     }
     else
     {
-        std::cout << "message error: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
+        std::cout << "message error: " << strerror(errno) << std::endl;
     }
 }
 
