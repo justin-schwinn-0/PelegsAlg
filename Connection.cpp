@@ -53,7 +53,6 @@ void Connection::openSocket()
 
 void Connection::acceptMsg()
 {
-    std::cout << "gets to line " << __LINE__ << std::endl;
     if(mListenFd < 0)
     {
         std::cout << "bad listener!" << mListenFd << " " << hostname << std::endl;
@@ -61,22 +60,18 @@ void Connection::acceptMsg()
     }
     struct sctp_sndrcvinfo sndrcv;
     char buf[1024];
-    std::cout << "gets to line " << __LINE__ << std::endl;
 
     std::cout << "\n\nwaiting for connection..." << std:: endl;
 
     int connFd = accept(mListenFd,(struct sockaddr*)NULL,NULL);
-    std::cout << "gets to line " << __LINE__ << std::endl;
 
     if(connFd < 0)
     {
         std::cout << "coudn't accept connection: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
         return;
     }
-    std::cout << "gets to line " << __LINE__ << std::endl;
     int flags;
     int in = sctp_recvmsg(connFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
-    std::cout << "gets to line " << __LINE__ << std::endl;
     if(in != -1)
     {
         std::cout << "rx msg: " << buf << std::endl;
@@ -86,7 +81,6 @@ void Connection::acceptMsg()
         std::cout << "message error: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
         return;
     }
-    std::cout << "gets to line " << __LINE__ << std::endl;
 
     close(connFd);
 }
