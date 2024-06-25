@@ -84,6 +84,22 @@ bool Connection::isConnected()
 
 void Connection::Connect()
 {
+    struct hostent hosts = gethostbyname(hostname.c_str()); 
+    if(hosts == 0)
+    {
+        std::cout << "could not get host entries!" << std::endl;
+        return;
+    }
+    else
+    {
+        std::cout << "found hosts!" << std::endl;
+        for(int i = 0; i < hosts.h_length;i++)
+        {
+
+            std::cout << hosts.h_addr_list[i] << std::endl;
+        }
+    }
+
     struct sockaddr_in serverAddress;
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_port = port;
