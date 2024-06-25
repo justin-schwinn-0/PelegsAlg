@@ -170,7 +170,7 @@ Node readConfig(std::string configFile, int popId = -1)
 
 void acceptMsgs(Node& n)
 {
-    std::this_thread::sleep_for(std::chrono::seconds(5));
+    std::cout << "gets to line accpeter " << __LINE__ << std::endl;
     while(true)
     {
         n.handleMsg();
