@@ -77,7 +77,7 @@ void Node::acceptNeighbors()
     char* hostname[hostLen];
     int err = getnameinfo((struct sockaddr*)&socketAddress,
                           (socklen_t*)sizeof(socketAddress),
-                          hostname,(socklen_t*)hostLen,NULL,0,0); 
+                          hostname,(socklen_t)hostLen,NULL,0,0); 
 
 
     if(err != 0)
