@@ -77,7 +77,7 @@ void Connection::acceptMsg()
 
 bool Connection::isConnected()
 {
-    return mConFd > 0;
+    return !(mConFd < 0);
 }
 
 void Connection::Connect()
@@ -85,6 +85,10 @@ void Connection::Connect()
     if(isConnected())
     {
         return;
+    }
+    else
+    {
+        std::cout << "connection fd: " << mConFd << std::endl;
     }
 
     struct addrinfo *result,hints;
