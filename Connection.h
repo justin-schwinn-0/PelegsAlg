@@ -21,7 +21,6 @@ public:
 
     void acceptCon();
 
-    void msgRx();
 
     void resetRemoteConnection();
 
@@ -34,6 +33,8 @@ public:
 
     void setOutCon(bool c)
     { out_connected = c; }
+
+    void msgTx();
 
     bool hasOutConnection();
 

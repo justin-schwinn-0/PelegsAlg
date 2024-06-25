@@ -87,7 +87,7 @@ void Connection::outGoingConnect()
     std::cout << "connected with fd " << txFd << std::endl;
 }
 
-void Connection::sendMsg(std::string msg)
+void Connection::msgTx(std::string msg)
 {
     if(mTxFd < 0)
     {
