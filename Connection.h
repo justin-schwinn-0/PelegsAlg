@@ -33,6 +33,7 @@ public:
     { mRxFd = fd;}
 
     void msgTx(std::string msg);
+    void msgRx();
 
     bool hasOutConnection();
 
