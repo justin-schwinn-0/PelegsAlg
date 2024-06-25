@@ -107,7 +107,7 @@ void Connection::Connect()
     struct sockaddr_in serverAddress;
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_port = port;
-    serverAddress.sin_addr.s_addr = inet_addr(hostname.c_str());
+    serverAddress.sin_addr.s_addr = inet_addr(addr);
 
     if(isConnected())
     {
