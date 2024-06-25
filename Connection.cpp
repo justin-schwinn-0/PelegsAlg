@@ -93,5 +93,9 @@ bool Connection::hasInConnection()
 
 bool Connection::hasOutConnection()
 {
-    return out_connected;
+    if(mTxFd >= 0)
+    {
+        return true;
+    }
+    return false;
 }

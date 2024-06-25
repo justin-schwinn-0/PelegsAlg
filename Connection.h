@@ -32,9 +32,6 @@ public:
     void setInCon(bool c)
     { in_connected = c; }
 
-    void setOutCon(bool c)
-    { out_connected = c; }
-
     void msgTx(std::string msg);
 
     bool hasOutConnection();
@@ -51,9 +48,8 @@ private:
     uint32_t port;
 
     bool in_connected;
-    bool out_connected;
 
-    int mTxFd;
+    int mTxFd = -1;
 
 };
 
