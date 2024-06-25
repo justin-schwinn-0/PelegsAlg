@@ -85,3 +85,13 @@ void Connection::print()
 {
     std::cout << "{ " << hostname << " " << port << " }";
 }
+
+bool Connection::hasInConnection()
+{
+    return in_connected;
+}
+
+bool Connection::hasOutConnection()
+{
+    return out_connected;
+}
