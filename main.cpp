@@ -200,10 +200,10 @@ int main(int argc,char** argv)
         n.listen();
         
         n.connectNeighbors();
-        std::thread msgAccepter(acceptMsgs,std::ref(n));
         std::thread connector(tryConnections,std::ref(n));
+        connector.join();
+        std::thread msgAccepter(acceptMsgs,std::ref(n));
         msgAccepter.detach();
-        connector.detach();
 
     }
     else
