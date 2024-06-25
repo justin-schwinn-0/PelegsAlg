@@ -98,6 +98,7 @@ void Connection::Connect()
     char addr[50];
 
     inet_ntop(result->ai_family,result->ai_addr->sa_data, addr,50);
+    inet_ntop(result->ai_family,result->ai_addr->sa_data, addr,50);
 
     std::cout << addr << "worked?S?S?" << std::endl;
     return;
