@@ -77,7 +77,11 @@ void Connection::acceptMsg()
 
 bool Connection::isConnected()
 {
-    return !(mConFd < 0);
+    if(mConFd < 0)
+    {
+        return false;
+    }
+    return true;
 }
 
 void Connection::Connect()
