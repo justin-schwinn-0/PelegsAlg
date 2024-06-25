@@ -18,6 +18,7 @@ public:
     void listen();
 
     void connectNeighbors();
+    void acceptNeighbors();
 
     Connection getOwnConnection();
 
