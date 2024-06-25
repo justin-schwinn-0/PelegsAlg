@@ -190,14 +190,13 @@ void tryConnections(Node& n)
 int main(int argc,char** argv)
 {
     int uid;
-    std::cout << argc << " args" << std::endl;
     if(argc == 2)
     {
         uid = std::stoi(argv[1]);
-        std::cout << "populating " << uid << std::endl;
 
         auto n = readConfig("testConfig.txt",uid);
 
+        n.print();
         n.listen();
         
         std::thread connector(tryConnections,std::ref(n));
