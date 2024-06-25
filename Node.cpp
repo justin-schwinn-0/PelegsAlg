@@ -73,7 +73,9 @@ void Node::acceptNeighbors()
     int addrLength;
     int rxFd = accept(mListenFd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength);
 
-    std::cout << "accept connection on port\t\t" << socketAddress.sin_addr.s_addr << std::endl;
+    std::string hostname = getaddrinfo(socketAddress.sin_addr.s_addr);
+
+    std::cout << "accept connection to " << hostname << std::endl;
 
     if(rxFd < 0)
     {
