@@ -125,7 +125,7 @@ void Connection::Connect()
     if(mConFd < 0)
     {
         std::cout << "couldn't make SCTP socket!" << std::endl; 
-        mConFd = -1;
+        resetRemoteConnection();
         return;
     }
 
@@ -133,12 +133,18 @@ void Connection::Connect()
     if(ret < 0)
     {
         std::cout << "coudn't connect to socket: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
+        resetRemoteConnection();
         return;
     }
 
     std::cout << "connected with fd " << mConFd << std::endl;
 }
 
+void Connection::resetRemoteConnection()
+{
+    close(mConFd);
+    mConFd=-1;
+}
 void Connection::sendMsg(std::string msg)
 {
     if(mConFd < 0)
