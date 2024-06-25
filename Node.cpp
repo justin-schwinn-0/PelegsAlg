@@ -15,7 +15,7 @@
 void Node::listen()
 {
     struct sockaddr_in serverSocket = {AF_INET,INADDR_ANY};
-    serverSocket.sin_port = port;
+    serverSocket.sin_port = mListener.getPort();
 
     struct sctp_initmsg init = {5,5,4};
 

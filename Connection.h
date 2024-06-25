@@ -39,6 +39,9 @@ public:
     bool hasOutConnection();
 
     bool hasInConnection();
+
+    uint32_t getPort()
+    { return port; }
 private:
     // hostname/ip of connection
     std::string hostname;
