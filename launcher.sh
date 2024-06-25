@@ -27,7 +27,7 @@ cat $CONFIGLOCAL | sed -e "s/#.*//" | sed -e "/^\s*$/d" |
     	p=$( echo $line | awk '{ print $1 }' )
         host=$( echo $line | awk '{ print $2 }' )
 	
-	    gnome-terminal -- ssh $netid@$host "${BINDIR}/${PROG} ${p};" "exec bash" &
+	    gnome-terminal -- ssh $netid@$host "cd ${BINDIR};./${PROG} ${p};" "exec bash" &
 
         n=$(( n + 1 ))
     done
