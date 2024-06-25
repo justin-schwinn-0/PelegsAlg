@@ -180,7 +180,7 @@ void messageRx(Node& n)
 void outConnections(Node& n)
 {
 
-    while(!n.isConnectedToNeighbors())
+    while(!n.outConnectedToNeighbors())
     {
         n.connectNeighbors();
         std::this_thread::sleep_for(std::chrono::milliseconds(1500));
@@ -191,7 +191,7 @@ void outConnections(Node& n)
 void inConnections(Node& n)
 {
 
-    while(!n.hasAcceptedNeighbors())
+    while(!n.inConnectedToNeighbors())
     {
         n.acceptNeighbors();
         std::this_thread::sleep_for(std::chrono::milliseconds(1500));
