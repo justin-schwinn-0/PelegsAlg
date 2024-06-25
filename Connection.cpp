@@ -97,8 +97,9 @@ void Connection::Connect()
 
     char addr[50];
 
-    inet_ntop(result->ai_family,result->ai_addr->sa_data, addr,50);
-    inet_ntop(result->ai_family,result->ai_addr->sa_data, addr,50);
+    void* p = &((struct sockadd_in*) res->ai_addr)->sin_addr;
+
+    inet_ntop(result->ai_family, p, addr, 50);
 
     std::cout << addr << "worked?S?S?" << std::endl;
     return;
