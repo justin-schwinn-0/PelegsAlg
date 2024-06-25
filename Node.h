@@ -38,6 +38,8 @@ private:
     std::vector<Connection> mNeighbors;
 
     int mListenFd;
+    // this probably isn't right
+    int mRxFd;
 };
 
 #endif
