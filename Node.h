@@ -22,8 +22,8 @@ public:
 
 
 
-    bool isConnectedToNeighbors();
-    bool hasAcceptedNeighbors();
+    bool outConnectedToNeighbors();
+    bool inConnectedToNeighbors();
     Connection getOwnConnection();
     int getUid();
 
