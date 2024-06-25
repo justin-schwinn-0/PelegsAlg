@@ -201,8 +201,8 @@ int main(int argc,char** argv)
         n.print();
         n.listen();
         
-        std::thread connector(tryConnections,std::ref(n));
-        connector.join();
+        tryConnections(n);
+
         std::thread msgAccepter(acceptMsgs,std::ref(n));
         msgAccepter.detach();
 
