@@ -176,6 +176,16 @@ void acceptMsgs(Node& n)
     }
 }
 
+void tryConnections(Node& n)
+{
+    while(!n.isConnectedToNeighbors())
+    {
+        n.handleMsg();
+
+        std::cout << "got msg!" << std::endl;
+    }
+}
+
 int main(int argc,char** argv)
 {
     int uid;

@@ -57,3 +57,17 @@ void Node::flood(std::string str)
         ne.sendMsg(str);
     }
 }
+
+void Node::isConnectedToNeighbors()
+{
+    bool con = true;
+    for(auto n : mNeighbors)
+    {
+        if(!n.isConnected())
+        {
+            con = false;
+        }
+    }
+
+    return con;
+}

@@ -29,6 +29,8 @@ public:
 
     void handleMsg();
 
+    void isConnectedToNeighbors();
+
     void flood(std::string str);
 private:
     int mUid;

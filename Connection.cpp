@@ -76,6 +76,11 @@ void Connection::acceptMsg()
     }
 }
 
+bool Connection::isConnected()
+{
+    return mConFd > 0;
+}
+
 void Connection::Connect()
 {
     struct sockaddr_in serverAddress;
@@ -83,6 +88,10 @@ void Connection::Connect()
     serverAddress.sin_port = port;
     serverAddress.sin_addr.s_addr = inet_addr(hostname.c_str());
 
+    if(isConnected())
+    {
+        return;
+    }
 
     mConFd= socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
     if(mConFd < 0)

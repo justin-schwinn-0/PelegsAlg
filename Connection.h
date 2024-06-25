@@ -23,7 +23,7 @@ public:
 
     void acceptMsg();
 
-
+    bool isConnected();
 
 private:
     // hostname/ip of connection
@@ -33,7 +33,6 @@ private:
     int mListenFd;
 
     uint32_t port;
-
 };
 
 #endif
