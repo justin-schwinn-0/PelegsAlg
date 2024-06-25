@@ -63,7 +63,7 @@ void Connection::acceptMsg()
     char buf[1024];
     std::cout << "gets to line " << __LINE__ << std::endl;
 
-    std::cout << "waiting for connection..." << std:: endl;
+    std::cout << "\n\nwaiting for connection..." << std:: endl;
 
     int connFd = accept(mListenFd,(struct sockaddr*)NULL,NULL);
     std::cout << "gets to line " << __LINE__ << std::endl;
