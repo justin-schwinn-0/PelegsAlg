@@ -184,7 +184,7 @@ void tryConnections(Node& n)
 
     while(!n.isConnectedToNeighbors())
     {
-        std::this_thread::sleep_for(2500ms);
+        Sleep(2);
         n.connectNeighbors();
     }
     std::cout << "fully connected!" << std::endl;
