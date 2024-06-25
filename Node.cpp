@@ -32,7 +32,7 @@ void Node::print()
     mListener.print();
     std::cout << "\n\t";
 
-    for(auto c : mNeighbors)
+    for(auto& c : mNeighbors)
     {
         c.print();
     }
@@ -61,7 +61,7 @@ void Node::flood(std::string str)
 bool Node::isConnectedToNeighbors()
 {
     bool con = true;
-    for(auto n : mNeighbors)
+    for(auto& n : mNeighbors)
     {
         if(!n.isConnected())
         {
