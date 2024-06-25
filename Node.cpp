@@ -73,7 +73,7 @@ void Node::acceptNeighbors()
     int addrLength;
     int rxFd = accept(mListenFd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength);
 
-    const int hostlen = 50;
+    const int hostLen = 50;
     char* hostname[hostLen];
     int err = getnameinfo((struct sockaddr*)&socketAddress,
                           (socklen_t*)sizeof(socketAddress),
