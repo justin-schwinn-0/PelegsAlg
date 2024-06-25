@@ -32,9 +32,6 @@ public:
     void setRxFd(int fd)
     { mRxFd = fd;}
 
-    void setInCon(bool c)
-    { in_connected = c; }
-
     void msgTx(std::string msg);
 
     bool hasOutConnection();
@@ -52,8 +49,6 @@ private:
     // hostname/ip of connection
     std::string hostname;
     uint32_t port;
-
-    bool in_connected;
 
     int mTxFd = -1;
     int mRxFd;

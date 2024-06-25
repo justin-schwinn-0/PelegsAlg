@@ -104,7 +104,11 @@ void Connection::print()
 
 bool Connection::hasInConnection()
 {
-    return in_connected;
+    if(mRxFd >= 0)
+    {
+        return true;
+    }
+    return false;
 }
 
 bool Connection::hasOutConnection()

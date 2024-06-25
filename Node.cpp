@@ -96,7 +96,7 @@ void Node::acceptNeighbors()
         // hoststr contains con.getHostname...
         if(hoststr.find(con.getHostname()) != std::string::npos)
         {
-            con.set
+            con.setRxFd(rxFd);
         }
     }
 
