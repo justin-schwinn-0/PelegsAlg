@@ -29,7 +29,7 @@ public:
 
     void handleMsg();
 
-    void isConnectedToNeighbors();
+    bool isConnectedToNeighbors();
 
     void flood(std::string str);
 private:
