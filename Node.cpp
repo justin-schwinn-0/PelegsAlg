@@ -81,7 +81,7 @@ bool Node::isConnectedToNeighbors()
     return con;
 }
 
-bool Node::isConnectedToNeighbors()
+bool Node::hasAcceptedNeighbors()
 {
     bool accept = true;
     for(auto& n : mNeighbors)

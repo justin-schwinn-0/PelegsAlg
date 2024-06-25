@@ -30,6 +30,7 @@ public:
     void handleMsg();
 
     bool isConnectedToNeighbors();
+    bool hasAcceptedNeighbors();
 
     void flood(std::string str);
 private:
