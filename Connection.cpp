@@ -1,17 +1,6 @@
 
 #include "Connection.h"
 
-#include <iostream>
-#include <unistd.h>
-#include <cerrno>
-#include <cstring>
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <netdb.h>
-#include <netinet/in.h>
-#include <netinet/sctp.h>
-#include <arpa/inet.h>
-
 void Connection::acceptCon()
 {
 }
@@ -49,11 +38,11 @@ bool Connection::hasAccepted()
 
 void Connection::outGoingConnect()
 {
+
     if(isConnected())
     {
         return;
     }
-
 
     struct addrinfo *result,hints;
 
@@ -79,7 +68,7 @@ void Connection::outGoingConnect()
     serverAddress.sin_port = port;
     serverAddress.sin_addr.s_addr = inet_addr(addr);
 
-    mTxFd= socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
+    int txFd= socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
     if(mTxFd < 0)
     {
         std::cout << "couldn't make SCTP socket!" << std::endl; 
@@ -87,15 +76,15 @@ void Connection::outGoingConnect()
         return;
     }
 
-    int ret = connect(mTxFd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
+    int ret = connect(txFd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
     if(ret < 0)
     {
-        std::cout << "coudn't connect to socket: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
+        std::cout << "coudn't connect to socket: " << strerror(errno) << std::endl;
         resetRemoteConnection();
         return;
     }
 
-    std::cout << "connected with fd " << mTxFd << std::endl;
+    std::cout << "connected with fd " << txFd << std::endl;
 }
 
 void Connection::sendMsg(std::string msg)

@@ -27,9 +27,6 @@ public:
     void resetRemoteConnection();
 
 */
-    void setRxFd(int fd)
-    { mRxFd = fd;}
-
     void setTxFd(int fd)
     { mTxFd = fd;}
 
@@ -50,7 +47,6 @@ private:
     bool in_connected;
     bool out_connected;
 
-    int mRxFd;
     int mTxFd;
 
 };
