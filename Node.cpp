@@ -54,14 +54,14 @@ void Node::openSocket()
 
 void Node::connectNeighbors()
 {
-    while(!isConnectedToNeighbors())
+    while(!outConnectedToNeighbors())
     {
     }
 }
 
 void Node::acceptNeighbors()
 {
-    while(!hasAcceptedNeighbors())
+    while(!inConnectedToNeighbors())
     {
         if(mListenFd < 0)
         {
