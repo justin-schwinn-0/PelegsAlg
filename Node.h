@@ -28,6 +28,7 @@ public:
     int getUid();
 
     void msgRx();
+    void flood(std::string str);
 
     void print();
     void addConnection(Connection c);

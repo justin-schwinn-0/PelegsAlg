@@ -173,7 +173,7 @@ void messageRx(Node& n)
     std::cout << "thread start" << std::endl;
     while(true)
     {
-        n.handleMsg();
+        n.messageRx();
     }
 }
 
