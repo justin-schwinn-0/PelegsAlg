@@ -81,7 +81,7 @@ void Connection::msgTx(std::string msg)
     }
 }
 
-void Node::msgRx()
+void Connection::msgRx()
 {
     struct sctp_sndrcvinfo sndrcv;
     char buf[1024];
