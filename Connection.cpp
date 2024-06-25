@@ -1,7 +1,7 @@
 
 #include "Connection.h"
 
-
+#include <iostream>
 #include <unistd.h>
 #include <cerrno>
 #include <cstring>
