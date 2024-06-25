@@ -120,12 +120,14 @@ void Connection::Connect()
     {
         std::cout << "couldn't make SCTP socket!" << std::endl; 
         mConFd = -1;
+        return;
     }
 
     int ret = connect(mConFd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
     if(ret < 0)
     {
         std::cout << "coudn't connect to socket: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
+        return;
     }
 }
 
