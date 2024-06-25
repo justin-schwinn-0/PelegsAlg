@@ -202,10 +202,19 @@ int main(int argc,char** argv)
         n.print();
         n.openSocket();
         
-        std::thread outConnector(outConnections,std::ref(n));
-        std::thread inConnector(inConnections,std::ref(n));
-        outConnector.join();
-        inConnector.join();
+
+        if(uid == 5)
+        {
+            std::cout << "testing connections" << std::endl;
+            std::thread outConnector(outConnections,std::ref(n));
+            outConnector.join();
+        }
+        else
+        {
+            std::cout << "testing accepts" << std::endl;
+            std::thread inConnector(inConnections,std::ref(n));
+            inConnector.join();
+        }
 
         n.flood("hello from " + std::to_string(n.getUid()));
         std::cout << "done" << std::endl;
