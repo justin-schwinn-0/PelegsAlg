@@ -206,6 +206,7 @@ int main(int argc,char** argv)
         msgAccepter.detach();
 
         n.flood("hello from " + std::to_string(n.getUid()));
+        std::cout << "done" << std::endl;
 
     }
     else
