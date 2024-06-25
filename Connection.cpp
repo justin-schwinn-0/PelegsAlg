@@ -84,6 +84,7 @@ void Connection::Connect()
 {
     if(isConnected())
     {
+        std::cout << "already connected to " << hostname << std::endl;
         return;
     }
 
