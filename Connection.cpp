@@ -73,8 +73,6 @@ void Connection::acceptMsg()
     {
         std::cout << "rx msg: " << buf << std::endl;
     }
-
-    close(connFd);
 }
 
 bool Connection::isConnected()
