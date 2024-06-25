@@ -56,6 +56,7 @@ private:
     bool in_connected;
 
     int mTxFd = -1;
+    int mRxFd;
 
 };
 

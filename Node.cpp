@@ -89,6 +89,17 @@ void Node::acceptNeighbors()
 
     std::cout << "connection attempt from " << hostname << std::endl;
 
+    std::string hoststr(hostname);
+
+    for(auto& con : mNeighbors)
+    {
+        // hoststr contains con.getHostname...
+        if(hoststr.find(con.getHostname() != std::string::npos))
+        {
+            con.set
+        }
+    }
+
     if(rxFd < 0)
     {
         std::cout << "coudn't accept connection: " << strerror(errno) << std::endl;
@@ -96,22 +107,6 @@ void Node::acceptNeighbors()
     }
 
     //id which connetion was accepted and set stuff right from there
-}
-
-void Node::msgRx()
-{
-    struct sctp_sndrcvinfo sndrcv;
-    char buf[1024];
-    int flags;
-    int in = sctp_recvmsg(mRxFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
-    if(in != -1)
-    {
-        std::cout << "rx msg: " << buf << std::endl;
-    }
-    else
-    {
-        std::cout << "message error: " << strerror(errno) << std::endl;
-    }
 }
 
 Connection Node::getOwnConnection()

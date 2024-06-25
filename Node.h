@@ -27,7 +27,6 @@ public:
     Connection getOwnConnection();
     int getUid();
 
-    void msgRx();
     void flood(std::string str);
 
     void print();
@@ -39,7 +38,6 @@ private:
 
     int mListenFd;
     // this probably isn't right
-    int mRxFd;
 };
 
 #endif

@@ -81,6 +81,22 @@ void Connection::msgTx(std::string msg)
     }
 }
 
+void Node::msgRx()
+{
+    struct sctp_sndrcvinfo sndrcv;
+    char buf[1024];
+    int flags;
+    int in = sctp_recvmsg(mRxFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
+    if(in != -1)
+    {
+        std::cout << "rx msg: " << buf << std::endl;
+    }
+    else
+    {
+        std::cout << "message error: " << strerror(errno) << std::endl;
+    }
+}
+
 void Connection::print()
 {
     std::cout << "{ " << hostname << " " << port << " }";
