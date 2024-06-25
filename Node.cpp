@@ -10,7 +10,7 @@ void Node::listen()
 
 void Node::connectNeighbors()
 {
-    for(Connection con : mNeighbors)
+    for(Connection& con : mNeighbors)
     {
         con.Connect();
     }
