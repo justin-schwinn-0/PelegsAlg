@@ -202,7 +202,6 @@ int main(int argc,char** argv)
 
         n.listen();
         
-        n.connectNeighbors();
         std::thread connector(tryConnections,std::ref(n));
         connector.join();
         std::thread msgAccepter(acceptMsgs,std::ref(n));
