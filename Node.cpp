@@ -56,6 +56,10 @@ void Node::connectNeighbors()
 {
     while(!outConnectedToNeighbors())
     {
+        for(auto& n : mNeighbors)
+        {
+            n.outGoingConnect();
+        }
     }
 }
 
