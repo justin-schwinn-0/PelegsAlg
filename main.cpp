@@ -170,9 +170,10 @@ Node readConfig(std::string configFile, int popId = -1)
 
 void acceptMsgs(Node& n)
 {
-    std::cout << "gets to line accpeter " << __LINE__ << std::endl;
+    std::cout << "gets to line accetper " << __LINE__ << std::endl;
     while(true)
     {
+        std::cout << "gets to line accetper " << __LINE__ << std::endl;
         n.handleMsg();
     }
 }
