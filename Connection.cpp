@@ -51,7 +51,7 @@ void Connection::outGoingConnect()
         return;
     }
 
-    int ret = connect(txFd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
+    int ret = connect(mTxFd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
     if(ret < 0)
     {
         std::cout << "coudn't connect to socket: " << strerror(errno) << std::endl;
