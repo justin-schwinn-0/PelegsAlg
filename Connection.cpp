@@ -97,7 +97,7 @@ void Connection::Connect()
 
     char addr[50];
 
-    void* p = &((struct sockadd_in*) result->ai_addr)->sin_addr;
+    void* p = &((struct sockaddr_in*) result->ai_addr)->sin_addr;
 
     inet_ntop(result->ai_family, p, addr, 50);
 
