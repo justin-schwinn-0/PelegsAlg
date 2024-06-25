@@ -168,15 +168,6 @@ Node readConfig(std::string configFile, int popId = -1)
     return nodes[0];
 }
 
-void messageRx(Node& n)
-{
-    std::cout << "thread start" << std::endl;
-    while(true)
-    {
-        n.msgRx();
-    }
-}
-
 void outConnections(Node& n)
 {
 
@@ -215,8 +206,6 @@ int main(int argc,char** argv)
         std::thread inConnector(inConnections,std::ref(n));
         outConnector.join();
         inConnector.join();
-        std::thread msgHandler(messageRx,std::ref(n));
-        msgHandler.detach();
 
         n.flood("hello from " + std::to_string(n.getUid()));
         std::cout << "done" << std::endl;
