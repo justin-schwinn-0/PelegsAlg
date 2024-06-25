@@ -23,6 +23,8 @@ public:
 
     void acceptMsg();
 
+    void resetRemoteConnection();
+
     bool isConnected();
 
 private:
