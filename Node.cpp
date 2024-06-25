@@ -65,7 +65,7 @@ void Node::acceptNeighbors()
     {
         if(mListenFd < 0)
         {
-            std::cout << "bad listener!" << mListenFd << " " << hostname << std::endl;
+            std::cout << "bad listener!" << mListenFd << std::endl;
             return;
         }
 
@@ -83,6 +83,8 @@ void Node::acceptNeighbors()
             std::cout << "coudn't accept connection: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
             return;
         }
+
+        //id which connetion was accepted and set stuff right from there
     }
 }
 

@@ -18,7 +18,6 @@ public:
 
     void sendMsg(std::string msg);
 
-    void print();
 
     void acceptCon();
 
@@ -42,6 +41,8 @@ public:
 
     uint32_t getPort()
     { return port; }
+
+    void print();
 private:
     // hostname/ip of connection
     std::string hostname;
