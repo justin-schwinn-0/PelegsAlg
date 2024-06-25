@@ -82,12 +82,12 @@ void Node::acceptNeighbors()
 
     if(err != 0)
     {
-        std::cout << "getaddrinfo failed" << err << gai_strerror(errno) << std::endl;
+        std::cout << "getnameinfo failed" << err << gai_strerror(errno) << std::endl;
 
         return;
     }
 
-    std::cout << "connection attempt from" << hostname << std::endl;
+    std::cout << "connection attempt from " << hostname << std::endl;
 
     if(rxFd < 0)
     {
