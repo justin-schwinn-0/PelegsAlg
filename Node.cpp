@@ -83,6 +83,7 @@ void Node::acceptNeighbors()
     if(err != 0)
     {
         std::cout << "getnameinfo failed" << err << gai_strerror(errno) << std::endl;
+        close(rxFd);
 
         return;
     }
