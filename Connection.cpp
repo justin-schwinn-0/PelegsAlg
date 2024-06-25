@@ -5,7 +5,7 @@
 void Connection::outGoingConnect()
 {
 
-    if(isConnected())
+    if(hasOutConnection())
     {
         return;
     }
