@@ -29,8 +29,8 @@ private:
     // hostname/ip of connection
     std::string hostname;
 
-    int mConFd;
-    int mListenFd;
+    int mConFd=-1;
+    int mListenFd=-1;
 
     uint32_t port;
 };
