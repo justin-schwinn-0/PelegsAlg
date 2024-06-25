@@ -72,9 +72,14 @@ void Connection::acceptMsg()
     }
     int flags;
     int in = sctp_recvmsg(connFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
-    if(in > 0)
+    if(in != -1)
     {
         std::cout << "rx msg: " << buf << std::endl;
+    }
+    else
+    {
+        std::cout << "message error: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
+        return;
     }
 
     close(connFd);
