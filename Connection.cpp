@@ -44,7 +44,7 @@ void Connection::outGoingConnect()
     serverAddress.sin_port = port;
     serverAddress.sin_addr.s_addr = inet_addr(addr);
 
-    int txFd= socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
+    mTxFd= socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
     if(mTxFd < 0)
     {
         std::cout << "couldn't make SCTP socket!" << std::endl; 
@@ -58,7 +58,7 @@ void Connection::outGoingConnect()
         return;
     }
 
-    std::cout << "connected with fd " << txFd << std::endl;
+    std::cout << "connected with fd " << mTxFd << std::endl;
 }
 
 void Connection::msgTx(std::string msg)
