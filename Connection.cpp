@@ -91,7 +91,6 @@ bool Connection::isConnected()
 
 void Connection::Connect()
 {
-        std::cout << "already connected to " << hostname << " " << mConFd << std::endl;
     if(isConnected())
     {
         return;
