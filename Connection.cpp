@@ -58,8 +58,11 @@ void Connection::acceptCon()
         std::cout << "bad listener!" << mListenFd << " " << hostname << std::endl;
         return;
     }
-    struct sctp_sndrcvinfo sndrcv;
-    char buf[1024];
+
+    if(hasAccepted())
+    {
+        return;
+    }
 
     std::cout << "\n\nwaiting for connection..." << std:: endl;
 
@@ -74,6 +77,8 @@ void Connection::acceptCon()
 
 void Connectin::msgRx()
 {
+    struct sctp_sndrcvinfo sndrcv;
+    char buf[1024];
     int flags;
     int in = sctp_recvmsg(connFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
     if(in != -1)
