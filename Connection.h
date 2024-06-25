@@ -34,10 +34,10 @@ public:
     { mTxFd = fd;}
 
     void setInCon(bool c)
-    { in_connection = c; }
+    { in_connected = c; }
 
     void setOutCon(bool c)
-    { out_connection = c; }
+    { out_connected = c; }
 
     bool hasOutConnection();
 
