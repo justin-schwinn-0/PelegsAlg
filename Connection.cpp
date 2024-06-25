@@ -99,6 +99,9 @@ void Connection::Connect()
 
     inet_ntop(result->ai_family,result->ai_addr->sa_data, addr,50);
 
+    std::cout << addr << "worked?S?S?" << std::endl;
+    return;
+
     struct sockaddr_in serverAddress;
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_port = port;
