@@ -189,10 +189,10 @@ int main(int argc,char** argv)
 
         n.listen();
         
+        n.connectNeighbors();
         std::thread msgAccepter(acceptMsgs,std::ref(n));
         msgAccepter.detach();
 
-        n.connectNeighbors();
     }
     else
     {
