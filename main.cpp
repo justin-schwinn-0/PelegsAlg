@@ -180,7 +180,7 @@ void acceptMsgs(Node& n)
 
 void tryConnections(Node& n)
 {
-    using namespace std::chrono::chrono_literals;
+    using namespace std::chrono_literals;
 
     while(!n.isConnectedToNeighbors())
     {
