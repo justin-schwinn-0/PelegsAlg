@@ -69,8 +69,8 @@ void Node::acceptNeighbors()
     }
 
     std::cout << "\n\nwaiting for connection..." << std:: endl;
-
-    int rxFd = accept(mListenFd,(struct sockaddr*)NULL,NULL);
+    struct sockaddr* sockAddress;
+    int rxFd = accept(mListenFd,socketAddress,sizeof(sockAddress));
 
     if(rxFd < 0)
     {
