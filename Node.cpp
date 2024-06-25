@@ -16,7 +16,7 @@ void Node::connectNeighbors()
     }
 }
 
-void Node::connectNeighbors()
+void Node::acceptNeighbors()
 {
     for(Connection& con : mNeighbors)
     {
