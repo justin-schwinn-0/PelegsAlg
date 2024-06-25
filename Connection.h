@@ -15,7 +15,7 @@ public:
 
     void openSocket();
 
-    void Connect();
+    void outGoingConnect();
 
     void sendMsg(std::string msg);
 
