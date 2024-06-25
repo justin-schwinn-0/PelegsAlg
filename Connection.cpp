@@ -125,6 +125,8 @@ void Connection::Connect()
         std::cout << "coudn't connect to socket: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
         return;
     }
+
+    std::cout << "connected with fd " << mConFd << std::endl;
 }
 
 void Connection::sendMsg(std::string msg)
