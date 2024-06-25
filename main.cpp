@@ -176,7 +176,7 @@ int main(int argc,char** argv)
 
         auto n = readConfig("testConfig.txt",uid);
 
-        n.print();
+        n.listen();
     }
     else
     {
