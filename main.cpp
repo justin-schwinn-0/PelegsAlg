@@ -182,10 +182,9 @@ void tryConnections(Node& n)
     while(!n.isConnectedToNeighbors())
     {
         n.connectNeighbors();
-        std::this_thread::sleep_for(std::chrono::seconds(6));
+        std::this_thread::sleep_for(std::chrono::seconds(3));
     }
     std::cout << "fully connected!" << std::endl;
-        std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 
 int main(int argc,char** argv)
@@ -205,6 +204,7 @@ int main(int argc,char** argv)
         std::thread msgAccepter(acceptMsgs,std::ref(n));
         msgAccepter.detach();
 
+        std::this_thread::sleep_for(std::chrono::seconds(3));
         n.flood("hello from " + std::to_string(n.getUid()));
 
     }
