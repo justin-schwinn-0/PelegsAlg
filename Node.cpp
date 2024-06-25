@@ -52,7 +52,7 @@ void Node::handleMsg()
 
 void Node::flood(std::string str)
 {
-    for(auto ne : mNeighbors)
+    for(auto& ne : mNeighbors)
     {
         ne.sendMsg(str);
     }
