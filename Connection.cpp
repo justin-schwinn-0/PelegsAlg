@@ -86,7 +86,7 @@ void Connection::Connect()
 {
     struct addrinfo *result,hints;
 
-    int err = getaddrinfo(hostname.c_str(),NULL,&hints,&result); 
+    int err = getaddrinfo(hostname.c_str(),NULL,NULL,&result); 
 
     if(err != 0)
     {
