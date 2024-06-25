@@ -84,6 +84,11 @@ bool Connection::isConnected()
 
 void Connection::Connect()
 {
+    if(isConnected())
+    {
+        return;
+    }
+
     struct addrinfo *result,hints;
 
     int err = getaddrinfo(hostname.c_str(),NULL,NULL,&result); 
@@ -101,18 +106,12 @@ void Connection::Connect()
 
     inet_ntop(result->ai_family, p, addr, 50);
 
-    std::cout << "try to conneto to " << addr << std::endl;
-    return;
+    std::cout << "try to connect to " << addr << std::endl;
 
     struct sockaddr_in serverAddress;
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_port = port;
     serverAddress.sin_addr.s_addr = inet_addr(addr);
-
-    if(isConnected())
-    {
-        return;
-    }
 
     mConFd= socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
     if(mConFd < 0)
