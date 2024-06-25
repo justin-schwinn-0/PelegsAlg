@@ -84,7 +84,7 @@ bool Connection::isConnected()
 
 void Connection::Connect()
 {
-    struct hostent hosts = gethostbyname(hostname.c_str()); 
+    struct hostent* hosts = gethostbyname(hostname.c_str()); 
     if(hosts == 0)
     {
         std::cout << "could not get host entries!" << std::endl;
