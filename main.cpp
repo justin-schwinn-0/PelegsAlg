@@ -182,7 +182,7 @@ void tryConnections(Node& n)
     {
         n.handleMsg();
 
-        std::cout << "got msg!" << std::endl;
+        std::cout << "fully connected!" << std::endl;
     }
 }
 
@@ -201,7 +201,9 @@ int main(int argc,char** argv)
         
         n.connectNeighbors();
         std::thread msgAccepter(acceptMsgs,std::ref(n));
+        std::thread connector(tryConnections,std::ref(n));
         msgAccepter.detach();
+        connector.detach();
 
     }
     else
