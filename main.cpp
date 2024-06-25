@@ -180,9 +180,10 @@ void acceptMsgs(Node& n)
 
 void tryConnections(Node& n)
 {
+
     while(!n.isConnectedToNeighbors())
     {
-        sleep(2);
+        std::this_thread::sleep_for(std::chrono::seconds(3));
         n.connectNeighbors();
     }
     std::cout << "fully connected!" << std::endl;
