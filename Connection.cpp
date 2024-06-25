@@ -46,7 +46,6 @@ void Connection::openSocket()
     {
         std::cout << "coudn't listen!: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
     }
-    std::cout << "listening on"<< mListenFd << std::endl; 
     
 }
 
@@ -85,7 +84,7 @@ bool Connection::isConnected()
 
 void Connection::Connect()
 {
-    struct addrinfo *result,hints;
+    struct addrinfo *result,*hints;
 
     int err = getaddrinfo(hostname.c_str(),NULL,&hints,&result); 
 
