@@ -58,6 +58,7 @@ void Connection::acceptMsg()
     if(mListenFd < 0)
     {
         std::cout << "bad listener!" << mListenFd << " " << hostname << std::endl;
+        openSocket();
         return;
     }
     struct sctp_sndrcvinfo sndrcv;
@@ -78,6 +79,8 @@ void Connection::acceptMsg()
     {
         std::cout << "rx msg: " << buf << std::endl;
     }
+
+    close(connFd);
 }
 
 bool Connection::isConnected()
@@ -151,6 +154,7 @@ void Connection::sendMsg(std::string msg)
         if( ret < 0)
         {
             std::cout << "couldn't send message: " << strerror(errno) << std::endl;
+            close(mConFd);
         }
     }
 }
