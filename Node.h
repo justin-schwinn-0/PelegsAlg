@@ -37,7 +37,7 @@ private:
     Connection mListener;
     std::vector<Connection> mNeighbors;
 
-    int mLisenterFd
+    int mLisenterFd;
 };
 
 #endif
