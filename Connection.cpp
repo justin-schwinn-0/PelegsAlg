@@ -82,11 +82,12 @@ bool Connection::isConnected()
 
 void Connection::Connect()
 {
+        std::cout << "already connected to " << hostname << std::endl;
     if(isConnected())
     {
-        std::cout << "already connected to " << hostname << std::endl;
         return;
     }
+
 
     struct addrinfo *result,hints;
 
