@@ -87,7 +87,7 @@ void Node::acceptNeighbors()
         return;
     }
 
-    std::cout << "connection attempt from" <<  << std::endl;
+    std::cout << "connection attempt from" << hostname << std::endl;
 
     if(rxFd < 0)
     {
