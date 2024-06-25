@@ -10,7 +10,6 @@
 #include "Node.h"
 #include "Connection.h"
 
-using namespace std::chrono_literals;
 
 std::vector<std::string> split(std::string str, std::string delim)
 {
@@ -181,9 +180,11 @@ void acceptMsgs(Node& n)
 
 void tryConnections(Node& n)
 {
+    using namespace std::chrono_literals;
+
     while(!n.isConnectedToNeighbors())
     {
-        std::this_thread:sleep_for(2500ms);
+        std::this_thread::sleep_for(2500ms);
         n.connectNeighbors();
     }
     std::cout << "fully connected!" << std::endl;
