@@ -204,7 +204,6 @@ int main(int argc,char** argv)
         std::thread msgAccepter(acceptMsgs,std::ref(n));
         msgAccepter.detach();
 
-        std::this_thread::sleep_for(std::chrono::seconds(3));
         n.flood("hello from " + std::to_string(n.getUid()));
 
     }
