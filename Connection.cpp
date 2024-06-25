@@ -12,67 +12,8 @@
 #include <netinet/sctp.h>
 #include <arpa/inet.h>
 
-void Connection::openSocket()
-{
-    struct sockaddr_in serverSocket = {AF_INET,INADDR_ANY};
-    serverSocket.sin_port = port;
-
-    struct sctp_initmsg init = {5,5,4};
-
-    mListenFd = socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
-
-    if(mListenFd < 0)
-    {
-        std::cout << "couldn't make SCTP socket!" << std::endl; 
-        return;
-    }
-
-    int ret = bind(mListenFd, (struct sockaddr*)&serverSocket,sizeof(serverSocket));
-    if(ret < 0)
-    {
-        std::cout << "coudn't bind socket: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
-        return;
-    }
-
-    ret = setsockopt(mListenFd, IPPROTO_SCTP, SCTP_INITMSG, &init,sizeof(init));
-    if(ret < 0)
-    {
-        std::cout << "coudn't set socket: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
-        return;
-    }
-
-
-    ret = listen(mListenFd, init.sinit_max_instreams);
-    if(ret < 0)
-    {
-        std::cout << "coudn't listen!: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
-        return;
-    }
-    
-}
-
 void Connection::acceptCon()
 {
-    if(mListenFd < 0)
-    {
-        std::cout << "bad listener!" << mListenFd << " " << hostname << std::endl;
-        return;
-    }
-
-    if(hasAccepted())
-    {
-        return;
-    }
-
-    std::cout << "\n\nwaiting for connection..." << std:: endl;
-
-    mRxFd = accept(mListenFd,(struct sockaddr*)NULL,NULL);
-
-    if(mRxFd < 0)
-    {
-        std::cout << "coudn't accept connection: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
-        return;
-    }
 }
 
 void Connection::msgRx()
@@ -98,20 +39,12 @@ void Connection::msgRx()
 
 bool Connection::isConnected()
 {
-    if(mTxFd == -1)
-    {
-        return false;
-    }
-    return true;
+    return in_connected;
 }
 
 bool Connection::hasAccepted()
 {
-    if(mRxFd == -1)
-    {
-        return false;
-    }
-    return true;
+    return out_connected;
 }
 
 void Connection::outGoingConnect()
@@ -165,11 +98,6 @@ void Connection::outGoingConnect()
     std::cout << "connected with fd " << mTxFd << std::endl;
 }
 
-void Connection::resetRemoteConnection()
-{
-    close(mTxFd);
-    mTxFd=-1;
-}
 void Connection::sendMsg(std::string msg)
 {
     if(mTxFd < 0)

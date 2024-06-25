@@ -20,20 +20,17 @@ public:
     void connectNeighbors();
     void acceptNeighbors();
 
-    Connection getOwnConnection();
 
-    void addConnection(Connection c);
-
-    int getUid();
-
-    void print();
-
-    void handleMsg();
 
     bool isConnectedToNeighbors();
     bool hasAcceptedNeighbors();
+    Connection getOwnConnection();
+    int getUid();
 
-    void flood(std::string str);
+    void msgRx();
+
+    void print();
+    void addConnection(Connection c);
 private:
     int mUid;
     Connection mListener;

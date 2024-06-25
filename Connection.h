@@ -12,8 +12,7 @@ public:
     {
 
     }
-
-    void openSocket();
+/*
 
     void outGoingConnect();
 
@@ -27,18 +26,32 @@ public:
 
     void resetRemoteConnection();
 
-    bool isConnected();
+*/
+    void setRxFd(int fd)
+    { mRxFd = fd;}
 
-    bool hasAccepted();
+    void setTxFd(int fd)
+    { mTxFd = fd;}
 
+    void setInCon(bool c)
+    { in_connection = c; }
+
+    void setOutCon(bool c)
+    { out_connection = c; }
+
+    bool hasOutConnection();
+
+    bool hasInConnection();
 private:
     // hostname/ip of connection
     std::string hostname;
     uint32_t port;
 
-    int mTxFd =-1;
-    int mRxFd =-1;
-    int mListenFd =-1;
+    bool in_connected;
+    bool out_connected;
+
+    int mRxFd;
+    int mTxFd;
 
 };
 
