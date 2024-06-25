@@ -36,6 +36,8 @@ private:
     int mUid;
     Connection mListener;
     std::vector<Connection> mNeighbors;
+
+    int mLisenterFd
 };
 
 #endif
