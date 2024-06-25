@@ -86,10 +86,6 @@ void Connection::Connect()
     {
         return;
     }
-    else
-    {
-        std::cout << "connection fd: " << mConFd << std::endl;
-    }
 
     struct addrinfo *result,hints;
 
