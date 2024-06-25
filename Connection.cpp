@@ -45,7 +45,7 @@ void Connection::openSocket()
     {
         std::cout << "coudn't listen!: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
     }
-    std::cout << "listening on"<<mListenFD << std::endl; 
+    std::cout << "listening on"<< mListenFd << std::endl; 
     
 }
 
