@@ -170,6 +170,7 @@ Node readConfig(std::string configFile, int popId = -1)
 
 void acceptMsgs(Node& n)
 {
+    n.listen();
     while(true)
     {
         n.handleMsg();
@@ -200,12 +201,11 @@ int main(int argc,char** argv)
 
         auto n = readConfig("testConfig.txt",uid);
 
-        n.listen();
         
-        std::thread connector(tryConnections,std::ref(n));
-        connector.join();
         std::thread msgAccepter(acceptMsgs,std::ref(n));
         msgAccepter.detach();
+        std::thread connector(tryConnections,std::ref(n));
+        connector.detach();
 
         n.flood("hello from " + std::to_string(n.getUid()));
 
