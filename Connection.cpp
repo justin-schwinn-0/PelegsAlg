@@ -84,7 +84,7 @@ bool Connection::isConnected()
 
 void Connection::Connect()
 {
-    struct addrinfo *result,*hints;
+    struct addrinfo *result,hints;
 
     int err = getaddrinfo(hostname.c_str(),NULL,&hints,&result); 
 
