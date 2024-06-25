@@ -69,18 +69,13 @@ void Node::acceptNeighbors()
             return;
         }
 
-        if(hasAccepted())
-        {
-            return;
-        }
-
         std::cout << "\n\nwaiting for connection..." << std:: endl;
 
         int rxFd = accept(mListenFd,(struct sockaddr*)NULL,NULL);
 
         if(rxFd < 0)
         {
-            std::cout << "coudn't accept connection: " << hostname << " " << port  << " error: " << strerror(errno) << std::endl;
+            std::cout << "coudn't accept connection: " << strerror(errno) << std::endl;
             return;
         }
 
