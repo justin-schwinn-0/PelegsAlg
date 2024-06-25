@@ -15,7 +15,7 @@ public:
     {
     }
 
-    void listen();
+    void openSocket();
 
     void connectNeighbors();
     void acceptNeighbors();

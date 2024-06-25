@@ -12,7 +12,7 @@
 #include <arpa/inet.h>
 
 
-void Node::listen()
+void Node::openSocket()
 {
     struct sockaddr_in serverSocket = {AF_INET,INADDR_ANY};
     serverSocket.sin_port = mListener.getPort();
