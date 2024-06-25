@@ -211,8 +211,6 @@ int main(int argc,char** argv)
         n.print();
         n.listen();
         
-        outConnections(n);
-
         std::thread outConnector(outConnections,std::ref(n));
         std::thread inConnector(inConnections,std::ref(n));
         outConnector.join();
