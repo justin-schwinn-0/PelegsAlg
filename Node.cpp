@@ -54,12 +54,9 @@ void Node::openSocket()
 
 void Node::connectNeighbors()
 {
-    while(!outConnectedToNeighbors())
+    for(auto& n : mNeighbors)
     {
-        for(auto& n : mNeighbors)
-        {
-            n.outGoingConnect();
-        }
+        n.outGoingConnect();
     }
 }
 
