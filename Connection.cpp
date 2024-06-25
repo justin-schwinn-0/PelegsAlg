@@ -97,6 +97,7 @@ void Connection::Connect()
     if(mConFd < 0)
     {
         std::cout << "couldn't make SCTP socket!" << std::endl; 
+        mConFd = -1;
     }
 
     int ret = connect(mConFd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
