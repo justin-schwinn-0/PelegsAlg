@@ -23,6 +23,8 @@ public:
 
     void acceptCon();
 
+    void msgRx();
+
     void resetRemoteConnection();
 
     bool isConnected();
