@@ -34,7 +34,7 @@ public:
     void setOutCon(bool c)
     { out_connected = c; }
 
-    void msgRx(std::string msg);
+    void msgTx(std::string msg);
 
     bool hasOutConnection();
 
