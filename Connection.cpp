@@ -84,20 +84,15 @@ bool Connection::isConnected()
 
 void Connection::Connect()
 {
-    struct hostent* hosts = gethostbyname(hostname.c_str()); 
-    if(hosts == 0)
-    {
-        std::cout << "could not get host entries!" << std::endl;
-        return;
-    }
-    else
-    {
-        std::cout << "found hosts!" << std::endl;
-        for(int i = 0; i < hosts.h_length;i++)
-        {
+    struct addrinfo *result,hints;
 
-            std::cout << hosts.h_addr_list[i] << std::endl;
-        }
+    int err = getaddrinfo(hostname.c_str(),NULL,&hints,&result); 
+
+    if(err != 0)
+    {
+        std::cout << "getaddrinfo failed" << err << strerror(errno) << std::endl;
+
+        return;
     }
 
     struct sockaddr_in serverAddress;
