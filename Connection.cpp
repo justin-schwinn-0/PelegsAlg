@@ -55,7 +55,7 @@ void Connection::outGoingConnect()
     {
         ret = connect(sd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
     }
-    while(ret == ECONNREFUSED)
+    while(ret == ECONNREFUSED);
     if(ret < 0)
     {
         std::cout << "coudn't connect to socket: " << strerror(errno) << std::endl;
