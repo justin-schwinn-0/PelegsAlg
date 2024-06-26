@@ -43,7 +43,7 @@ std::string Utils::getAddressFromHost(std::string host)
     return addr;
 }
 
-void Utils::pollForFd(int fd, int time)
+int Utils::pollForFd(int fd, int time)
 {
     pollfd pfds[1];
 
