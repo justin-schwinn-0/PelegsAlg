@@ -223,6 +223,8 @@ int main(int argc,char** argv)
 
         std::thread slowTest(slowPoll,std::ref(n),uid);
 
+        slowTest.join();
+
 
         //n.flood("hello from " + std::to_string(n.getUid()));
         std::cout << "done" << std::endl;
