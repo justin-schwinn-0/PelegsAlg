@@ -97,7 +97,7 @@ void Node::acceptNeighbors()
     pfds[0].events= POLLIN;
 
     
-    if(poll(pfds,1,5000) != 0)// 5s timeout
+    if(poll(pfds,1,5000) == 0)// 5s timeout
     {
         std::cout << "no connection found, moving on..." << std::endl;
         return;
