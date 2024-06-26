@@ -91,7 +91,20 @@ void Connection::msgTx(std::string msg)
     }
     else
     {
-        int ret = sctp_sendmsg(mConFd,(void *)msg.c_str(), msg.size(),NULL,0,0,0,0,1000,0);
+        int ret = Utils::pollForFd(mConFd,3000,POLLOUT);
+        if(ret == 0)
+        {
+            std::cout << "tx timed out..." << std::endl;
+        }
+        else if(ret > 0)
+        {
+            ret = sctp_sendmsg(mConFd,(void *)msg.c_str(), msg.size(),NULL,0,0,0,0,1000,0);
+        }
+        else
+        {
+            std::cout << "tx polling error: " << strerror(errno) << std::endl;
+        }
+
         if( ret < 0)
         {
             std::cout << "couldn't send message: " << strerror(errno) << std::endl;

@@ -183,10 +183,11 @@ void inConnections(Node& n)
 void slowPoll(Node& n, int uid)
 {
     std::cout << "testing this process!" << std::endl;
+    int i;
     while(true)
     {
-        n.flood("hello from " + std::to_string(uid));
-        std::this_thread::sleep_for(std::chrono::milliseconds(8000));
+        n.flood("hello from " + std::to_string(uid) + " #" +std::to_string(i));
+        std::this_thread::sleep_for(std::chrono::milliseconds(4000));
     }
     std::cout << "exited somehow..." << std::endl;
 }
