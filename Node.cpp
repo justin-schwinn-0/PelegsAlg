@@ -19,7 +19,10 @@ void Node::openSocket()
     struct sockaddr_in serverSocket = {AF_INET,INADDR_ANY};
     serverSocket.sin_port = mListener.getPort();
 
-    struct sctp_initmsg init = {5,5,4};
+    struct sctp_initmsg init;
+    init.sinit_num_ostreams = 5;
+    init.sinit_num_instreams = 5;
+    init.sinit_max_attempts = 4;
 
     mListenFd = socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
 
