@@ -113,7 +113,23 @@ void Connection::msgRx()
         struct sctp_sndrcvinfo sndrcv;
         char buf[128];
         int flags;
-        int in = sctp_recvmsg(mConFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
+
+        int in = -1;
+        int ret =poll(mConFd,3000,POLLIN ;) 
+        if(ret == 0)
+        {   
+            std::cout << "rx timed out..." std::endl;
+            
+        }
+        else if( ret > 0)
+        {
+            in = sctp_recvmsg(mConFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
+        }
+        else
+        {
+            std::cout << "rx polling error: " << strerror(errno) << std::endl;
+        }
+
         if(in != -1)
         {
             std::string msg = buf;
