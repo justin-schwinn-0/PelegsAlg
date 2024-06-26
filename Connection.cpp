@@ -37,7 +37,7 @@ void Connection::outGoingConnect()
     
     std::string addr = Utils::getAddressFromHost(hostname);
 
-    struct sockaddr_in* serverAddress = malloc(sizeof(*serverAddress));
+    struct sockaddr_in* serverAddress = (sockaddr_in*)malloc(sizeof(*serverAddress));
     serverAddress->sin_family = AF_INET;
     serverAddress->sin_port = port;
     serverAddress->sin_addr.s_addr = inet_addr(addr.c_str());
