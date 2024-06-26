@@ -85,7 +85,7 @@ void Node::acceptNeighbors()
             const int addrLen = 128;
             char acceptedAddr[addrLen];
             const char* ret = inet_ntop(socketAddress.sa_family,
-                                        (void*)&socketAddress.sa_addr,
+                                        (void*)&socketAddress.sa_data,
                                         acceptedAddr,
                                         addrLen);
 
