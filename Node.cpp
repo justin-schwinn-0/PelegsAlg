@@ -61,7 +61,7 @@ void Node::connectNeighbors()
     }
 }
 
-void initMessageThreads()
+void Node::initMessageThreads()
 {
     for(auto& con: mNeighbors)
     {
