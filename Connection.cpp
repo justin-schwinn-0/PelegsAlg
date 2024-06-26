@@ -123,7 +123,7 @@ bool Connection::isConnected()
     return false;
 }
 
-void Connection::setConnectionFd(int fd, struct sockaddr* farEnd)
+void Connection::setConnectionFd(int fd,sockaddr* farEnd)
 {
     if(!isConnected())
     {
