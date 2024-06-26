@@ -101,7 +101,9 @@ void Node::acceptNeighbors()
     if(retfd != mListenFd)
     {
         std::cout << "no connecting neighbors, moving on..." << std::endl;
+        return;
     }
+
     int rxFd = accept(mListenFd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength);
 
     if(rxFd < 0)
