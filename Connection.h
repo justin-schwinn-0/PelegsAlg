@@ -9,12 +9,9 @@
 class Connection
 {    
 public:
-    Connection(std::string h, int p) : 
-        hostname(h),
-        port(p)
-    {
+    Connection(std::string h, int p); 
 
-    }
+    ~Connection();
 /*
 
     void sendMsg(std::string msg);
