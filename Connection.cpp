@@ -13,6 +13,19 @@
 #include <netinet/sctp.h>
 #include <arpa/inet.h>
 
+Connection::Connection(std::string h, int p); : 
+    hostname(h),
+    port(p)
+{
+}
+
+Connection::~Connection()
+{
+    if(isConnected())
+    {
+        close(mConFd);
+    }
+}
 void Connection::outGoingConnect()
 {
 
@@ -62,12 +75,6 @@ void Connection::msgTx(std::string msg)
     }
     else
     {
-        std::cout << "test address!" << std::endl;
-        if(!farEndAddress)
-        {
-            std::cout << "no far end address!" << std::endl;
-            return;
-        }
         int ret = sctp_sendmsg(mConFd,(void *)msg.c_str(), strlen(msg.c_str())+1,NULL,0,0,0,0,1000,0);
         if( ret < 0)
         {
@@ -115,4 +122,14 @@ bool Connection::isConnected()
         return true;
     }
     return false;
+}
+
+void Connection::setConnectionFd(int fd)
+{
+    if(!isConnected())
+    {
+        const std::lock_gaurd<std::mutex> connectionGaurd(connection_mutex);
+        
+        mConFd = fd;
+    }
 }

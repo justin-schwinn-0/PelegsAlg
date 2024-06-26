@@ -29,11 +29,7 @@ public:
 
     void outGoingConnect();
 
-    void setTxFd(int fd)
-    { mTxFd = fd;}
-
-    void setRxFd(int fd)
-    { mRxFd = fd;}
+    void setConnectionFd(int fd);
 
     void msgTx(std::string msg);
     void msgRx();
@@ -54,9 +50,6 @@ private:
 
     std::mutex connection_mutex;
     int mConFd = -1;
-
-    struct sockaddr *farEndAddress;
-
 };
 
 #endif
