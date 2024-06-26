@@ -64,6 +64,8 @@ void Utils::log(Arg arg,Args... args)
     logMutex.lock();
 
     std::cout << arg;
+    using expander = int[];I        
+    (void)expander{0, (void(out << ',' << std::forward<Args>(args)), 0)...};
 
     logMutex.unlock();
 }
