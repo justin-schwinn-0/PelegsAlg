@@ -57,7 +57,7 @@ int Utils::pollForFd(int fd, int time, int flag )
 }
 
 template<typename Arg,typename... Args>
-void Utils::log(Arg a,Args... args)
+void Utils::log(Arg arg,Args... args)
 {
     static std::mutex logMutex;
 
