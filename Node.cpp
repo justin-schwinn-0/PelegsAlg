@@ -87,7 +87,6 @@ void Node::acceptNeighbors()
         char farAddress[INET_ADDRSTRLEN];
         inet_ntop(AF_INET,&(socketAddress.sin_addr),farAddress,INET_ADDRSTRLEN);
         
-        std::cout <<
         for(auto& con : mNeighbors)
         {
             if(!con.hasInConnection())
