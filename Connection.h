@@ -3,6 +3,7 @@
 
 #include <string>
 
+#include <sys/socket.h>
 
 class Connection
 {    
