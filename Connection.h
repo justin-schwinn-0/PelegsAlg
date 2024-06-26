@@ -27,7 +27,7 @@ public:
 
     void outGoingConnect();
 
-    void setConnection(int fd,struct sockaddr* farEnd);
+    void setConnection(int fd,sockaddr* farEnd);
 
     void msgTx(std::string msg);
     void msgRx();
