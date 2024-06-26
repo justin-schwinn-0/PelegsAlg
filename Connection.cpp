@@ -118,7 +118,7 @@ void Connection::msgRx()
         int ret =Utils::pollForFd(mConFd,3000,POLLIN);
         if(ret == 0)
         {   
-            std::cout << "rx timed out..." std::endl;
+            std::cout << "rx timed out..." << std::endl;
             
         }
         else if( ret > 0)
