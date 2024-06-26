@@ -1,4 +1,5 @@
 #include "Node.h"
+#include "Utils.h"
 
 #include <iostream>
 #include <unistd.h>
@@ -73,32 +74,22 @@ void Node::acceptNeighbors()
     int addrLength;
     int rxFd = accept(mListenFd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength);
 
-    const int hostLen = 500;
-    char hostname[hostLen];
-    int err = getnameinfo((struct sockaddr*)&socketAddress,
-                          sizeof(socketAddress),
-                          hostname,hostLen,
-                          NULL,0,0); 
-
-
-    if(err != 0)
-    {
-        std::cout << "getnameinfo failed " << err << " " << gai_strerror(errno) << std::endl;
-        close(rxFd);
-
-        return;
-    }
-
-    std::cout << "connection attempt from " << hostname << std::endl;
-
-    std::string hoststr(hostname);
 
     for(auto& con : mNeighbors)
     {
-        // hoststr contains con.getHostname...
-        if(hoststr.find(con.getHostname()) != std::string::npos)
+        if(!con.hasInConnection())
         {
-            con.setRxFd(rxFd);
+            // if con.hostname and socketAddress resolve to the same ip...
+            std::string conAddr = Utils::getAddressFromHost(con.getHostname());
+
+            const int addrLen = 128;
+            char acceptedAddr[addrLen];
+            inet_ntop(  socketAddress.sin_family,
+                        (void*)&socketAddress.sin_addr,
+                        acceptedAddr,
+                        addrLen);
+
+            std::cout << socketAddress.sin_addr.s_addr << " this compared to " << acceptedAddr <<std::endl;
         }
     }
 

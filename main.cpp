@@ -35,16 +35,6 @@ std::vector<std::string> split(std::string str, std::string delim)
     return splits;
 }
 
-template<typename T>
-void printVector(std::vector<T> vec)
-{
-    for(auto t : vec)
-    {
-        std::cout << t << "\n"; 
-    }
-    std::cout << std::endl;
-}
-
 Node readConfig(std::string configFile, int popId = -1)
 {
     std::ifstream file(configFile) ;

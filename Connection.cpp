@@ -1,5 +1,5 @@
-
 #include "Connection.h"
+#include "Utils.h"
 
 #include <iostream>
 #include <unistd.h>
@@ -20,29 +20,14 @@ void Connection::outGoingConnect()
         return;
     }
 
-    struct addrinfo *result;
 
-    int err = getaddrinfo(hostname.c_str(),NULL,NULL,&result); 
-
-    if(err != 0)
-    {
-        std::cout << "getaddrinfo failed" << err << gai_strerror(errno) << std::endl;
-
-        return;
-    }
-
-    char addr[50];
-
-    void* p = &((struct sockaddr_in*) result->ai_addr)->sin_addr;
-
-    inet_ntop(result->ai_family, p, addr, 50);
-
+    std::string addr = Utils::getAddressFromHost(hostname);
     std::cout << "try to connect to " << addr << std::endl;
 
     struct sockaddr_in serverAddress;
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_port = port;
-    serverAddress.sin_addr.s_addr = inet_addr(addr);
+    serverAddress.sin_addr.s_addr = inet_addr(addr.c_str());
 
     mTxFd= socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
     if(mTxFd < 0)
