@@ -66,6 +66,7 @@ void Node::initMessageThreads()
 {
     for(auto& con: mNeighbors)
     {
+        std::cout << "running msg Rx thread for " << con.getHostname() << std::endl;
         std::thread msgRxer(&Connection::msgRx,std::ref(con));
         msgRxer.detach();
     }
