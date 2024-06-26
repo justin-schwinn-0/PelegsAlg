@@ -180,7 +180,7 @@ void inConnections(Node& n)
     //std::cout << "accepted incomming connections!" << std::endl;
 }
 
-void slowPoll(Node& n)
+void slowPoll(Node& n, int uid)
 {
     while(true)
     {
@@ -221,7 +221,7 @@ int main(int argc,char** argv)
 
         n.initMessageThreads();
 
-        std::thread slowTest(slowPoll,std::ref(n));
+        std::thread slowTest(slowPoll,std::ref(n),uid);
 
 
         //n.flood("hello from " + std::to_string(n.getUid()));
