@@ -146,7 +146,7 @@ void Connection::msgRx()
             }
             else
             {
-                std::cout << "rx message error: " << strerror(errno) << std::endl;
+                std::cout << "rx message error "<< hostname << " : " << strerror(errno) << std::endl;
 
                 switch(errno)
                 {
