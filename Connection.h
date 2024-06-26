@@ -5,7 +5,6 @@
 
 #include <sys/socket.h>
 #include <sys/types.h>
-
 #include <netinet/sctp.h>
 
 class Connection
