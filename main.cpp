@@ -219,11 +219,16 @@ int main(int argc,char** argv)
         outConnector.join();
         inConnector.join();
 
-        n.initMessageThreads();
+        if(uid == 5)
+        {
+            n.initMessageThreads();
+        }
+        else
+        {
+            std::thread slowTest(slowPoll,std::ref(n),uid);
+            slowTest.join();
+        }
 
-        std::thread slowTest(slowPoll,std::ref(n),uid);
-
-        slowTest.join();
 
 
         //n.flood("hello from " + std::to_string(n.getUid()));
