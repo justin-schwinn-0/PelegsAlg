@@ -53,9 +53,12 @@ void Connection::outGoingConnect()
     int ret;    
     do
     {
-        ret = connect(sd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
+        if(Utils::pollforFd(sd,5000))
+        {
+            ret = connect(sd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
+        }
     }
-    while(ret == ECONNREFUSED);
+    while(errno == ECONNREFUSED);
 
     if(ret < 0)
     {
