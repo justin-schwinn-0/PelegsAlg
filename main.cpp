@@ -221,7 +221,7 @@ int main(int argc,char** argv)
         outConnector.join();
         inConnector.join();
 
-        /*if(uid == 5)
+        if(uid == 5)
         {
             n.initMessageThreads();
         }
@@ -229,7 +229,7 @@ int main(int argc,char** argv)
         {
             std::thread slowTest(slowPoll,std::ref(n),uid);
             slowTest.join();
-        }*/
+        }
 
 
 
