@@ -90,7 +90,6 @@ void Node::acceptNeighbors()
         return;
     }
 
-
     struct sockaddr addr;
     int peerLen = sizeof(addr);
     if(getpeername(rxFd,&addr,(socklen_t*)&peerLen) == 0)
@@ -111,6 +110,7 @@ void Node::acceptNeighbors()
                 {
                     con.setConnectionFd(rxFd);
                     connectionAccepted =true;
+                    std::cout << "connection accepted from " << conAddr << std::endl;
                     //std::cout << "incomming connection with  " << farAddress << std::endl;
                 }
             }
