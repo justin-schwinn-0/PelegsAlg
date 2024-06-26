@@ -73,6 +73,7 @@ void Connection::msgRx()
 {
     while(true)
     {
+        std::cout << "waiting for message..." << std::endl;
         struct sctp_sndrcvinfo sndrcv;
         char buf[1024];
         int flags;
