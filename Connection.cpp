@@ -56,9 +56,11 @@ void Connection::outGoingConnect()
         ret = connect(sd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
     }
     while(ret == ECONNREFUSED);
+
     if(ret < 0)
     {
         std::cout << "coudn't connect to socket: " << strerror(errno) << std::endl;
+        close(sd);
         return;
     }
 
@@ -151,9 +153,4 @@ void Connection::setConnection(int fd,sockaddr farEnd)
         mFarAddress= farEnd;
         std::cout << "setting connection FD " << mConFd << std::endl;
     }
-}
-
-int pollFD(int fd,int time)
-{
-
 }
