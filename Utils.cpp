@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <unistd.h>
-#include <mutex>
 #include <cerrno>
 #include <cstring>
 #include <poll.h>
