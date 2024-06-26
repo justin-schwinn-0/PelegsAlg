@@ -61,7 +61,7 @@ void Connection::outGoingConnect()
         return;
     }
 
-    setConnection(sd,(sockaddr)serverAddress);
+    setConnection(sd,(struct sockaddr)serverAddress);
 
     
 
