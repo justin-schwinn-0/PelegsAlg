@@ -177,7 +177,7 @@ void inConnections(Node& n)
         n.acceptNeighbors();
         std::this_thread::sleep_for(std::chrono::milliseconds(1500));
     }
-    //std::cout << "accepted incomming connections!" << std::endl;
+    std::cout << "accepted incomming connections!" << std::endl;
 }
 
 void slowPoll(Node& n, int uid)
