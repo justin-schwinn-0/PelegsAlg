@@ -102,7 +102,7 @@ void Node::acceptNeighbors()
     pfds[0].fd= mListenFd;
     pfds[0].events= POLLIN;
 
-    int retfd = poll(fds,1,5000); // 5s timeout
+    int retfd = poll(pfds,1,5000); // 5s timeout
     
     if(retfd == 0)
     {
