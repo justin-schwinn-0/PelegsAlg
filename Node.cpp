@@ -170,7 +170,7 @@ bool Node::outConnectedToNeighbors()
     bool con = true;
     for(auto& n : mNeighbors)
     {
-        if(!n.hasOutConnection())
+        if(!n.isConnected())
         {
             con = false;
         }
@@ -184,7 +184,7 @@ bool Node::inConnectedToNeighbors()
     bool accept = true;
     for(auto& n : mNeighbors)
     {
-        if(!n.hasInConnection())
+        if(!n.isConnected())
         {
             accept = false;
         }
