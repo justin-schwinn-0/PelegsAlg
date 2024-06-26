@@ -86,7 +86,10 @@ void Node::acceptNeighbors()
             int peerLen = sizeof(addr);
             if(getpeername(rxFd,&addr,(socklen_t*)&peerLen) == 0)
             {
-                std::cout << addr.sa_family << " " << addr.sa_data << " " << peerLen << std::endl;
+                char* farAddress[INET_ADDRSTRLEN];
+                    inet_ntop(AF_INET,&(socketAddress.sin_addr),farAddress,INET_ADDRSTRLEN);
+
+                std::cout << conAddr << " " << farAddress << std::endl;
             }
         }
     }
