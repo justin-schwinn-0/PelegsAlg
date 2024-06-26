@@ -5,6 +5,7 @@
 #include <mutex>
 
 #include <sys/socket.h>
+#include <sys/types.h>
 
 class Connection
 {    
