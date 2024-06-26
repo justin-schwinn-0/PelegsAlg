@@ -110,7 +110,6 @@ void Connection::msgRx()
         if(in != -1)
         {
             std::cout << "rx msg: " << buf << std::endl;
-            std::cout << "from fd: " << mConFd << std::endl;
         }
         else
         {
