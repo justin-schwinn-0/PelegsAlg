@@ -89,7 +89,8 @@ void Node::acceptNeighbors()
                         acceptedAddr,
                         addrLen);
 
-            std::cout << socketAddress.sin_addr.s_addr << " this compared to " << acceptedAddr <<std::endl;
+            std::cout << socketAddress.sin_addr.s_addr << " this compared to :" 
+                << conAddr << ": " << std::endl;
         }
     }
 
