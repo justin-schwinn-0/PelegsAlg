@@ -166,7 +166,7 @@ void outConnections(Node& n)
         n.connectNeighbors();
         std::this_thread::sleep_for(std::chrono::milliseconds(1500));
     }
-    //std::cout << "set up out going connections!" << std::endl;
+    std::cout << "set up out going connections!" << std::endl;
 }
 
 void inConnections(Node& n)
