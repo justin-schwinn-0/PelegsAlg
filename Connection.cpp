@@ -160,7 +160,7 @@ void Connection::msgRx()
         }
         else
         {
-            std::cout << "rx polling error: " + strerror(errno) << std::endl;
+            std::cout << "rx polling error: " + std::string(strerror(errno)) << std::endl;
         }
 
     }
