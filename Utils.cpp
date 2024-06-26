@@ -55,17 +55,3 @@ int Utils::pollForFd(int fd, int time, int flag )
     
     return poll(pfds,1,time); // 5s timeout
 }
-
-template<typename Arg,typename... Args>
-void Utils::log(Arg arg,Args... args)
-{
-    static std::mutex logMutex;
-
-    logMutex.lock();
-
-    std::cout << arg;
-    using expander = int[];        
-    (void)expander{0, (void(std::cout << ' ' << std::forward<Args>(args)), 0)...};
-
-    logMutex.unlock();
-}
