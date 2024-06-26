@@ -44,12 +44,12 @@ std::string Utils::getAddressFromHost(std::string host)
     return addr;
 }
 
-int Utils::pollForFd(int fd, int time)
+int Utils::pollForFd(int fd, int time, int flag )
 {
     pollfd pfds[1];
 
     pfds[0].fd= fd;
-    pfds[0].events= POLLIN;
+    pfds[0].events = flag;
 
     
     return poll(pfds,1,time); // 5s timeout
