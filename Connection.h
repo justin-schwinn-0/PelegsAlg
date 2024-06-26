@@ -11,6 +11,7 @@ class Connection
 public:
     Connection(std::string h, int p); 
 
+    Connection(); 
     ~Connection();
 /*
 
