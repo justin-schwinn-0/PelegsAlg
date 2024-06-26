@@ -58,6 +58,7 @@ void Connection::msgTx(std::string msg)
     }
     else
     {
+        std::cout << "test address!" << std::endl;
         if(!farEndAddress)
         {
             std::cout << "no far end address!" << std::endl;
