@@ -17,8 +17,8 @@ static std::string getAddressFromHost(std::string host);
 
 static int pollForFd(int fd, int time, int flag = POLLIN);
 
-template<class... Args, >
-static void log();
+template<typename Arg,typename... Args>
+static void log(Arg a,Args... args);
 };
 
 #endif
