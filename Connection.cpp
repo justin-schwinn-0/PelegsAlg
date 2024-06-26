@@ -77,11 +77,11 @@ void Connection::msgRx()
         struct sctp_sndrcvinfo sndrcv;
         char buf[1024];
         int flags;
-        int in = sctp_recvmsg(mTxFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
+        int in = sctp_recvmsg(mRxFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
         if(in != -1)
         {
             std::cout << "rx msg: " << buf << std::endl;
-            std::cout << "from fd: " << mTxFd << std::endl;
+            std::cout << "from fd: " << mRxFd << std::endl;
         }
         else
         {
