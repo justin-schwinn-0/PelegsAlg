@@ -114,7 +114,8 @@ void Connection::msgRx()
         struct sctp_sndrcvinfo sndrcv;
         char buf[128];
         int flags;
-        int in = sctp_recvmsg(mConFd,buf,sizeof(buf),(sockaddr*)&mFarAddress,sizeof(mFarAddress),&sndrcv,&flags);
+        int len = sizeof(mFarAddress);
+        int in = sctp_recvmsg(mConFd,buf,sizeof(buf),(sockaddr*)&mFarAddress,&len,&sndrcv,&flags);
         if(in != -1)
         {
             std::string msg = buf;
