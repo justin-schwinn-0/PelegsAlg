@@ -49,16 +49,16 @@ void Connection::outGoingConnect()
         std::cout << "couldn't make SCTP socket!" << std::endl; 
         return;
     }
-    std::cout << "making socket " << sd << std::endl;
 
-    int ret = connect(sd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
+    int ret;    
+    do
+    {
+        ret = connect(sd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
+    }
+    while(ret == ECONNREFUSED)
     if(ret < 0)
     {
-
         std::cout << "coudn't connect to socket: " << strerror(errno) << std::endl;
-        std::cout << "closing socket fd: " << sd << std::endl;
-        close(sd);
-        sd = -1;
         return;
     }
 
@@ -151,4 +151,9 @@ void Connection::setConnection(int fd,sockaddr farEnd)
         mFarAddress= farEnd;
         std::cout << "setting connection FD " << mConFd << std::endl;
     }
+}
+
+int pollFD(int fd,int time)
+{
+
 }

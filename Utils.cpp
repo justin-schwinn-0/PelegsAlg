@@ -42,3 +42,14 @@ std::string Utils::getAddressFromHost(std::string host)
     inet_ntop(result->ai_family, p, addr, addrLen);
     return addr;
 }
+
+void Utils::pollForFd(int fd, int time)
+{
+    pollfd pfds[1];
+
+    pfds[0].fd= fd;
+    pfds[0].events= POLLIN;
+
+    
+    return poll(pfds,1,time) // 5s timeout
+}
