@@ -21,7 +21,7 @@ void Node::openSocket()
 
     struct sctp_initmsg init;
     init.sinit_num_ostreams = 5;
-    init.sinit_num_instreams = 5;
+    init.sinit_max_instreams = 5;
     init.sinit_max_attempts = 4;
 
     mListenFd = socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
