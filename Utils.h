@@ -14,7 +14,7 @@ static void printVector(std::vector<T> vec);
 
 static std::string getAddressFromHost(std::string host);
 
-static int pollforFD(int fd, int time);
+static int pollForFd(int fd, int time);
 
 };
 
