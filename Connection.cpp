@@ -61,11 +61,18 @@ void Connection::outGoingConnect()
         return;
     }
 
-    setConnection(sd,serverAddress);
+    struct sockaddr addr;
+    int peerLen = sizeof(addr);
+    if(getpeername(sd,&addr,(socklen_t*)&peerLen) == 0)
+    {
+        setConnection(sd,addr);
+    }
+    else
+    {
+        std::cout << "could not get Peer name!" << std::endl;
+    }
 
-    
-
-    //std::cout << "outgoing connection with  " << addr << std::endl;
+    std::cout << "outgoing connection with  " << addr << std::endl;
 }
 
 void Connection::msgTx(std::string msg)
