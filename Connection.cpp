@@ -126,7 +126,7 @@ bool Connection::isConnected()
     return false;
 }
 
-void Connection::setConnection(int fd,sockaddr* farEnd)
+void Connection::setConnection(int fd,sockaddr farEnd)
 {
     if(!isConnected())
     {
