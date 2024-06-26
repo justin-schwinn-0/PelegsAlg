@@ -209,12 +209,15 @@ int main(int argc,char** argv)
             std::cout << "testing connections" << std::endl;
             std::thread outConnector(outConnections,std::ref(n));
             outConnector.join();
+            n.initMessageThreads();
         }
         else
         {
             std::cout << "testing accepts" << std::endl;
             std::thread inConnector(inConnections,std::ref(n));
             inConnector.join();
+            std::thread slowTest(slowPoll,std::ref(n),uid);
+            slowTest.join();
         }
         /*std::thread outConnector(outConnections,std::ref(n));
         std::thread inConnector(inConnections,std::ref(n));
