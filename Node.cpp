@@ -87,10 +87,16 @@ void Node::acceptNeighbors()
     int addrLength = sizeof(socketAddress);
     std::cout <<"blocking here?" << std::endl; 
 
+    if(connectedToNeighbors())
+    {
+        std::cout << "exited fast, already connected" << std::endl;
+        return;
+    }
     int rxFd = accept4(mListenFd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength,SOCK_NONBLOCK);
 
     if(connectedToNeighbors())
     {
+        std::cout << "exited fast, already connected, closing fd" << std::endl;
         close(rxFd);
         return;
     }
