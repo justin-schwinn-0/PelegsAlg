@@ -104,7 +104,7 @@ void Connection::msgRx()
 
         std::cout << "waiting for message from " << hostname << " ..." << std::endl;
         struct sctp_sndrcvinfo sndrcv;
-        char buf[1024];
+        char buf[128];
         int flags;
         int in = sctp_recvmsg(mConFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
         if(in != -1)
