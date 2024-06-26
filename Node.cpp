@@ -83,9 +83,9 @@ void Node::acceptNeighbors()
         return;
     }
 
-    struct sockaddr_in socketAddress;
+    struct sockaddr_in* socketAddress;
     int addrLength = sizeof(socketAddress);
-    int rxFd = accept(mListenFd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength);
+    int rxFd = accept(mListenFd, (struct sockaddr*)socketAddress,(socklen_t*)&addrLength);
 
     if(rxFd < 0)
     {
@@ -99,7 +99,7 @@ void Node::acceptNeighbors()
     {
         bool connectionAccepted = false;
         char farAddress[INET_ADDRSTRLEN];
-        inet_ntop(AF_INET,&(socketAddress.sin_addr),farAddress,INET_ADDRSTRLEN);
+        inet_ntop(AF_INET,&(socketAddress->sin_addr),farAddress,INET_ADDRSTRLEN);
         
         for(auto& con : mNeighbors)
         {
@@ -111,7 +111,7 @@ void Node::acceptNeighbors()
                 std::string farAddressStr(farAddress);
                 if(conAddr == farAddressStr)
                 {
-                    con.setConnectionFd(rxFd);
+                    con.setConnectionFd(rxFd,);
                     connectionAccepted =true;
                     std::cout << "connection accepted from " << conAddr << std::endl;
                     //std::cout << "incomming connection with  " << farAddress << std::endl;
