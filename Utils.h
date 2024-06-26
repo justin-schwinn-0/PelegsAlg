@@ -22,8 +22,6 @@ public:
     template<typename Arg,typename... Args>
     static void log(Arg arg,Args... args)
     {
-        static std::mutex logMutex;
-
         logMutex.lock();
 
         std::cout << arg;
@@ -33,6 +31,9 @@ public:
 
         logMutex.unlock();
     }
+
+private:
+    static std::mutex logMutex;
 };
 
 #endif
