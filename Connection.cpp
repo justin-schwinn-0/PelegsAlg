@@ -60,7 +60,7 @@ void Connection::msgTx(std::string msg)
     {
         if(!farEndAddress)
         {
-            std::cout << "no far end address!" std::endl;
+            std::cout << "no far end address!" << std::endl;
             return;
         }
         int ret = sctp_sendmsg(mRxFd,(void *)msg.c_str(), strlen(msg.c_str())+1,NULL,0,0,0,0,1000,0);
