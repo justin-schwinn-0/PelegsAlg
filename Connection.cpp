@@ -52,7 +52,7 @@ void Connection::outGoingConnect()
 void Connection::msgTx(std::string msg)
 {
     std::cout << "try send" << std::endl;
-    if(mRxFd < 0)
+    if(mTxFd < 0)
     {
         std::cout << "No connected to host!" << std::endl;
     }
@@ -64,7 +64,7 @@ void Connection::msgTx(std::string msg)
             std::cout << "no far end address!" << std::endl;
             return;
         }
-        int ret = sctp_sendmsg(mRxFd,(void *)msg.c_str(), strlen(msg.c_str())+1,NULL,0,0,0,0,1000,0);
+        int ret = sctp_sendmsg(mTxFd,(void *)msg.c_str(), strlen(msg.c_str())+1,NULL,0,0,0,0,1000,0);
         if( ret < 0)
         {
             std::cout << "couldn't send message: " << strerror(errno) << std::endl;
