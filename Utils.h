@@ -11,26 +11,26 @@ class Utils
 
 public:
 
-template<typename T>
-static void printVector(std::vector<T> vec);
+    template<typename T>
+    static void printVector(std::vector<T> vec);
 
-static std::string getAddressFromHost(std::string host);
+    static std::string getAddressFromHost(std::string host);
 
-static int pollForFd(int fd, int time, int flag = POLLIN);
+    static int pollForFd(int fd, int time, int flag = POLLIN);
 
-template<typename Arg,typename... Args>
-static void log(Arg a,Args... args);
-{
-    static std::mutex logMutex;
+    template<typename Arg,typename... Args>
+    static void log(Arg a,Args... args)
+    {
+        static std::mutex logMutex;
 
-    logMutex.lock();
+        logMutex.lock();
 
-    std::cout << arg;
-    using expander = int[];        
-    (void)expander{0, (void(std::cout << ' ' << std::forward<Args>(args)), 0)...};
+        std::cout << arg;
+        using expander = int[];        
+        (void)expander{0, (void(std::cout << ' ' << std::forward<Args>(args)), 0)...};
 
-    logMutex.unlock();
-}
+        logMutex.unlock();
+    }
 };
 
 #endif
