@@ -113,8 +113,7 @@ void Node::acceptNeighbors()
                 {
                     con.setConnection(rxFd,addr);
                     connectionAccepted =true;
-                    std::cout << "connection accepted from " << conAddr << std::endl;
-                    //std::cout << "incomming connection with  " << farAddress << std::endl;
+                    std::cout << "incomming connection with  " << farAddress << std::endl;
                 }
             }
         }
