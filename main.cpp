@@ -166,7 +166,7 @@ void outConnections(Node& n)
         n.connectNeighbors();
         std::this_thread::sleep_for(std::chrono::milliseconds(1500));
     }
-    std::cout << "set up out going connections!" << std::endl;
+    //std::cout << "set up out going connections!" << std::endl;
 }
 
 void inConnections(Node& n)
@@ -177,7 +177,7 @@ void inConnections(Node& n)
         n.acceptNeighbors();
         std::this_thread::sleep_for(std::chrono::milliseconds(1500));
     }
-    std::cout << "accepted incomming connections!" << std::endl;
+    //std::cout << "accepted incomming connections!" << std::endl;
 }
 
 int main(int argc,char** argv)

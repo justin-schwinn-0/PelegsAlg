@@ -51,20 +51,20 @@ void Connection::outGoingConnect()
 
 void Connection::msgTx(std::string msg)
 {
-    if(mTxFd < 0)
+    if(mRxFd < 0)
     {
         std::cout << "No connected to host!" << std::endl;
     }
     else
     {
-        int ret = sctp_sendmsg(mTxFd,(void *)msg.c_str(), strlen(msg.c_str())+1,NULL,0,0,0,0,1000,0);
+        int ret = sctp_sendmsg(mRxFd,(void *)msg.c_str(), strlen(msg.c_str())+1,NULL,0,0,0,0,1000,0);
         if( ret < 0)
         {
             std::cout << "couldn't send message: " << strerror(errno) << std::endl;
         }
         else
         {
-            std::cout << "sent " << msg << " to " << hostname << std::endl;
+            std::cout << "sent {" << msg << "} to " << hostname << std::endl;
         }
     }
 }
