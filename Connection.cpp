@@ -61,11 +61,11 @@ void Connection::outGoingConnect()
         return;
     }
 
-    struct sockaddr addr;
-    int peerLen = sizeof(addr);
-    if(getpeername(sd,&addr,(socklen_t*)&peerLen) == 0)
+    struct sockaddr address;
+    int peerLen = sizeof(address);
+    if(getpeername(sd,&address,(socklen_t*)&peerLen) == 0)
     {
-        setConnection(sd,addr);
+        setConnection(sd,address);
     }
     else
     {
