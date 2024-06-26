@@ -59,7 +59,7 @@ void Connection::outGoingConnect()
         }
         ret = connect(sd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
     }
-    while(errno == ECONNREFUSED);
+    while(ret < 0 && errno == ECONNREFUSED);
 
     if(ret < 0)
     {
