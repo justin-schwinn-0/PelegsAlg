@@ -1,5 +1,5 @@
 # number of nodes in the system
-2
+3
 # nodeUID hostName listeningPort
 #123 dc32 22234
 5 dc33 23233
@@ -7,7 +7,7 @@
 1047 dc35 22432
 #89 dc36 26221
 # space delimited list of neighbors for each node
-23
+23 1047
 5
 5
 #5 23
