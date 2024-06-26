@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <unistd.h>
+#include <mutex>
 #include <cerrno>
 #include <cstring>
 #include <poll.h>
@@ -53,4 +54,16 @@ int Utils::pollForFd(int fd, int time, int flag )
 
     
     return poll(pfds,1,time); // 5s timeout
+}
+
+template<typename Arg,typename... Args>
+void Utils::log(Arg a,Args... args)
+{
+    static std::mutex logMutex;
+
+    logMuetx.lock();
+
+    std::cout << arg;
+
+    logMutex.unlock();
 }
