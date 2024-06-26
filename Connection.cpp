@@ -85,14 +85,14 @@ void Connection::outGoingConnect()
 
 void Connection::msgTx(std::string msg)
 {
-    std::cout << "try send" << std::endl;
     if(mConFd < 0)
     {
         std::cout << "No connected to host!" << std::endl;
     }
     else
     {
-        int ret = sctp_sendmsg(mConFd,(void *)msg.c_str(), strlen(msg.c_str()),NULL,0,0,0,0,1000,0);
+
+        int ret = sctp_sendmsg(mConFd,(void *)msg.c_str(), strlen(msg.c_str()),&mFarAddress,sizeof(mFarAddress),0,0,1000,0);
         if( ret < 0)
         {
             std::cout << "couldn't send message: " << strerror(errno) << std::endl;
