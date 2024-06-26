@@ -74,33 +74,41 @@ void Node::acceptNeighbors()
     int addrLength = sizeof(socketAddress);
     int rxFd = accept(mListenFd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength);
 
-
-    for(auto& con : mNeighbors)
-    {
-        if(!con.hasInConnection())
-        {
-            // if con.hostname and socketAddress resolve to the same ip...
-            std::string conAddr = Utils::getAddressFromHost(con.getHostname());
-
-            struct sockaddr addr;
-            int peerLen = sizeof(addr);
-            if(getpeername(rxFd,&addr,(socklen_t*)&peerLen) == 0)
-            {
-                char farAddress[INET_ADDRSTRLEN];
-                    inet_ntop(AF_INET,&(socketAddress.sin_addr),farAddress,INET_ADDRSTRLEN);
-
-                std::cout << conAddr << " " << farAddress << std::endl;
-            }
-        }
-    }
-
     if(rxFd < 0)
     {
         std::cout << "coudn't accept connection: " << strerror(errno) << std::endl;
         return;
     }
 
-    //id which connetion was accepted and set stuff right from there
+
+    struct sockaddr addr;
+    int peerLen = sizeof(addr);
+    if(getpeername(rxFd,&addr,(socklen_t*)&peerLen) == 0)
+    {
+        char farAddress[INET_ADDRSTRLEN];
+        inet_ntop(AF_INET,&(socketAddress.sin_addr),farAddress,INET_ADDRSTRLEN);
+        
+        for(auto& con : mNeighbors)
+        {
+            if(!con.hasInConnection())
+            {
+                // if con.hostname and socketAddress resolve to the same ip...
+                std::string conAddr = Utils::getAddressFromHost(con.getHostname());
+
+                std::cout << conAddr << " " << farAddress << std::endl;
+
+                std::string farAddressStr(farAddress);
+                if(conAddr == farAddressStr)
+                {
+                    con.setRxFd(rxFd);
+                }
+            }
+        }
+    }
+    else
+    {
+        std::cout << "could not get Peer name!"
+    }
 }
 
 Connection Node::getOwnConnection()
