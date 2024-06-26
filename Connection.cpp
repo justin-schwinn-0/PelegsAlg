@@ -123,7 +123,7 @@ void Connection::msgRx()
     while(true)
     {
 
-        std::cout << "waiting for message from " << hostname << " ..." << std::endl;
+        std::cout << "waiting for message from " + hostname + " ..." << std::endl;
         struct sctp_sndrcvinfo sndrcv;
         char buf[128];
         int flags;
@@ -146,7 +146,7 @@ void Connection::msgRx()
             }
             else
             {
-                std::cout << "rx message error "<< hostname << " : " << strerror(errno) << std::endl;
+                std::cout << "rx message error " + hostname + " : " + strerror(errno) << std::endl;
 
                 switch(errno)
                 {
@@ -160,7 +160,7 @@ void Connection::msgRx()
         }
         else
         {
-            std::cout << "rx polling error: " << strerror(errno) << std::endl;
+            std::cout << "rx polling error: " + strerror(errno) << std::endl;
         }
 
     }
@@ -168,7 +168,7 @@ void Connection::msgRx()
 
 void Connection::print()
 {
-    std::cout << "{ " << hostname << " " << port << " }";
+    std::cout << "{ " + hostname + " " << port << " }";
 }
 
 bool Connection::isConnected()
