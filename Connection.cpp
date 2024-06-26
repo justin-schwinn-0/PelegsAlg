@@ -46,7 +46,7 @@ void Connection::outGoingConnect()
     int sd= socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
     if(sd < 0)
     {
-        std::cout << "couldn't make SCTP socket!" << std::endl; 
+        Utils::log( << "couldn't make SCTP socket!" << ); 
         return;
     }
 
@@ -63,7 +63,7 @@ void Connection::outGoingConnect()
 
     if(ret < 0)
     {
-        std::cout << "coudn't connect to socket: " << strerror(errno) << std::endl;
+        Utils::log( << "coudn't connect to socket: " << strerror(errno) << );
         close(sd);
         return;
     }
@@ -73,11 +73,11 @@ void Connection::outGoingConnect()
     if(getpeername(sd,&address,(socklen_t*)&peerLen) == 0)
     {
         setConnection(sd,address);
-        std::cout << "outgoing connection with  " << addr << std::endl;
+        Utils::log( << "outgoing connection with  " << addr << );
     }
     else
     {
-        std::cout << "could not get Peer name!" << std::endl;
+        Utils::log( << "could not get Peer name!" << );
         return;
     }
 
@@ -87,14 +87,14 @@ void Connection::msgTx(std::string msg)
 {
     if(mConFd < 0)
     {
-        std::cout << "No connected to host!" << std::endl;
+        Utils::log( << "No connected to host!" << );
     }
     else
     {
         int ret = Utils::pollForFd(mConFd,3000,POLLOUT);
         if(ret == 0)
         {
-            std::cout << "tx timed out..." << std::endl;
+            Utils::log( << "tx timed out..." << );
         }
         else if(ret > 0)
         {
@@ -102,28 +102,28 @@ void Connection::msgTx(std::string msg)
         }
         else
         {
-            std::cout << "tx polling error: " << strerror(errno) << std::endl;
+            Utils::log( << "tx polling error: " << strerror(errno) << );
         }
 
         if( ret < 0)
         {
-            std::cout << "couldn't send message: " << strerror(errno) << std::endl;
+            Utils::log( << "couldn't send message: " << strerror(errno) << );
         }
 
         else
         {
-            std::cout << "sent {" << msg << "} to " << hostname << std::endl;
+            Utils::log( << "sent {" << msg << "} to " << hostname << );
         }
     }
 }
 
 void Connection::msgRx()
 {
-    std::cout << "just run retard" << std::endl;
+    Utils::log( << "just run retard" << );
     while(true)
     {
 
-        std::cout << "waiting for message from " << hostname << " ..." << std::endl;
+        Utils::log( << "waiting for message from " << hostname << " ..." << );
         struct sctp_sndrcvinfo sndrcv;
         char buf[128];
         int flags;
@@ -132,7 +132,7 @@ void Connection::msgRx()
         int ret =Utils::pollForFd(mConFd,3000,POLLIN);
         if(ret == 0)
         {   
-            std::cout << "rx timed out..." << std::endl;
+            Utils::log( << "rx timed out..." << );
             
         }
         else if( ret > 0)
@@ -141,17 +141,17 @@ void Connection::msgRx()
             if(in != -1)
             {
                 std::string msg = buf;
-                std::cout << "msg size: " << msg.size() << " " << in <<std::endl;
-                std::cout << "rx msg: " << msg << std::endl;
+                Utils::log( << "msg size: " << msg.size() << " " << in <<);
+                Utils::log( << "rx msg: " << msg << );
             }
             else
             {
-                std::cout << "rx message error "<< hostname << " : " << strerror(errno) << std::endl;
+                Utils::log( << "rx message error "<< hostname << " : " << strerror(errno) << );
 
                 switch(errno)
                 {
                     case EBADF:
-                        std::cout << "fd: " << mConFd << std::endl;
+                        Utils::log( << "fd: " << mConFd << );
                         break;
                     default:
                         break;
@@ -160,7 +160,7 @@ void Connection::msgRx()
         }
         else
         {
-            std::cout << "rx polling error: " << strerror(errno) << std::endl;
+            Utils::log( << "rx polling error: " << strerror(errno) << );
         }
 
     }
@@ -186,6 +186,6 @@ void Connection::setConnection(int fd,sockaddr farEnd)
     {
         mConFd = fd;
         mFarAddress= farEnd;
-        std::cout << "setting connection FD " << mConFd << std::endl;
+        Utils::log( << "setting connection FD " << mConFd << );
     }
 }
