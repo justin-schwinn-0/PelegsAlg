@@ -72,13 +72,14 @@ void Connection::outGoingConnect()
     if(getpeername(sd,&address,(socklen_t*)&peerLen) == 0)
     {
         setConnection(sd,address);
+        std::cout << "outgoing connection with  " << addr << std::endl;
     }
     else
     {
         std::cout << "could not get Peer name!" << std::endl;
+        return;
     }
 
-    std::cout << "outgoing connection with  " << addr << std::endl;
 }
 
 void Connection::msgTx(std::string msg)
