@@ -46,7 +46,6 @@ private:
     std::string hostname;
     uint32_t port;
 
-    std::mutex connection_mutex;
     int mConFd = -1;
 };
 
