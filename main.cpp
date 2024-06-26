@@ -38,7 +38,7 @@ std::vector<std::string> split(std::string str, std::string delim)
 Node readConfig(std::string configFile, int popId = -1)
 {
     std::ifstream file(configFile) ;
-    std::cout << "reading file: " << configFile << std::endl;
+    Utils::log( "reading file: " , configFile );
 
     std::string wholeFile;
     std::string line;
@@ -80,7 +80,7 @@ Node readConfig(std::string configFile, int popId = -1)
         // if length of the first line isn't 1,
         // then something when wrong in the sanitization 
         // or the config is invalid
-        std::cout << "First valid line of Config is too long!" << std::endl;
+        Utils::log( "First valid line of Config is too long!" );
     }
     else
     {
@@ -108,12 +108,12 @@ Node readConfig(std::string configFile, int popId = -1)
 
             Node n(uid,{splitNode[1],port});
             nodes.push_back(n);
-            //std::cout << "adding node " << uid << std::endl;
+            //Utils::log( "adding node " , uid );
 
         }
         else
         {
-            std::cout << "node Line " << i << " is invalid" << std::endl;
+            Utils::log( "node Line " , i , " is invalid" );
         }
         
     }
@@ -136,7 +136,7 @@ Node readConfig(std::string configFile, int popId = -1)
                 if(neighborId == n.getUid())
                 {
                     nodes[i].addConnection(n.getOwnConnection());
-                    //std::cout << nodes[i].getUid() << " connects to " << neighborId << std::endl;
+                    //Utils::log( nodes[i].getUid() , " connects to " , neighborId );
                 }
             }
         }
@@ -152,7 +152,7 @@ Node readConfig(std::string configFile, int popId = -1)
             }
         }
 
-        std::cout << "could not find id: " << popId << std::endl; 
+        Utils::log( "could not find id: " , popId ); 
     }
 
     return nodes[0];
@@ -166,7 +166,7 @@ void outConnections(Node& n)
         n.connectNeighbors();
         std::this_thread::sleep_for(std::chrono::milliseconds(1500));
     }
-    std::cout << "set up out going connections!" << std::endl;
+    Utils::log( "set up out going connections!" );
 }
 
 void inConnections(Node& n)
@@ -177,19 +177,19 @@ void inConnections(Node& n)
         n.acceptNeighbors();
         std::this_thread::sleep_for(std::chrono::milliseconds(1500));
     }
-    std::cout << "accepted incomming connections!" << std::endl;
+    Utils::log( "accepted incomming connections!" );
 }
 
 void slowPoll(Node& n, int uid)
 {
-    std::cout << "testing this process!" << std::endl;
+    Utils::log( "testing this process!" );
     int i;
     while(true)
     {
         n.flood("hello from " + std::to_string(uid) + " #" +std::to_string(i));
         std::this_thread::sleep_for(std::chrono::milliseconds(4000));
     }
-    std::cout << "exited somehow..." << std::endl;
+    Utils::log( "exited somehow..." );
 }
 
 int main(int argc,char** argv)
@@ -207,7 +207,7 @@ int main(int argc,char** argv)
 
         if(uid != 5)
         {
-            std::cout << "testing connections" << std::endl;
+            Utils::log( "testing connections" );
             std::thread outConnector(outConnections,std::ref(n));
             outConnector.join();
             std::thread slowTest(slowPoll,std::ref(n),uid);
@@ -215,7 +215,7 @@ int main(int argc,char** argv)
         }
         else
         {
-            std::cout << "testing accepts" << std::endl;
+            Utils::log( "testing accepts" );
             std::thread inConnector(inConnections,std::ref(n));
             inConnector.join();
             n.initMessageThreads();
