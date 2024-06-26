@@ -148,5 +148,6 @@ void Connection::setConnection(int fd,sockaddr farEnd)
     {
         mConFd = fd;
         mFarAddress= farEnd;
+        std::cout << "setting conneciotn FD " << mConFd << std::endl;
     }
 }
