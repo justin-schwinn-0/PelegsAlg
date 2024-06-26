@@ -89,11 +89,6 @@ void Node::acceptNeighbors()
                                 acceptedAddr,
                                 addrLen);
 
-            if(ret != 1)
-            {
-                std::cout << "coudn't get address from socket: " << strerror(errno) << std::endl;
-            }
-
             std::cout << socketAddress.sin_addr.s_addr << " this compared to :" 
                 << test << ": " << std::endl;
         }
