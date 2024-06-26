@@ -29,7 +29,7 @@ Connection::~Connection()
 void Connection::outGoingConnect()
 {
 
-    if(isConnect())
+    if(isConnected())
     {
         return;
     }
