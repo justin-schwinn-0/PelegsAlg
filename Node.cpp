@@ -136,7 +136,7 @@ void Node::acceptNeighbors()
     else
     {
         std::cout << "could not get Peer name!" << std::endl;
-        close(rxFd)
+        close(rxFd);
         return;
     }
 }
