@@ -32,7 +32,6 @@ public:
         logMutex.unlock();
     }
 
-private:
     static std::mutex logMutex;
 };
 
