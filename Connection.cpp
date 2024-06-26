@@ -63,7 +63,7 @@ void Connection::outGoingConnect()
 
     if(ret < 0)
     {
-        std::cout << "coudn't connect to socket: " << ret << " " << strerror(errno) << std::endl;
+        std::cout << "coudn't connect to socket: " << strerror(errno) << std::endl;
         close(sd);
         return;
     }
