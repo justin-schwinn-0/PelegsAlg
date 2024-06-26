@@ -161,7 +161,7 @@ Node readConfig(std::string configFile, int popId = -1)
 void outConnections(Node& n)
 {
 
-    while(!n.outConnectedToNeighbors())
+    while(!n.connectedToNeighbors())
     {
         n.connectNeighbors();
         std::this_thread::sleep_for(std::chrono::milliseconds(1500));
@@ -172,7 +172,7 @@ void outConnections(Node& n)
 void inConnections(Node& n)
 {
 
-    while(!n.inConnectedToNeighbors())
+    while(!n.connectedToNeighbors())
     {
         n.acceptNeighbors();
         std::this_thread::sleep_for(std::chrono::milliseconds(1500));
