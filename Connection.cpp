@@ -55,7 +55,9 @@ void Connection::outGoingConnect()
     int ret = connect(sd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
     if(ret < 0)
     {
+
         std::cout << "coudn't connect to socket: " << strerror(errno) << std::endl;
+        std::cout << "closing socket fd: " << sd << std::endl;
         close(sd);
         sd = -1;
         return;
