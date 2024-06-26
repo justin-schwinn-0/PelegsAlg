@@ -20,7 +20,7 @@ public:
     static int pollForFd(int fd, int time, int flag = POLLIN);
 
     template<typename Arg,typename... Args>
-    static void log(Arg a,Args... args)
+    static void log(Arg arg,Args... args)
     {
         static std::mutex logMutex;
 
