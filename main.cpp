@@ -180,6 +180,15 @@ void inConnections(Node& n)
     //std::cout << "accepted incomming connections!" << std::endl;
 }
 
+void slowPoll(Node& n)
+{
+    while(true)
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(8000));
+        n.flood("hello from " + std::to_string(uid));
+    }
+}
+
 int main(int argc,char** argv)
 {
     int uid;
@@ -212,7 +221,8 @@ int main(int argc,char** argv)
 
         n.initMessageThreads();
 
-        n.flood("hello from " + std::to_string(uid));
+        std::thread slowTest(slowPoll,std::ref(n));
+
 
         //n.flood("hello from " + std::to_string(n.getUid()));
         std::cout << "done" << std::endl;
