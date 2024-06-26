@@ -2,7 +2,7 @@
 #include "Utils.h"
 
 #include <iostream>
-#include <mutex>
+#include <thread>
 #include <unistd.h>
 #include <cerrno>
 #include <cstring>
@@ -55,7 +55,7 @@ void Connection::outGoingConnect()
     {
         if(errno == ECONNREFUSED)
         {
-            sleep(2);
+            std::this_thread::sleep_for(std::chrono::milliseconds(2000));
         }
         ret = connect(sd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
     }
@@ -145,7 +145,7 @@ void Connection::msgRx()
             }
             else
             {
-                std::cout << "message error: " << strerror(errno) << std::endl;
+                std::cout << "rx message error: " << strerror(errno) << std::endl;
 
                 switch(errno)
                 {
