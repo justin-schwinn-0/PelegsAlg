@@ -3,6 +3,11 @@
 
 #include <string>
 
+#include <sys/socket.h>
+#include <sys/types.h>
+
+#include <netinet/sctp.h>
+
 class Connection
 {    
 public:
@@ -53,6 +58,8 @@ private:
 
     int mTxFd = -1;
     int mRxFd = -1;
+
+    struct sockaddr *farEndAddress;
 
 };
 
