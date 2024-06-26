@@ -2,6 +2,7 @@
 #define CONNECTION_H
 
 #include <string>
+#include <mutex>
 
 #include <sys/socket.h>
 
@@ -37,9 +38,7 @@ public:
     void msgTx(std::string msg);
     void msgRx();
 
-    bool hasOutConnection();
-
-    bool hasInConnection();
+    bool isConnect();
 
     uint32_t getPort()
     { return port; }
@@ -53,8 +52,8 @@ private:
     std::string hostname;
     uint32_t port;
 
-    int mTxFd = -1;
-    int mRxFd = -1;
+    std::mutex connection_mutex;
+    int mConFd = -1;
 
     struct sockaddr *farEndAddress;
 

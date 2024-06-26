@@ -86,7 +86,7 @@ void Node::acceptNeighbors()
 
     if(rxFd < 0)
     {
-        std::cout << "coudn't accept connection: " << strerror(errno) << std::endl;
+        std::cout << "couldn't accept connection: " << strerror(errno) << std::endl;
         return;
     }
 
@@ -95,24 +95,31 @@ void Node::acceptNeighbors()
     int peerLen = sizeof(addr);
     if(getpeername(rxFd,&addr,(socklen_t*)&peerLen) == 0)
     {
+        bool connectionAccepted = false;
         char farAddress[INET_ADDRSTRLEN];
         inet_ntop(AF_INET,&(socketAddress.sin_addr),farAddress,INET_ADDRSTRLEN);
         
         for(auto& con : mNeighbors)
         {
-            if(!con.hasInConnection())
+            if(!con.isConnected())
             {
                 // if con.hostname and socketAddress resolve to the same ip...
                 std::string conAddr = Utils::getAddressFromHost(con.getHostname());
-
 
                 std::string farAddressStr(farAddress);
                 if(conAddr == farAddressStr)
                 {
                     con.setRxFd(rxFd);
+                    connectionAccpeted =true;
                     //std::cout << "incomming connection with  " << farAddress << std::endl;
                 }
             }
+        }
+
+        if(!connectionAccepted)
+        {
+            std::cout << "connection not added" << std::endl;
+            close(rxFd);
         }
     }
     else

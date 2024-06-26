@@ -2,6 +2,7 @@
 #include "Utils.h"
 
 #include <iostream>
+#include <mutex>
 #include <unistd.h>
 #include <cerrno>
 #include <cstring>
@@ -15,12 +16,12 @@
 void Connection::outGoingConnect()
 {
 
-    if(hasOutConnection())
+    if(isConnect())
     {
         return;
     }
 
-
+    
     std::string addr = Utils::getAddressFromHost(hostname);
 
     struct sockaddr_in serverAddress;
@@ -28,23 +29,26 @@ void Connection::outGoingConnect()
     serverAddress.sin_port = port;
     serverAddress.sin_addr.s_addr = inet_addr(addr.c_str());
 
-    mTxFd= socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
-    if(mTxFd < 0)
+    const std::lock_gaurd<std::mutex> connectionGaurd(connection_mutex);
+    mConFd= socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
+    if(mConFd < 0)
     {
         std::cout << "couldn't make SCTP socket!" << std::endl; 
-        close(mTxFd);
-        mTxFd = -1;
+        close(mConFd);
+        mConFd = -1;
         return;
     }
 
-    int ret = connect(mTxFd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
+    int ret = connect(mConFd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
     if(ret < 0)
     {
         std::cout << "coudn't connect to socket: " << strerror(errno) << std::endl;
-        close(mTxFd);
-        mTxFd = -1;
+        close(mConFd);
+        mConFd = -1;
         return;
     }
+
+    
 
     //std::cout << "outgoing connection with  " << addr << std::endl;
 }
@@ -52,7 +56,7 @@ void Connection::outGoingConnect()
 void Connection::msgTx(std::string msg)
 {
     std::cout << "try send" << std::endl;
-    if(mTxFd < 0)
+    if(mConFd < 0)
     {
         std::cout << "No connected to host!" << std::endl;
     }
@@ -64,7 +68,7 @@ void Connection::msgTx(std::string msg)
             std::cout << "no far end address!" << std::endl;
             return;
         }
-        int ret = sctp_sendmsg(mTxFd,(void *)msg.c_str(), strlen(msg.c_str())+1,NULL,0,0,0,0,1000,0);
+        int ret = sctp_sendmsg(mConFd,(void *)msg.c_str(), strlen(msg.c_str())+1,NULL,0,0,0,0,1000,0);
         if( ret < 0)
         {
             std::cout << "couldn't send message: " << strerror(errno) << std::endl;
@@ -81,15 +85,16 @@ void Connection::msgRx()
 {
     while(true)
     {
+
         std::cout << "waiting for message from " << hostname << " ..." << std::endl;
         struct sctp_sndrcvinfo sndrcv;
         char buf[1024];
         int flags;
-        int in = sctp_recvmsg(mRxFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
+        int in = sctp_recvmsg(mConFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
         if(in != -1)
         {
             std::cout << "rx msg: " << buf << std::endl;
-            std::cout << "from fd: " << mRxFd << std::endl;
+            std::cout << "from fd: " << mConFd << std::endl;
         }
         else
         {
@@ -103,18 +108,9 @@ void Connection::print()
     std::cout << "{ " << hostname << " " << port << " }";
 }
 
-bool Connection::hasInConnection()
+bool Connection::isConnected()
 {
-    if(mRxFd >= 0)
-    {
-        return true;
-    }
-    return false;
-}
-
-bool Connection::hasOutConnection()
-{
-    if(mTxFd >= 0)
+    if(mConFd >= 0)
     {
         return true;
     }
