@@ -237,8 +237,6 @@ int main(int argc,char** argv)
 
 
         //n.flood("hello from " + std::to_string(n.getUid()));
-        std::cout << "done" << std::endl;
-
     }
     else
     {

@@ -106,6 +106,7 @@ void Connection::msgTx(std::string msg)
 
 void Connection::msgRx()
 {
+    std::cout << "should rx" << std::endl;
     while(true)
     {
 
