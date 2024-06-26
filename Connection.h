@@ -32,7 +32,7 @@ public:
     void msgTx(std::string msg);
     void msgRx();
 
-    bool isConnect();
+    bool isConnected();
 
     uint32_t getPort()
     { return port; }
