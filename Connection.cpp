@@ -115,7 +115,7 @@ void Connection::msgRx()
         int flags;
 
         int in = -1;
-        int ret =poll(mConFd,3000,POLLIN ;) 
+        int ret =poll(mConFd,3000,POLLIN) 
         if(ret == 0)
         {   
             std::cout << "rx timed out..." std::endl;
