@@ -42,7 +42,6 @@ void Connection::outGoingConnect()
     serverAddress.sin_port = port;
     serverAddress.sin_addr.s_addr = inet_addr(addr.c_str());
 
-    const std::lock_guard<std::mutex> connectionGaurd(connection_mutex);
     mConFd= socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
     if(mConFd < 0)
     {
@@ -128,8 +127,6 @@ void Connection::setConnectionFd(int fd)
 {
     if(!isConnected())
     {
-        const std::lock_guard<std::mutex> connectionGaurd(connection_mutex);
-        
         mConFd = fd;
     }
 }
