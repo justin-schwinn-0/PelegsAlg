@@ -87,10 +87,9 @@ void Node::acceptNeighbors()
 
     struct sockaddr_in socketAddress;
     int addrLength = sizeof(socketAddress);
-    std::cout <<"blocking here?" << std::endl; 
 
     struct timeval time;
-    time.tv_sec = 10; // 10 second time out for accept
+    time.tv_sec = 4; // 10 second time out for accept
     fd_set fds;
 
     FD_ZERO(&fds);
