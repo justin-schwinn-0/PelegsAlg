@@ -22,7 +22,6 @@ void Connection::outGoingConnect()
 
 
     std::string addr = Utils::getAddressFromHost(hostname);
-    std::cout << "try to connect to " << addr << std::endl;
 
     struct sockaddr_in serverAddress;
     serverAddress.sin_family = AF_INET;
@@ -47,7 +46,7 @@ void Connection::outGoingConnect()
         return;
     }
 
-    std::cout << "connected with fd " << mTxFd << std::endl;
+    std::cout << "outgoing connection with  " << addr << std::endl;
 }
 
 void Connection::msgTx(std::string msg)
