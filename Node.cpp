@@ -84,7 +84,7 @@ void Node::acceptNeighbors()
 
             const int addrLen = 128;
             char acceptedAddr[addrLen];
-            int ret = inet_ntop(socketAddress.sin_family,
+            std::string test = inet_ntop(socketAddress.sin_family,
                                 (void*)&socketAddress.sin_addr,
                                 acceptedAddr,
                                 addrLen);
@@ -95,7 +95,7 @@ void Node::acceptNeighbors()
             }
 
             std::cout << socketAddress.sin_addr.s_addr << " this compared to :" 
-                << conAddr << ": " << std::endl;
+                << test << ": " << std::endl;
         }
     }
 
