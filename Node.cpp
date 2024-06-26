@@ -66,7 +66,7 @@ void Node::initMessageThreads()
 {
     for(auto& con: mNeighbors)
     {
-        std::thread msgRxer(Connection::msgRx,std::ref(con));
+        std::thread msgRxer(&Connection::msgRx,std::ref(con));
         msgRxer.detach();
     }
 }
