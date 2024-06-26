@@ -123,10 +123,11 @@ bool Connection::isConnected()
     return false;
 }
 
-void Connection::setConnectionFd(int fd)
+void Connection::setConnectionFd(int fd, struct sockaddr* farEnd)
 {
     if(!isConnected())
     {
         mConFd = fd;
+        mFarAddress= farEnd;
     }
 }
