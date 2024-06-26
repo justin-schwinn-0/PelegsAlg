@@ -71,7 +71,7 @@ void Node::acceptNeighbors()
 
     std::cout << "\n\nwaiting for connection..." << std:: endl;
     struct sockaddr_in socketAddress;
-    int addrLength;
+    int addrLength = sizeof(socketAddress);
     int rxFd = accept(mListenFd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength);
 
 
@@ -82,22 +82,12 @@ void Node::acceptNeighbors()
             // if con.hostname and socketAddress resolve to the same ip...
             std::string conAddr = Utils::getAddressFromHost(con.getHostname());
 
-            const int addrLen = 128;
-            char acceptedAddr[addrLen];
-            const char* ret = inet_ntop(socketAddress.sa_family,
-                                        (void*)&socketAddress.sa_data,
-                                        acceptedAddr,
-                                        addrLen);
-
-            std::cout << "test: " << AF_INET << " " << socketAddress.sa_family << std::endl;
-
-            if(!ret)
+            struct sockaddr addr;
+            int peerLen = sizeof(addr);
+            if(getpeername(rxFd,addr,peerLen) == 0)
             {
-                std::cout << "coudn't get address from socket: " << strerror(errno) << std::endl;
+                std::cout << addr.sa_family << " " << addr.sa_data << " " << peerLen << std::endl;
             }
-
-            std::cout << socketAddress.sa_data << " this compared to :" 
-                << ret << ": " << std::endl;
         }
     }
 
