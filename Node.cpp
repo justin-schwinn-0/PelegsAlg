@@ -87,11 +87,13 @@ void Node::acceptNeighbors()
     int addrLength = sizeof(socketAddress);
     std::cout <<"blocking here?" << std::endl; 
 
+    int rxFd = accept4(mListenFd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength,SOCK_NONBLOCK);
+
     if(connectedToNeighbors())
     {
+        close(rxFd);
         return;
     }
-    int rxFd = accept4(mListenFd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength,SOCK_NONBLOCK);
 
     if(rxFd < 0)
     {
@@ -129,10 +131,13 @@ void Node::acceptNeighbors()
             std::cout << "connection not added" << std::endl;
             close(rxFd);
         }
+        return;
     }
     else
     {
         std::cout << "could not get Peer name!" << std::endl;
+        close(rxFd)
+        return;
     }
 }
 
