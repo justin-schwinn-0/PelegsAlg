@@ -193,7 +193,7 @@ int main(int argc,char** argv)
         n.openSocket();
         
 
-        if(uid == 5)
+        if(uid != 5)
         {
             std::cout << "testing connections" << std::endl;
             std::thread outConnector(outConnections,std::ref(n));
