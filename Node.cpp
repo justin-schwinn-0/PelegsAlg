@@ -8,7 +8,7 @@
 #include <cstring>
 #include <sys/socket.h>
 #include <sys/types.h>
-#include <sys/time.h>
+#include <poll.h>
 #include <sys/select.h>
 #include <netdb.h>
 #include <netinet/in.h>
@@ -88,20 +88,28 @@ void Node::acceptNeighbors()
     struct sockaddr_in socketAddress;
     int addrLength = sizeof(socketAddress);
 
-    struct timeval time;
-    time.tv_sec = 4; // 10 second time out for accept
-    fd_set fds;
-
-    FD_ZERO(&fds);
-
-    FD_SET(mListenFd,&fds);
-    int retfd = select(mListenFd+1,&fds,NULL,NULL,&time);
 
     if(retfd == 0)
     {
         std::cout << "no connecting neighbors, moving on..." << std::endl;
         return;
     }
+
+    // blocking call to poll with timeout
+    
+    pollfd pfds[1];
+
+    pfds[0].fd= mListenFd;
+    pfds[0].events= POLLIN;
+
+    retfd = poll(fds,1,5000); // 5s timeout
+    
+    if(retfd == 0)
+    {
+        std::cout << "no connection found, moving on..." << std::endl;
+        return;
+    }
+
 
     int rxFd = accept(retfd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength);
 
