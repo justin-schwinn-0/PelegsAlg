@@ -94,7 +94,7 @@ void Connection::msgTx(std::string msg)
 
         int ret = sctp_sendmsg(mConFd,
                         (void *)msg.c_str(), strlen(msg.c_str()),
-                        (sockaddr*)&mFarAddress,sizeof(mFarAddress)
+                        (struct sockaddr*)&mFarAddress,sizeof(mFarAddress)
                         ,0,0,1000,0);
         if( ret < 0)
         {
