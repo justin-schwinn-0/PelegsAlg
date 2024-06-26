@@ -37,28 +37,30 @@ void Connection::outGoingConnect()
     
     std::string addr = Utils::getAddressFromHost(hostname);
 
-    struct sockaddr_in serverAddress;
-    serverAddress.sin_family = AF_INET;
-    serverAddress.sin_port = port;
-    serverAddress.sin_addr.s_addr = inet_addr(addr.c_str());
+    struct sockaddr_in* serverAddress;
+    serverAddress->sin_family = AF_INET;
+    serverAddress->sin_port = port;
+    serverAddress->sin_addr.s_addr = inet_addr(addr.c_str());
 
-    mConFd= socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
-    if(mConFd < 0)
+    int sd= socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
+    if(sd < 0)
     {
         std::cout << "couldn't make SCTP socket!" << std::endl; 
-        close(mConFd);
-        mConFd = -1;
+        close(sd);
+        sd = -1;
         return;
     }
 
-    int ret = connect(mConFd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
+    int ret = connect(sd, (struct sockaddr*)serverAddress,sizeof(serverAddress));
     if(ret < 0)
     {
         std::cout << "coudn't connect to socket: " << strerror(errno) << std::endl;
-        close(mConFd);
-        mConFd = -1;
+        close(sd);
+        sd = -1;
         return;
     }
+
+    setConnection()
 
     
 
