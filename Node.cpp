@@ -85,6 +85,7 @@ void Node::acceptNeighbors()
 
     struct sockaddr_in socketAddress;
     int addrLength = sizeof(socketAddress);
+    std::cout <<"blocking here?" << std::endl; 
     int rxFd = accept(mListenFd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength);
 
     if(rxFd < 0)
