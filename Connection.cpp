@@ -109,7 +109,8 @@ void Connection::msgRx()
         int in = sctp_recvmsg(mConFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
         if(in != -1)
         {
-            std::cout << "rx msg: " << buf << std::endl;
+            std::string msg = buf;
+            std::cout << "rx msg: " << msg << std::endl;
         }
         else
         {
