@@ -91,7 +91,7 @@ void Node::acceptNeighbors()
     {
         return;
     }
-    int rxFd = accept(mListenFd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength);
+    int rxFd = accept4(mListenFd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength,SOCK_NONBLOCK);
 
     if(rxFd < 0)
     {
