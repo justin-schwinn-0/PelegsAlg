@@ -47,10 +47,9 @@ void Connection::outGoingConnect()
     if(sd < 0)
     {
         std::cout << "couldn't make SCTP socket!" << std::endl; 
-        close(sd);
-        sd = -1;
         return;
     }
+    std::cout << "making socket " << sd << std::endl;
 
     int ret = connect(sd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
     if(ret < 0)
@@ -150,6 +149,6 @@ void Connection::setConnection(int fd,sockaddr farEnd)
     {
         mConFd = fd;
         mFarAddress= farEnd;
-        std::cout << "setting conneciotn FD " << mConFd << std::endl;
+        std::cout << "setting connection FD " << mConFd << std::endl;
     }
 }
