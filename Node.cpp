@@ -107,7 +107,7 @@ void Node::acceptNeighbors()
     }
     else
     {
-        std::cout << "could not get Peer name!"
+        std::cout << "could not get Peer name!" << std::endl;
     }
 }
 
