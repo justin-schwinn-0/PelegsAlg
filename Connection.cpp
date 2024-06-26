@@ -114,6 +114,15 @@ void Connection::msgRx()
         else
         {
             std::cout << "message error: " << strerror(errno) << std::endl;
+
+            switch(errno)
+            {
+                case EBADF:
+                    std::cout << "fd: " << mConFd << std::endl;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
