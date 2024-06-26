@@ -8,6 +8,8 @@
 #include <cstring>
 #include <sys/socket.h>
 #include <sys/types.h>
+#include <sys/time.h>
+#include <sys/select.h>
 #include <netdb.h>
 #include <netinet/in.h>
 #include <netinet/sctp.h>
@@ -87,19 +89,15 @@ void Node::acceptNeighbors()
     int addrLength = sizeof(socketAddress);
     std::cout <<"blocking here?" << std::endl; 
 
-    if(connectedToNeighbors())
-    {
-        std::cout << "exited fast, already connected" << std::endl;
-        return;
-    }
-    int rxFd = accept4(mListenFd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength,SOCK_NONBLOCK);
+    struct timeval time;
+    time.tv_sec = 10; // 10 second time out for accept
+    fd_set fds;
 
-    if(connectedToNeighbors())
-    {
-        std::cout << "exited fast, already connected, closing fd" << std::endl;
-        close(rxFd);
-        return;
-    }
+    FD_ZERO(&fds);
+
+    FD_SET(mListenFd,&fds)
+
+    int rxFd = accept(mListenFd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength);
 
     if(rxFd < 0)
     {
