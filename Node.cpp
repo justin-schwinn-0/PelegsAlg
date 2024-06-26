@@ -165,7 +165,7 @@ void Node::flood(std::string str)
     }
 }
 
-bool Node::outConnectedToNeighbors()
+bool Node::connectedToNeighbors()
 {
     bool con = true;
     for(auto& n : mNeighbors)
@@ -177,18 +177,4 @@ bool Node::outConnectedToNeighbors()
     }
 
     return con;
-}
-
-bool Node::inConnectedToNeighbors()
-{
-    bool accept = true;
-    for(auto& n : mNeighbors)
-    {
-        if(!n.isConnected())
-        {
-            accept = false;
-        }
-    }
-
-    return accept;
 }
