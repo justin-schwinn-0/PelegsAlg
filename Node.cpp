@@ -69,7 +69,6 @@ void Node::acceptNeighbors()
         return;
     }
 
-    std::cout << "\n\nwaiting for connection..." << std:: endl;
     struct sockaddr_in socketAddress;
     int addrLength = sizeof(socketAddress);
     int rxFd = accept(mListenFd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength);
@@ -88,6 +87,7 @@ void Node::acceptNeighbors()
         char farAddress[INET_ADDRSTRLEN];
         inet_ntop(AF_INET,&(socketAddress.sin_addr),farAddress,INET_ADDRSTRLEN);
         
+        std::cout <<
         for(auto& con : mNeighbors)
         {
             if(!con.hasInConnection())
@@ -95,12 +95,12 @@ void Node::acceptNeighbors()
                 // if con.hostname and socketAddress resolve to the same ip...
                 std::string conAddr = Utils::getAddressFromHost(con.getHostname());
 
-                std::cout << conAddr << " " << farAddress << std::endl;
 
                 std::string farAddressStr(farAddress);
                 if(conAddr == farAddressStr)
                 {
                     con.setRxFd(rxFd);
+                    std::cout << "connected with  " << farAddress << std::endl;
                 }
             }
         }
