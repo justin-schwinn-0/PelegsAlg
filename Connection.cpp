@@ -60,7 +60,7 @@ void Connection::outGoingConnect()
         return;
     }
 
-    setConnection()
+    setConnection(sd,serverAddress);
 
     
 
