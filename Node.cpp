@@ -110,7 +110,7 @@ void Node::acceptNeighbors()
                 if(conAddr == farAddressStr)
                 {
                     con.setRxFd(rxFd);
-                    std::cout << "incomming connection with  " << farAddress << std::endl;
+                    //std::cout << "incomming connection with  " << farAddress << std::endl;
                 }
             }
         }

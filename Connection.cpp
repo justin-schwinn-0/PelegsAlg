@@ -46,7 +46,7 @@ void Connection::outGoingConnect()
         return;
     }
 
-    std::cout << "outgoing connection with  " << addr << std::endl;
+    //std::cout << "outgoing connection with  " << addr << std::endl;
 }
 
 void Connection::msgTx(std::string msg)
