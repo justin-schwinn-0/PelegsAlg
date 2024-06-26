@@ -29,6 +29,7 @@ public:
         std::cout << arg;
         using expander = int[];        
         (void)expander{0, (void(std::cout << ' ' << std::forward<Args>(args)), 0)...};
+        std::cout << std::endl;
 
         logMutex.unlock();
     }
