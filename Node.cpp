@@ -95,8 +95,13 @@ void Node::acceptNeighbors()
 
     FD_ZERO(&fds);
 
-    FD_SET(mListenFd,&fds)
+    FD_SET(mListenFd,&fds);
+    int retfd = select(1,&fds,NULL,NULL,&time);
 
+    if(retfd != mListenFd)
+    {
+        std::cout << "no connecting neighbors, moving on..." << std::endl;
+    }
     int rxFd = accept(mListenFd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength);
 
     if(rxFd < 0)
