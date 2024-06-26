@@ -111,7 +111,7 @@ void Node::acceptNeighbors()
                 std::string farAddressStr(farAddress);
                 if(conAddr == farAddressStr)
                 {
-                    con.setConnectionFd(rxFd,);
+                    con.setConnectionFd(rxFd,(struct sockaddr*)socketAddress);
                     connectionAccepted =true;
                     std::cout << "connection accepted from " << conAddr << std::endl;
                     //std::cout << "incomming connection with  " << farAddress << std::endl;
