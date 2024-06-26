@@ -84,19 +84,19 @@ void Node::acceptNeighbors()
 
             const int addrLen = 128;
             char acceptedAddr[addrLen];
-            const char* ret = inet_ntop(socketAddress.sin_family,
-                                        (void*)&socketAddress.sin_addr,
+            const char* ret = inet_ntop(socketAddress.sa_family,
+                                        (void*)&socketAddress.sa_addr,
                                         acceptedAddr,
                                         addrLen);
 
-            std::cout << "test: " << AF_INET << " " << socketAddress.sin_family << std::endl;
+            std::cout << "test: " << AF_INET << " " << socketAddress.sa_family << std::endl;
 
             if(!ret)
             {
                 std::cout << "coudn't get address from socket: " << strerror(errno) << std::endl;
             }
 
-            std::cout << socketAddress.sin_addr.s_addr << " this compared to :" 
+            std::cout << socketAddress.sa_data << " this compared to :" 
                 << ret << ": " << std::endl;
         }
     }
