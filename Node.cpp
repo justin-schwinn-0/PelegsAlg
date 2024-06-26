@@ -84,7 +84,7 @@ void Node::acceptNeighbors()
 
             struct sockaddr addr;
             int peerLen = sizeof(addr);
-            if(getpeername(rxFd,&addr,peerLen) == 0)
+            if(getpeername(rxFd,&addr,&peerLen) == 0)
             {
                 std::cout << addr.sa_family << " " << addr.sa_data << " " << peerLen << std::endl;
             }
