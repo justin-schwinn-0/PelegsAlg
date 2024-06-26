@@ -138,30 +138,30 @@ void Connection::msgRx()
         else if( ret > 0)
         {
             in = sctp_recvmsg(mConFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
+            if(in != -1)
+            {
+                std::string msg = buf;
+                std::cout << "rx msg: " << msg << std::endl;
+            }
+            else
+            {
+                std::cout << "message error: " << strerror(errno) << std::endl;
+
+                switch(errno)
+                {
+                    case EBADF:
+                        std::cout << "fd: " << mConFd << std::endl;
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
         else
         {
             std::cout << "rx polling error: " << strerror(errno) << std::endl;
         }
 
-        if(in != -1)
-        {
-            std::string msg = buf;
-            std::cout << "rx msg: " << msg << std::endl;
-        }
-        else
-        {
-            std::cout << "message error: " << strerror(errno) << std::endl;
-
-            switch(errno)
-            {
-                case EBADF:
-                    std::cout << "fd: " << mConFd << std::endl;
-                    break;
-                default:
-                    break;
-            }
-        }
     }
 }
 
