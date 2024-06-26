@@ -188,6 +188,7 @@ void slowPoll(Node& n, int uid)
         n.flood("hello from " + std::to_string(uid));
         std::this_thread::sleep_for(std::chrono::milliseconds(8000));
     }
+    std::cout << "exited somehow..." << std::endl;
 }
 
 int main(int argc,char** argv)
