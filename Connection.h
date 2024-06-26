@@ -46,7 +46,7 @@ private:
     std::string hostname;
     uint32_t port;
 
-    struct sockaddr_in mFarAddress;
+    sockaddr_in mFarAddress;
 
     int mConFd = -1;
 };
