@@ -209,7 +209,6 @@ int main(int argc,char** argv)
             std::cout << "testing connections" << std::endl;
             std::thread outConnector(outConnections,std::ref(n));
             outConnector.join();
-            n.initMessageThreads();
             std::thread slowTest(slowPoll,std::ref(n),uid);
             slowTest.join();
         }
@@ -218,6 +217,7 @@ int main(int argc,char** argv)
             std::cout << "testing accepts" << std::endl;
             std::thread inConnector(inConnections,std::ref(n));
             inConnector.join();
+            n.initMessageThreads();
         }
         /*std::thread outConnector(outConnections,std::ref(n));
         std::thread inConnector(inConnections,std::ref(n));

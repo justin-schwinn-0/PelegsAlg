@@ -91,8 +91,7 @@ void Connection::msgTx(std::string msg)
     }
     else
     {
-
-        int ret = sctp_sendmsg(mConFd,(void *)msg.c_str(), strlen(msg.c_str()),(sockaddr*)&mFarAddress,sizeof(mFarAddress),0,0,0,0,0);
+        int ret = sctp_sendmsg(mConFd,(void *)msg.c_str(), strlen(msg.c_str()),NULL,0,0,0,0,1000,0);
         if( ret < 0)
         {
             std::cout << "couldn't send message: " << strerror(errno) << std::endl;
@@ -114,8 +113,7 @@ void Connection::msgRx()
         struct sctp_sndrcvinfo sndrcv;
         char buf[128];
         int flags;
-        int len = sizeof(mFarAddress);
-        int in = sctp_recvmsg(mConFd,buf,sizeof(buf),(sockaddr*)&mFarAddress,(socklen_t*)&len,&sndrcv,&flags);
+        int in = sctp_recvmsg(mConFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
         if(in != -1)
         {
             std::string msg = buf;
