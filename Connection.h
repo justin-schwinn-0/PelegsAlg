@@ -27,7 +27,7 @@ public:
 
     void outGoingConnect();
 
-    void setConnection(int fd,sockaddr farEnd);
+    void setConnection(int fd,sockaddr_in farEnd);
 
     void msgTx(std::string msg);
     void msgRx();
@@ -46,7 +46,7 @@ private:
     std::string hostname;
     uint32_t port;
 
-    struct sockaddr mFarAddress;
+    struct sockaddr_in mFarAddress;
 
     int mConFd = -1;
 };

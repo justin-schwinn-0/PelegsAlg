@@ -61,7 +61,7 @@ void Connection::outGoingConnect()
         return;
     }
 
-    setConnection(sd,(struct sockaddr)serverAddress);
+    setConnection(sd,serverAddress);
 
     
 
@@ -126,7 +126,7 @@ bool Connection::isConnected()
     return false;
 }
 
-void Connection::setConnection(int fd,sockaddr farEnd)
+void Connection::setConnection(int fd,sockaddr_in farEnd)
 {
     if(!isConnected())
     {
