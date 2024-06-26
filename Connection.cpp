@@ -141,7 +141,8 @@ void Connection::msgRx()
             if(in != -1)
             {
                 std::string msg = buf;
-                std::cout << "rx msg: " << in << " " << msg << std::endl;
+                std::cout << "msg size: " << msg.size() << " " << in <<std::endl;
+                std::cout << "rx msg: " << msg << std::endl;
             }
             else
             {
