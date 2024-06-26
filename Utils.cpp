@@ -52,5 +52,5 @@ int Utils::pollForFd(int fd, int time)
     pfds[0].events= POLLIN;
 
     
-    return poll(pfds,1,time) // 5s timeout
+    return poll(pfds,1,time); // 5s timeout
 }
