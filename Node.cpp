@@ -89,6 +89,8 @@ void Node::acceptNeighbors()
                                 acceptedAddr,
                                 addrLen);
 
+            std::cout << "test: " << AF_INET << " " << socketAddress.sin_family << std::endl;
+
             if(!ret)
             {
                 std::cout << "coudn't get address from socket: " << strerror(errno) << std::endl;
