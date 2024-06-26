@@ -106,6 +106,7 @@ void Connection::msgTx(std::string msg)
 
 void Connection::msgRx()
 {
+    std::cout << "just run retard" << std::endl;
     while(true)
     {
 
