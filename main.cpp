@@ -9,6 +9,7 @@
 
 #include "Node.h"
 #include "Connection.h"
+#include "Utils.h"
 
 
 std::vector<std::string> split(std::string str, std::string delim)
