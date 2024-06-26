@@ -13,7 +13,7 @@
 #include <netinet/sctp.h>
 #include <arpa/inet.h>
 
-Connection::Connection(std::string h, int p); : 
+Connection::Connection(std::string h, int p) : 
     hostname(h),
     port(p)
 {
