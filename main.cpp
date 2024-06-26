@@ -204,7 +204,7 @@ int main(int argc,char** argv)
         n.openSocket();
         
 
-        /*if(uid != 5)
+        if(uid != 5)
         {
             std::cout << "testing connections" << std::endl;
             std::thread outConnector(outConnections,std::ref(n));
@@ -215,8 +215,8 @@ int main(int argc,char** argv)
             std::cout << "testing accepts" << std::endl;
             std::thread inConnector(inConnections,std::ref(n));
             inConnector.join();
-        }*/
-        std::thread outConnector(outConnections,std::ref(n));
+        }
+        /*std::thread outConnector(outConnections,std::ref(n));
         std::thread inConnector(inConnections,std::ref(n));
         outConnector.join();
         inConnector.join();
@@ -229,7 +229,7 @@ int main(int argc,char** argv)
         {
             std::thread slowTest(slowPoll,std::ref(n),uid);
             slowTest.join();
-        }
+        }*/
 
 
 
