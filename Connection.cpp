@@ -51,6 +51,7 @@ void Connection::outGoingConnect()
 
 void Connection::msgTx(std::string msg)
 {
+    std::cout << "try send" << std::endl;
     if(mRxFd < 0)
     {
         std::cout << "No connected to host!" << std::endl;
