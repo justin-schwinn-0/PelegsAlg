@@ -53,7 +53,7 @@ void Connection::outGoingConnect()
     int ret;    
     do
     {
-        if(Utils::pollforFd(sd,5000))
+        if(Utils::pollForFd(sd,5000))
         {
             ret = connect(sd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
         }
