@@ -89,12 +89,6 @@ void Node::acceptNeighbors()
     int addrLength = sizeof(socketAddress);
 
 
-    if(retfd == 0)
-    {
-        std::cout << "no connecting neighbors, moving on..." << std::endl;
-        return;
-    }
-
     // blocking call to poll with timeout
     
     pollfd pfds[1];
