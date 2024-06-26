@@ -103,7 +103,7 @@ void Node::acceptNeighbors()
         return;
     }
 
-    int rxFd = accept(retFd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength);
+    int rxFd = accept(mListenFd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength);
 
     if(rxFd < 0)
     {
