@@ -61,6 +61,15 @@ void Node::connectNeighbors()
     }
 }
 
+void initMessageThreads()
+{
+    for(auto& con: mNeighbors)
+    {
+        std::thread msgRxer(Connection::msgRx,std::ref(con));
+        msgRxer.detach();
+    }
+}
+
 void Node::acceptNeighbors()
 {
     if(mListenFd < 0)

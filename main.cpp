@@ -205,10 +205,14 @@ int main(int argc,char** argv)
             std::thread inConnector(inConnections,std::ref(n));
             inConnector.join();
         }*/
-            std::thread outConnector(outConnections,std::ref(n));
-            std::thread inConnector(inConnections,std::ref(n));
-            outConnector.join();
-            inConnector.join();
+        std::thread outConnector(outConnections,std::ref(n));
+        std::thread inConnector(inConnections,std::ref(n));
+        outConnector.join();
+        inConnector.join();
+
+        n.initMessageThreads();
+
+        n.flood("hello from " + std::to_string(uid));
 
         //n.flood("hello from " + std::to_string(n.getUid()));
         std::cout << "done" << std::endl;

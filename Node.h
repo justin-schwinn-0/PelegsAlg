@@ -27,6 +27,8 @@ public:
     Connection getOwnConnection();
     int getUid();
 
+    void initMessageThreads();
+
     void flood(std::string str);
 
     void print();
