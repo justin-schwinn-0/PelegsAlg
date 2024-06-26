@@ -61,7 +61,7 @@ void Utils::log(Arg a,Args... args)
 {
     static std::mutex logMutex;
 
-    logMuetx.lock();
+    logMutex.lock();
 
     std::cout << arg;
 
