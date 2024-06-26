@@ -105,6 +105,8 @@ void Node::acceptNeighbors()
 
     int rxFd = accept(retfd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength);
 
+    std::cout << "try connect on " << retfd << " " << mListenFd << std::endl;
+
     if(rxFd < 0)
     {
         std::cout << "couldn't accept connection: " << strerror(errno) << std::endl;
