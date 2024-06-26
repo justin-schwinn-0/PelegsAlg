@@ -84,7 +84,7 @@ void Connection::msgTx(std::string msg)
     }
     else
     {
-        int ret = sctp_sendmsg(mConFd,(void *)msg.c_str(), strlen(msg.c_str())+1,NULL,0,0,0,0,1000,0);
+        int ret = sctp_sendmsg(mConFd,(void *)msg.c_str(), strlen(msg.c_str()),NULL,0,0,0,0,1000,0);
         if( ret < 0)
         {
             std::cout << "couldn't send message: " << strerror(errno) << std::endl;
