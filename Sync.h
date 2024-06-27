@@ -30,7 +30,7 @@ private:
 
     std::vector<std::pair<int,std::string>> payloadCache;
 
-    int mRound = 0;
+    int mRound;
     Node& rNode;
 };
 
