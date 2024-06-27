@@ -25,12 +25,6 @@ Connection::~Connection()
 
 void Connection::sendMsg(std::string s)
 {
-
-    if(isConnected())
-    {
-        return;
-    }
-
     
     std::string addr = Utils::getAddressFromHost(hostname);
 
