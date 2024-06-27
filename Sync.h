@@ -29,7 +29,7 @@ public:
     void affixVector(int uid);
 
     template<class T>
-    void setHandlers();
+    void setHandlers()
     {
         mHandlePayload = &T::handlePayload;
         mProceedRound = &T::proceedRound;
