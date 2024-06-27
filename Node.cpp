@@ -80,20 +80,7 @@ void Node::acceptNeighbors()
             return;
         }
 
-        const int bufSize = 128;
-        char buf[bufSize];
-
-        struct sctp_sndrcvinfo sndrcvinfo;
-        int flags;
-        
-        int in = sctp_recvmsg(rxFd,buf,bufSize,NULL,0,&sndrcvinfo,&flags);
-
-        if(in > 0)
-        {
-            std::string strMsg(buf);
-            msgHandler(strMsg);
-        }
-
+        recvMsg(rxFd);
         openRcv.push_back(rxFd);
     }
 
