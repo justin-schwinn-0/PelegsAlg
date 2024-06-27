@@ -101,12 +101,12 @@ Connection Node::getOwnConnection()
     return mListener;
 }
 
-int Node::getUid()
+int Node::getUid() const
 {
     return mUid;
 }
 
-void Node::print()
+void Node::print() const
 {
     std::cout << mUid << " ";
     mListener.print();
@@ -125,7 +125,7 @@ void Node::addConnection(Connection c)
     mNeighbors.push_back(c);
 }
 
-void Node::flood(std::string str)
+void Node::flood(std::string str) const
 {
     Utils::log("sending ",str);
     for(auto& n : mNeighbors)
