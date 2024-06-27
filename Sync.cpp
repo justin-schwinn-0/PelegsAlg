@@ -36,7 +36,7 @@ std::string Sync::parseMsg(std::string r)
         mHasRecvd[uid] = true;
     }
 
-    Utils::printVectorPair(mHasRecvd);
+    //Utils::printVectorPair(mHasRecvd);
     for(auto& pair : mHasRecvd)
     {
         if(pair.first == uid)
