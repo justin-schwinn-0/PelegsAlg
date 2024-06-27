@@ -19,6 +19,8 @@ public:
     template<typename T>
     static void printVector(std::vector<T> vec);
 
+    template<typename T>
+    static void printVector(std::vector<std::pair<int,T>> vec);
     static std::string getAddressFromHost(std::string host);
 
     static int pollForFd(int fd, int time, int flag = POLLIN);
