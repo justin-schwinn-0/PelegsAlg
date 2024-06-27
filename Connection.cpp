@@ -33,6 +33,7 @@ void Connection::sendMsg(std::string msg)
         return;
     }
     bool sent = false;
+    Utils::log("try send",msg);
     do
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(250));
