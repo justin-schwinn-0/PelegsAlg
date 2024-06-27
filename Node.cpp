@@ -102,7 +102,7 @@ void Node::listenToNeighbors()
 
 void Node::recvMsg(int fd)
 {
-    Utils::log("got here", std::to_string(__LNIE__));
+    Utils::log("got here", std::to_string(__LINE__));
     const int bufSize = 128;
     char buf[bufSize];
 
