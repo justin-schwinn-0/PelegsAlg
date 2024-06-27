@@ -85,14 +85,15 @@ void Connection::outGoingConnect()
 
 void Connection::msgTx(std::string msg)
 {
-    Utils::log("try send");
     if(mConFd < 0)
     {
         Utils::log( "No connected to host!" );
     }
     else
     {
+        Utils::log("try send");
         int ret = Utils::pollForFd(mConFd,3000,POLLOUT);
+        Utils::log("poll done");
         if(ret == 0)
         {
             Utils::log( "tx timed out..." );
