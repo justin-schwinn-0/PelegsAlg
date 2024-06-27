@@ -45,29 +45,35 @@ void Connection::sendMsg(std::string msg)
         return;
     }
 
-    int ret;
+    bool sent = false;
     do
     {
-        sleep(2);
-        ret = connect(sd,(struct sockaddr*)&serverAddress,sizeof(serverAddress));
-    }
-    while(ret == ECONNREFUSED);
+        int ret;
+        do
+        {
+            sleep(2);
+            ret = connect(sd,(struct sockaddr*)&serverAddress,sizeof(serverAddress));
+        }
+        while(ret == ECONNREFUSED);
 
-    if(ret < 0)
-    {
-        Utils::error("connect failed");
-    }
+        if(ret < 0)
+        {
+            Utils::error("connect failed");
+        }
 
-    ret = sctp_sendmsg(sd,(void *)msg.c_str(),strlen(msg.c_str())+1,NULL,0,0,0,0,0,0);
+        ret = sctp_sendmsg(sd,(void *)msg.c_str(),strlen(msg.c_str())+1,NULL,0,0,0,0,0,0);
 
-    if(ret < 0)
-    {
-        Utils::error("send failed");
+        if(ret < 0)
+        {
+            Utils::error("send failed");
+        }
+        else
+        {
+            sent = true;
+            //Utils::log("sent:" ,msg);
+        }
     }
-    else
-    {
-        //Utils::log("sent:" ,msg);
-    }
+    while(!sent);
 
     close(sd);
 }

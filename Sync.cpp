@@ -66,8 +66,7 @@ void Sync::progressRound()
         {
             pair.second = false;
         }
-
-        
+        Utils::log("sent next round!");
         rNode.flood(wrapPayload("test"));
     }
 }
