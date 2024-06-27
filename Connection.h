@@ -27,8 +27,6 @@ public:
 */
     void sendMsg(std::string msg);
 
-    void outGoingConnect();
-
     uint32_t getPort()
     { return port; }
 
@@ -40,10 +38,6 @@ private:
     // hostname/ip of connection
     std::string hostname;
     uint32_t port;
-
-    sockaddr mFarAddress;
-
-    int mConFd = -1;
 };
 
 #endif

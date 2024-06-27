@@ -89,7 +89,6 @@ void Node::acceptNeighbors()
         if(in > 0)
         {
             std::string strMsg(buf);
-            Utils::log("len" , in , strMsg.size());
             Utils::log("got msg: " , strMsg);
         }
 

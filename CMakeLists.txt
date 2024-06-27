@@ -11,12 +11,14 @@ set(Sources
     Node.cpp
     Connection.cpp
     Utils.cpp
+    Sync.cpp
 )
 
 set(Headers
     Connection.h
     Node.h
     Utils.h
+    Sync.h
 )
 
 find_library(SCTP_LIB libsctp.so)

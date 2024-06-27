@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <functional>
 
 #include "Connection.h"
 
@@ -26,6 +27,10 @@ public:
 
     void print();
     void addConnection(Connection c);
+
+    void setHandler(std::function<void(std::string)> fun)
+    { msgHandler = fun;}
+
 private:
     int mUid;
     Connection mListener;
@@ -33,6 +38,8 @@ private:
 
     int mListenFd;
     // this probably isn't right
+    
+    std::function msgHandler;
 };
 
 #endif

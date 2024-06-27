@@ -159,6 +159,12 @@ Node readConfig(std::string configFile, int popId = -1)
     return nodes[0];
 }
 
+void testFun(const Node& n)
+{
+    Utils::log( "testing accepts" );
+    n.flood("hello from "+ std::to_string(n.getUid()));
+}
+
 int main(int argc,char** argv)
 {
     int uid;
@@ -171,17 +177,11 @@ int main(int argc,char** argv)
         n.print();
         n.openSocket();
         
+        std::thread tester(testFun,std::ref(n));
 
-        if(uid == 5)
-        {
-            Utils::log( "testing connections" );
-            n.acceptNeighbors();
-        }
-        else
-        {
-            Utils::log( "testing accepts" );
-            n.flood("hello from"+ std::to_string(n.getUid()));
-        }
+        Utils::log( "testing connections" );
+        n.acceptNeighbors();
+
         /*std::thread outConnector(outConnections,std::ref(n));
         std::thread inConnector(inConnections,std::ref(n));
         outConnector.join();
