@@ -156,30 +156,12 @@ int main(int argc,char** argv)
 
         Sync syncer(n.getNeighborsSize(),n);
 
-        n.setHandler(std::bind(&Sync::msgHandler,syncer,std::placeholder::_1));
+        n.setHandler(std::bind(&Sync::msgHandler,syncer,std::placeholders::_1));
         
         std::thread tester(testFun,std::ref(n));
 
         n.acceptNeighbors();
 
-        /*std::thread outConnector(outConnections,std::ref(n));
-        std::thread inConnector(inConnections,std::ref(n));
-        outConnector.join();
-        inConnector.join();
-
-        if(uid == 5)
-        {
-            n.initMessageThreads();
-        }
-        else
-        {
-            std::thread slowTest(slowPoll,std::ref(n),uid);
-            slowTest.join();
-        }*/
-
-
-
-        //n.flood("hello from " + std::to_string(n.getUid()));
     }
     else
     {
