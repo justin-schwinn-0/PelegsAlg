@@ -7,7 +7,7 @@
 class SynchAlg
 {
 public:
-    SynchAlg(Node& n) ; rNode(n)
+    SynchAlg(Node& n); 
 
     std::string wrapPayload(std::string payload,int round);
 
