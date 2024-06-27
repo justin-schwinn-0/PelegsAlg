@@ -1,6 +1,8 @@
 #ifndef SYNCH_ALG_H
 #define SYNCH_ALG_H
 
+#include <string>
+
 class SynchAlg
 {
 public:

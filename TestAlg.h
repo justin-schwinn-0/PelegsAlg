@@ -1,6 +1,8 @@
 #ifndef TEST_ALG_H
 #define TEST_ALG_H
 
+#include <string>
+
 #include "SynchAlg.h"
 
 class TestAlg : SynchAlg
