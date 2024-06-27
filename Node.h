@@ -45,6 +45,8 @@ private:
     // this probably isn't right
     
     std::function<void(std::string)> msgHandler;
+
+    std::vector<int> openRcv;
 };
 
 #endif
