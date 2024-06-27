@@ -41,7 +41,6 @@ std::string Sync::parseMsg(std::string r)
     {
         if(pair.first == uid)
         {
-            Utils::log("recvd from " , uid);
             break;
         }
     }
@@ -78,13 +77,13 @@ void Sync::progressRound()
         {
             pair.second = false;
         }
-        Utils::log("sent next round!");
+        //Utils::log("sent next round!");
         rNode.flood(wrapPayload("test"));
     }
     else
     {
-        Utils::log("cannot progress yet");
-        Utils::printVectorPair(mHasRecvd);
+        //Utils::log("cannot progress yet");
+        //Utils::printVectorPair(mHasRecvd);
     }
 }
 
