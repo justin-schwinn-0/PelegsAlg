@@ -68,8 +68,9 @@ void Node::acceptNeighbors()
     }
 
 
+    int msgsRxd = 0;
 
-    while(openRcv.size() < mNeighbors.size())
+    while(msgsRxd < mNeighbors.size())
     {
         int rxFd = accept(mListenFd, (struct sockaddr*)NULL,NULL);
 
@@ -80,6 +81,7 @@ void Node::acceptNeighbors()
         }
 
         recvMsg(rxFd)
+        msgsRxd++;
     }
 
     Utils::log("accepted all neighbors for round");
