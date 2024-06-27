@@ -61,7 +61,7 @@ void printVector(std::vector<std::pair<int,T>> vec)
     
     for(auto pair : vec)
     {
-        std::cout <<"{" pair.first << ":" << pair.second <<"} "; 
+        std::cout << "{" << pair.first << ":" << pair.second <<"} "; 
     }
     std::cout << std::endl;
 }
