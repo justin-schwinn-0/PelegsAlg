@@ -2,6 +2,12 @@
 #include "Node.h"
 #include "Utils.h"
 
+Sync::Sync(int neighbors, Node& n) : rNode(n)
+{
+    mHasRecvd = std::vector<std::pair<int,bool>>(neighbors);
+    payloadCache = std::vector<std::pair<int,std::string>>(neighbors);
+}
+
 void Sync::msgHandler(std::string s)
 {
 
