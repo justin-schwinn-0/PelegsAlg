@@ -115,6 +115,11 @@ void Sync::affixVector(int uid)
     {
         Utils::log("uid not added or found, try a debug mayhaps");
     }
+    else
+    {
+        Utils::log("affixed Rcvd");
+        Utils::printVectorPair(mHasRecvd);
+    }
 
     bool affixedCache = false;
     for(auto& pair : payloadCache)
