@@ -89,6 +89,7 @@ void Node::listenToNeighbors()
 {
     while(true)
     {
+        std::this_thread::sleep_for(std::chrono::milliseconds(2500));
         for(int fd : openRcv)
         {
             if(Utils::pollForFd(fd,100,POLLIN) > 0)
