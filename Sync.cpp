@@ -109,7 +109,7 @@ void Sync::affixVector(int uid)
             break;
         }
     }
-    if(!affixed)
+    if(!affixedRcvd)
     {
         Utils::log("uid not added or found, try a debug mayhaps");
     }
