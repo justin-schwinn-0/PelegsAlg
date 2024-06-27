@@ -3,6 +3,7 @@
 
 #include <string>
 
+#include "Node.h"
 class SynchAlg
 {
 public:
