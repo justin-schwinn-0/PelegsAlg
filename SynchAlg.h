@@ -14,7 +14,6 @@ public:
     virtual void proceedRound(int round) = 0;
 
 private:
-    int mRound; 
     Node& rNode;
 };
 

@@ -14,10 +14,8 @@ void TestAlg::handlePayload(std::string payload)
     Utils::log(payload);
 }
 
-void TestAlg::proceedRound()
+void TestAlg::proceedRound(int round)
 {
-    roundNum++;
-
-    Utils::log("========= NEXT ROUND =========", roundNum);
-    rNode.flood(std::to_string(rNode.getUid())+" at round " + std::to_string(roundNum));
+    Utils::log("========= NEXT ROUND =========", round);
+    rNode.flood(std::to_string(rNode.getUid())+" at round " + std::to_string(round));
 }
