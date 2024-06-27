@@ -29,7 +29,7 @@ std::string Sync::parseMsg(std::string r)
     auto it = mHasRecvd.find(uid);
     if(it != mHasRecvd.end())
     {   
-        it.second = true;
+        it->second = true;
     }
     else
     {
