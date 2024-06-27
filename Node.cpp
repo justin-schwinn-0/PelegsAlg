@@ -67,7 +67,7 @@ void Node::acceptNeighbors()
         return;
     }
 
-    Utils::log("waiting for msgs")
+    Utils::log("waiting for msgs");
 
 
     while(true)
