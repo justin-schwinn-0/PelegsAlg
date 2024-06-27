@@ -52,7 +52,7 @@ void Connection::sendMsg(std::string msg)
     }
     while(!sent);
 
-    //Utils::log("sent", msg);
+    Utils::log("sent", msg);
 }
 
 void Connection::makeConnection()
