@@ -25,7 +25,15 @@ std::string Sync::parseMsg(std::string r)
     int uid = Utils::strToInt(segments[0]); 
     int round = Utils::strToInt(segments[1]); 
 
-    affixVector(uid);
+    auto it = mHasRcvd.find(uid);
+    if(it != mHasRcvd.end())
+    {   
+        it.second = true;
+    }
+    else
+    {
+        mHasRcvd[uid] = true;
+    }
 
     for(auto& pair : mHasRecvd)
     {
@@ -86,64 +94,4 @@ std::string Sync::wrapPayload(std::string payload)
 void Sync::init()
 {
     rNode.flood(wrapPayload("test"));
-}
-
-void Sync::affixVector(int uid)
-{
-    if(affixedVectors)
-    {
-        return;
-    }
-
-    bool affixedRcvd = false;
-    for(auto& pair : mHasRecvd)
-    {
-        if(pair.first == uid)
-        {
-            affixedRcvd=true;
-            break;
-        }
-
-        if(pair.first == -1)
-        {
-            affixedRcvd=true;
-            pair.first=uid;
-            break;
-        }
-    }
-    if(!affixedRcvd)
-    {
-        Utils::log("uid not added or found, try a debug mayhaps");
-    }
-    else
-    {
-        Utils::log("affixed Rcvd");
-        Utils::printVectorPair(mHasRecvd);
-    }
-
-    bool affixedCache = false;
-    for(auto& pair : payloadCache)
-    {
-        if(pair.first == uid)
-        {
-            affixedCache=true;
-            break;
-        }
-
-        if(pair.first == -1)
-        {
-            affixedCache=true;
-            pair.first=uid;
-            break;
-        }
-    }
-    if(!affixedCache)
-    {
-        Utils::log("uid not added or found, try a debug mayhaps");
-    }
-
-    if(affixedCache && affixedRcvd)
-    {
-        affixedVectors= true;
-    }
 }

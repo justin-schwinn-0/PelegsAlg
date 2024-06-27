@@ -5,7 +5,8 @@
 #include "Node.h"
 #include "Utils.h"
 
-#include<string>
+#include <string>
+#include <map>
 
 
 class Sync
@@ -28,9 +29,9 @@ public:
     void affixVector(int uid);
 private:
     //uid -> has recvd round msg
-    std::vector<std::pair<int,bool>> mHasRecvd;
+    std::map<int,bool>mHasRecvd;
 
-    std::vector<std::pair<int,std::string>> payloadCache;
+    std::map<int,std::string> payloadCache;
 
     int mRound;
     Node& rNode;

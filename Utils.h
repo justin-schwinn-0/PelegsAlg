@@ -20,7 +20,7 @@ public:
     static void printVector(std::vector<T> vec);
 
     template<typename T>
-    static void printVectorPair(std::vector<std::pair<int,T>> vec)
+    static void printVectorPair(T vec)
     {
         for(auto pair : vec)
         {
@@ -28,6 +28,13 @@ public:
         }
         std::cout << std::endl;
     }
+
+    template<class T, class Y>
+    bool mapContains(std::map<T,Y> map, T key)
+    {
+        return map.find(key) != map.end();
+    }
+
     
     static std::string getAddressFromHost(std::string host);
 
