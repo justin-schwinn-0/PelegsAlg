@@ -1,5 +1,8 @@
 #include "TestAlg.h"
 
+#include "Node.h"
+#include "Utils.h"
+
 TestAlg::TestAlg(Node& n) : 
     rNode(n),
     roundNum(0)
