@@ -36,6 +36,10 @@ public:
 
     void connectAll();
 
+    void listenToNeighbors();
+
+    void recvMsg(int fd);
+
 private:
     int mUid;
     Connection mListener;

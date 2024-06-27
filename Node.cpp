@@ -98,6 +98,37 @@ void Node::acceptNeighbors()
     }
 }
 
+void listenToNeighbors()
+{
+    while(true)
+    {
+        for(int fd : openRcv)
+        {
+            if(Utils::pollForFd(fd,300,POLLIN) > 0)
+            {
+                recvMsg(fd); 
+            }
+        }
+    }
+}
+
+void recvMsg(int fd)
+{
+    const int bufSize = 128;
+    char buf[bufSize];
+
+    struct sctp_sndrcvinfo sndrcvinfo;
+    int flags;
+    
+    int in = sctp_recvmsg(rxFd,buf,bufSize,NULL,0,&sndrcvinfo,&flags);
+
+    if(in > 0)
+    {
+        std::string strMsg(buf);
+        msgHandler(strMsg);
+    }
+}
+
 Connection Node::getOwnConnection()
 {
     return mListener;

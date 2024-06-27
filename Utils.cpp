@@ -91,5 +91,5 @@ int Utils::pollForFd(int fd, int time, int flag )
     pfds[0].events = flag;
 
     
-    return poll(pfds,1,time); // 5s timeout
+    return poll(pfds,1,time);
 }
