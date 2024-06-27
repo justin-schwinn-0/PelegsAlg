@@ -7,6 +7,8 @@
 class SynchAlg
 {
 public:
+    SynchAlg(Node& n) ; rNode(n)
+
     std::string wrapPayload(std::string payload,int round);
 
     virtual void handlePayload(std::string str) = 0;
