@@ -136,11 +136,6 @@ Node readConfig(std::string configFile, int popId = -1)
     return nodes[0];
 }
 
-void testFun(Node& n)
-{
-    n.flood("hello from "+ std::to_string(n.getUid()));
-}
-
 int main(int argc,char** argv)
 {
     int uid;
@@ -156,8 +151,6 @@ int main(int argc,char** argv)
         Sync syncer(n.getNeighborsSize(),n);
 
         n.setHandler(std::bind(&Sync::msgHandler,syncer,std::placeholders::_1));
-        
-        std::thread tester(testFun,std::ref(n));
 
         n.acceptNeighbors();
 
