@@ -128,6 +128,7 @@ void Node::addConnection(Connection c)
 
 void Node::flood(std::string str)
 {
+    Utils::log("sending ",str);
     for(auto& n : mNeighbors)
     {
         n.sendMsg(str);
