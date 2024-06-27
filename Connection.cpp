@@ -58,7 +58,7 @@ void Connection::sendMsg(std::string msg)
 
         if(ret < 0)
         {
-            Utils::error("connect failed", hostname);
+            Utils::error("connect failed "+ hostname);
         }
 
         ret = sctp_sendmsg(sd,(void *)msg.c_str(),strlen(msg.c_str())+1,NULL,0,0,0,0,0,0);
