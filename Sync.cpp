@@ -65,6 +65,11 @@ void Sync::progressRound()
 
     bool canProgress = true;
 
+    if(mHasRecvd.size() != rNode.getNeighborSize())
+    {
+        return;
+    }
+
     for(auto& pair : mHasRecvd)
     {
         if(!pair.second)
