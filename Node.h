@@ -31,6 +31,9 @@ public:
     void setHandler(std::function<void(std::string)> fun)
     { msgHandler = fun;}
 
+    int getNeighborsSize()
+    { return mNeighbors.size(); }
+
 private:
     int mUid;
     Connection mListener;

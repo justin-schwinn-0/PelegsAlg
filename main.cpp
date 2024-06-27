@@ -153,7 +153,7 @@ int main(int argc,char** argv)
         n.print();
         n.openSocket();
 
-        Sync syncer;
+        Sync syncer(n.getNeighborsSize(),n);
 
         n.setHandler(std::bind(&Sync::msgHandler,syncer,std::placeholder::_1));
         
