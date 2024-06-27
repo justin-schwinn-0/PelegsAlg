@@ -157,6 +157,7 @@ int main(int argc,char** argv)
 
         n.setHandler(std::bind(&Sync::msgHandler,syncer,std::placeholders::_1));
 
+        n.connectAll();
 
         //std::thread tester(testThread,std::ref(n));
         syncer.init();
