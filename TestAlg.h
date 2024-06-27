@@ -5,7 +5,7 @@
 
 #include "SynchAlg.h"
 
-class TestAlg : SynchAlg
+class TestAlg : public SynchAlg
 {
 public:
     TestAlg(Node& n);
