@@ -75,15 +75,15 @@ Node readConfig(std::string configFile, int popId = -1)
 
         if(splitNode.size() == 3)
         {
-            std::istringstream uidSS(Utils::splitNode[0]); 
-            std::istringstream portSS(Utils::splitNode[2]); 
+            std::istringstream uidSS(splitNode[0]); 
+            std::istringstream portSS(splitNode[2]); 
 
             int uid,port;
 
             uidSS >> uid;
             portSS >> port;
 
-            Node n(uid,{Utils::splitNode[1],port});
+            Node n(uid,{splitNode[1],port});
             nodes.push_back(n);
             //Utils::log( "adding node " , uid );
 
