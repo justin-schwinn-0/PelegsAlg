@@ -88,18 +88,23 @@ void Sync::init()
 
 void Sync::affixVector(int uid)
 {
-    bool affixed = false;
+    if(affixedVectors)
+    {
+        return;
+    }
+
+    bool affixedRcvd = false;
     for(auto& pair : mHasRecvd)
     {
         if(pair.first == uid)
         {
-            affixed=true;
+            affixedRcvd=true;
             break;
         }
 
         if(pair.first == -1)
         {
-            affixed=true;
+            affixedRcvd=true;
             pair.first=uid;
             break;
         }
@@ -109,24 +114,29 @@ void Sync::affixVector(int uid)
         Utils::log("uid not added or found, try a debug mayhaps");
     }
 
-    affixed = false;
+    bool affixedCache = false;
     for(auto& pair : payloadCache)
     {
         if(pair.first == uid)
         {
-            affixed=true;
+            affixedCache=true;
             break;
         }
 
         if(pair.first == -1)
         {
-            affixed=true;
+            affixedCache=true;
             pair.first=uid;
             break;
         }
     }
-    if(!affixed)
+    if(!affixedCache)
     {
         Utils::log("uid not added or found, try a debug mayhaps");
+    }
+
+    if(affixedCache && affixedRcvd)
+    {
+        affixedVectors= true;
     }
 }
