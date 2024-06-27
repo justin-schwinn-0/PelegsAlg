@@ -20,7 +20,14 @@ public:
     static void printVector(std::vector<T> vec);
 
     template<typename T>
-    static void printVectorPair(std::vector<std::pair<int,T>> vec);
+    static void printVectorPair(std::vector<std::pair<int,T>> vec)
+    {
+        for(auto pair : vec)
+        {
+            std::cout << "{" << pair.first << ":" << pair.second <<"} "; 
+        }
+        std::cout << std::endl;
+    }
     
     static std::string getAddressFromHost(std::string host);
 
