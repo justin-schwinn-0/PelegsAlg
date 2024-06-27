@@ -37,6 +37,9 @@ private:
     Node& rNode;
 
     bool affixedVectors;
+
+    std::function<void(std::string)> mHandlePayload;
+    std::function<void()> mProccedRound;
 };
 
 #endif

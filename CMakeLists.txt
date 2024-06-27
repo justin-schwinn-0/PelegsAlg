@@ -19,6 +19,7 @@ set(Headers
     Node.h
     Utils.h
     Sync.h
+    SynchAlg.h
 )
 
 find_library(SCTP_LIB libsctp.so)
