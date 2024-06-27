@@ -94,7 +94,7 @@ void Node::acceptNeighbors()
             msgHandler(strMsg);
         }
 
-        openRcv.push_bacK(rxFd);
+        openRcv.push_back(rxFd);
     }
 }
 
