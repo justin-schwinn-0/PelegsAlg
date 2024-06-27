@@ -89,7 +89,7 @@ void Node::acceptNeighbors()
         if(in > 0)
         {
             std::string strMsg(buf);
-            mshHandler(strMsg);
+            msgHandler(strMsg);
         }
 
         close(rxFd);
