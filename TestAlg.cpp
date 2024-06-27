@@ -10,6 +10,7 @@ TestAlg::TestAlg(Node& n) :
 
 void TestAlg::handlePayload(std::string payload)
 {
+    Utils::log("got here", std::to_string(__LINE__));
     Utils::log(payload);
 }
 
