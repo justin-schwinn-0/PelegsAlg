@@ -1,5 +1,10 @@
 #include "SynchAlg.h"
 
+SynchAlg::SynchAlg(Node& n) : 
+    rNode(n)
+{
+
+}
 
 std::string SynchAlg::wrapPayload(std::string payload,int round)
 {
