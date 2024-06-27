@@ -72,7 +72,7 @@ void Sync::progressRound()
     else
     {
         Utils::log("cannot progress yet");
-        Utils::printVector(mHasRecvd);
+        Utils::printVectorPair(mHasRecvd);
     }
 }
 

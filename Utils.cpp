@@ -56,7 +56,7 @@ void Utils::printVector(std::vector<T> vec)
     std::cout << std::endl;
 }
 template<typename T>
-void printVectorPair(std::vector<std::pair<int,T>> vec)
+void Utils::printVectorPair(std::vector<std::pair<int,T>> vec)
 {
     
     for(auto pair : vec)
