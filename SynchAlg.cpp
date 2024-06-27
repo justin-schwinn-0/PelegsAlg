@@ -1,5 +1,5 @@
 #include "SynchAlg.h"
-
+#include "Utils.h"
 SynchAlg::SynchAlg(Node& n) : 
     rNode(n)
 {
