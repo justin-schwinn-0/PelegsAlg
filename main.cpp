@@ -180,7 +180,7 @@ int main(int argc,char** argv)
         else
         {
             Utils::log( "testing accepts" );
-            n.sendmsg("hello from"+ n.getUid());
+            n.flood("hello from"+ n.getUid());
         }
         /*std::thread outConnector(outConnections,std::ref(n));
         std::thread inConnector(inConnections,std::ref(n));
