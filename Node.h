@@ -17,10 +17,8 @@ public:
 
     void openSocket();
 
-    void connectNeighbors();
     void acceptNeighbors();
 
-    bool connectedToNeighbors();
     Connection getOwnConnection();
     int getUid();
 
