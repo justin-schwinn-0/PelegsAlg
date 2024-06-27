@@ -2,6 +2,11 @@
 #ifndef SYNC_H 
 #define SYNC_H
 
+#include "Node.h"
+#include "Utils.h"
+
+#include<string>
+
 
 class Sync
 {
