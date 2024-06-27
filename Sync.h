@@ -31,8 +31,8 @@ public:
     template<class T>
     void setHandlers()
     {
-        mHandlePayload = &T::handlePayload;
-        mProceedRound = &T::proceedRound;
+        mHandlePayload = T::handlePayload;
+        mProceedRound = T::proceedRound;
     }
 private:
     //uid -> has recvd round msg
