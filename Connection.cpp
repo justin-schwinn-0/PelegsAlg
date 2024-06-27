@@ -168,9 +168,7 @@ void Connection::msgRx()
 
 void Connection::print()
 {
-    Utils::logMutex.lock();
-    std::endl << "{ " << hostname << " " << port << " }";
-    Utils::logMutex.unlock();
+    std::cout << "{ " << hostname << " " << port << " }";
 }
 
 bool Connection::isConnected()
