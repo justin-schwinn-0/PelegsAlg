@@ -73,7 +73,7 @@ Node readConfig(std::string configFile, int popId = -1)
     {
         auto splitNode = Utils::split(lines[i]," ");
 
-        if(Utils::splitNode.size() == 3)
+        if(splitNode.size() == 3)
         {
             std::istringstream uidSS(Utils::splitNode[0]); 
             std::istringstream portSS(Utils::splitNode[2]); 
