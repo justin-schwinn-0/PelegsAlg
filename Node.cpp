@@ -120,6 +120,14 @@ void Node::print()
     std::cout << std::endl;
 }
 
+void Node::connectAll()
+{
+    for(auto& n : mneighbors)
+    {
+        n.connect();
+    }
+}
+
 void Node::addConnection(Connection c)
 {
     mNeighbors.push_back(c);
@@ -127,9 +135,8 @@ void Node::addConnection(Connection c)
 
 void Node::flood(std::string str)
 {
-    for(auto& n : mNeighbors)
+    for(auto& n : mneighbors)
     {
-        n.sendMsg(str);
+        n.sendmsg(str);
     }
-
 }

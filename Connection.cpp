@@ -27,7 +27,32 @@ Connection::~Connection()
 
 void Connection::sendMsg(std::string msg)
 {
-    
+    if(mCon < 0)
+    {
+        Utils::log("we aren't connected to ",hostname);
+        return;
+    }
+    bool sent = false;
+    do
+    {
+        ret = sctp_sendmsg(mCon,(void *)msg.c_str(),strlen(msg.c_str())+1,NULL,0,0,0,0,0,0);
+
+        if(ret < 0)
+        {
+            Utils::error("send failed");
+        }
+        else
+        {
+            sent = true;
+            Utils::log("sent:" ,msg);
+        }
+    }
+    while(!sent);
+}
+
+void Connection::connect()
+{
+
     std::string addr = Utils::getAddressFromHost(hostname);
 
     std::this_thread::sleep_for(std::chrono::milliseconds(150));
@@ -45,39 +70,23 @@ void Connection::sendMsg(std::string msg)
         return;
     }
 
-    bool sent = false;
+    int ret;
     do
     {
-        int ret;
-        do
-        {
-            sleep(2);
-            ret = connect(sd,(struct sockaddr*)&serverAddress,sizeof(serverAddress));
-        }
-        while(ret == ECONNREFUSED);
-
-        if(ret < 0)
-        {
-            Utils::error("connect failed "+ hostname);
-        }
-
-        ret = sctp_sendmsg(sd,(void *)msg.c_str(),strlen(msg.c_str())+1,NULL,0,0,0,0,0,0);
-
-        if(ret < 0)
-        {
-            Utils::error("send failed");
-        }
-        else
-        {
-            sent = true;
-            Utils::log("sent:" ,msg);
-        }
+        sleep(2);
+        ret = connect(sd,(struct sockaddr*)&serverAddress,sizeof(serverAddress));
     }
-    while(!sent);
+    while(ret == ECONNREFUSED);
 
-    close(sd);
+    if(ret < 0)
+    {
+        Utils::error("connect failed "+ hostname);
+    }
+    else
+    {
+        mCon = ret;
+    }
 }
-
 
 void Connection::print()
 {

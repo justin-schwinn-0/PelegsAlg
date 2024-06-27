@@ -34,6 +34,8 @@ public:
     int getNeighborsSize()
     { return mNeighbors.size(); }
 
+    void connectAll();
+
 private:
     int mUid;
     Connection mListener;
