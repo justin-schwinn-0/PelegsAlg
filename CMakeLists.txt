@@ -12,6 +12,7 @@ set(Sources
     Connection.cpp
     Utils.cpp
     Sync.cpp
+    TestAlg.cpp
 )
 
 set(Headers
@@ -20,6 +21,7 @@ set(Headers
     Utils.h
     Sync.h
     SynchAlg.h
+    TestAlg.h
 )
 
 find_library(SCTP_LIB libsctp.so)
