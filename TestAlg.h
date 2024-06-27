@@ -5,6 +5,7 @@
 
 class TestAlg : SynchAlg
 {
+public:
     TestAlg(Node& n);
 
     void handlePayload(std::string payload);
