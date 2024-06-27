@@ -39,6 +39,7 @@ std::vector<std::string> Utils::split(std::string str, std::string delim)
 
 int Utils::strToInt(std::string s)
 {
+    Utils::log("got here", s);
     std::istringstream intss(s);
     int ret;
     intss >> ret;
