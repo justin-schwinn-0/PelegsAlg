@@ -11,6 +11,7 @@
 #include <netinet/in.h>
 #include <netinet/sctp.h>
 #include <arpa/inet.h>
+#include <sstream>
 
 std::vector<std::string> Utils::split(std::string str, std::string delim)
 {
