@@ -159,11 +159,11 @@ int main(int argc,char** argv)
 
         n.connectAll();
 
-        //std::thread tester(testThread,std::ref(n));
+        std::thread tester(testThread,std::ref(n));
         syncer.init();
         n.acceptNeighbors();
 
-       // tester.detach();
+        tester.join();
 
     }
     else
