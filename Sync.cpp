@@ -80,6 +80,7 @@ void Sync::progressRound()
 
     if(canProgress)
     {
+        Utils::log("progressing round", mRound, "->",mRound+1);
         mRound++;
 
         for(auto& pair : mHasRecvd)
