@@ -4,8 +4,6 @@
 #include <string>
 
 #include "SynchAlg.h"
-#include "Node.h"
-#include "Utils.h"
 
 class TestAlg : SynchAlg
 {
@@ -17,8 +15,6 @@ public:
     void proceedRound();
 
 private:
-    Node& rNode;
-
     int roundNum;
 };
 
