@@ -73,6 +73,7 @@ void Node::initMessageThreads()
     {
         std::thread msgRxer(&Connection::msgRx,std::ref(con));
         msgRxer.detach();
+        Utils::log("running msg Rx for", con.getHostname());
 
     }
     Utils::log( "init msg threads!" );
