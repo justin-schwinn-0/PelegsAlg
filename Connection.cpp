@@ -60,6 +60,10 @@ void Connection::sendMsg(std::string msg)
     {
         Utils::error("send failed");
     }
+    else
+    {
+        Utils::log("sent:" ,msg);
+    }
 
     close(sd);
 }

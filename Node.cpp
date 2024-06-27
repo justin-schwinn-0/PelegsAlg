@@ -78,7 +78,6 @@ void Node::acceptNeighbors()
             return;
         }
 
-
         const int bufSize = 128;
         char buf[bufSize];
 
