@@ -71,7 +71,7 @@ Node readConfig(std::string configFile, int popId = -1)
     std::vector<Node> nodes;
     for(int i = 1; i < numNodes+1;i++)
     {
-        auto Utils::splitNode = Utils::split(lines[i]," ");
+        auto splitNode = Utils::split(lines[i]," ");
 
         if(Utils::splitNode.size() == 3)
         {
