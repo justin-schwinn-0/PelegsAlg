@@ -31,7 +31,7 @@ public:
     void setHandlers(T& t)
     {
         mHandlePayload = std::bind(&T::handlePayload,t,std::placeholders::_1);
-        mProceedRound = std::bind(&T::proceedRound,t);
+        mProceedRound = std::bind(&T::proceedRound,t,std::placeholders::_1);
     }
 private:
     //uid -> has recvd round msg
