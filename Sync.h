@@ -12,13 +12,14 @@ class Sync
 {
 
 public:
-    Sync(const Node& n) : rNode(n)
-    {
-    }
+    Sync(int neighbors,const Node& n); 
 
     void msgHandler(std::string s);
 
 private:
+    //uid -> has recvd round msg
+    std::vector<std::pair<int,bool>> mHasRecvd;
+
     int round;
     const Node& rNode;
 };

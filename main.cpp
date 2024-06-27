@@ -12,30 +12,6 @@
 #include "Utils.h"
 
 
-std::vector<std::string> split(std::string str, std::string delim)
-{
-    std::vector<std::string> splits;
-    uint32_t prevPos = 0;
-
-    size_t pos = 0;
-    while ((pos = str.find(delim)) != std::string::npos) 
-    {
-        std::string token = str.substr(0, pos);
-        if(!token.empty())
-        {
-            splits.push_back(token);
-        }
-        str.erase(0, pos + delim.length());
-    }
-    //add remainder of split string
-    if(!str.empty())
-    {
-        splits.push_back(str);
-    }
-
-    return splits;
-}
-
 Node readConfig(std::string configFile, int popId = -1)
 {
     std::ifstream file(configFile) ;
@@ -48,7 +24,7 @@ Node readConfig(std::string configFile, int popId = -1)
     {
         wholeFile += line + "\n";
     }
-    auto lines = split(wholeFile,"\n");
+    auto lines = Utils::split(wholeFile,"\n");
 
 
 
@@ -73,7 +49,7 @@ Node readConfig(std::string configFile, int popId = -1)
         }
     }
     // use lines to create N nodes, and return 1 for this process
-    auto firstLine = split(lines[0]," ");
+    auto firstLine = Utils::split(lines[0]," ");
 
     int numNodes;
     if(firstLine.size() != 1)
@@ -95,19 +71,19 @@ Node readConfig(std::string configFile, int popId = -1)
     std::vector<Node> nodes;
     for(int i = 1; i < numNodes+1;i++)
     {
-        auto splitNode = split(lines[i]," ");
+        auto Utils::splitNode = Utils::split(lines[i]," ");
 
-        if(splitNode.size() == 3)
+        if(Utils::splitNode.size() == 3)
         {
-            std::istringstream uidSS(splitNode[0]); 
-            std::istringstream portSS(splitNode[2]); 
+            std::istringstream uidSS(Utils::splitNode[0]); 
+            std::istringstream portSS(Utils::splitNode[2]); 
 
             int uid,port;
 
             uidSS >> uid;
             portSS >> port;
 
-            Node n(uid,{splitNode[1],port});
+            Node n(uid,{Utils::splitNode[1],port});
             nodes.push_back(n);
             //Utils::log( "adding node " , uid );
 
@@ -121,7 +97,7 @@ Node readConfig(std::string configFile, int popId = -1)
 
     for(int i = 0; i < nodes.size(); i++)
     {
-        auto connections = split(lines[i+numNodes+1]," ");
+        auto connections = Utils::split(lines[i+numNodes+1]," ");
 
         for(auto c : connections)
         {
@@ -161,7 +137,6 @@ Node readConfig(std::string configFile, int popId = -1)
 
 void testFun(Node& n)
 {
-    Utils::log( "testing accepts" );
     n.flood("hello from "+ std::to_string(n.getUid()));
 }
 
@@ -179,7 +154,6 @@ int main(int argc,char** argv)
         
         std::thread tester(testFun,std::ref(n));
 
-        Utils::log( "testing connections" );
         n.acceptNeighbors();
 
         /*std::thread outConnector(outConnections,std::ref(n));

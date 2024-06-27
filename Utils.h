@@ -12,6 +12,7 @@ class Utils
 
 public:
 
+    std::vector<std::string> split(std::string str, std::string delim);
     template<typename T>
     static void printVector(std::vector<T> vec);
 
