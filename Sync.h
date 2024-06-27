@@ -12,7 +12,7 @@ class Sync
 {
 
 public:
-    Sync(int neighbors,const Node& n); 
+    Sync(int neighbors,Node& n); 
 
     void msgHandler(std::string s);
 
