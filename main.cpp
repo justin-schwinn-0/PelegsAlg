@@ -172,7 +172,7 @@ int main(int argc,char** argv)
         n.openSocket();
         
 
-        if(uid != 5)
+        if(uid == 5)
         {
             Utils::log( "testing connections" );
             n.acceptNeighbors();
