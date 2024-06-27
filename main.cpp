@@ -155,7 +155,7 @@ int main(int argc,char** argv)
         n.print();
         n.openSocket();
 
-        Sync syncer(n.getNeighborsSize(),n);
+        Sync syncer(n.getNeighborsSize());
 
         TestAlg t(n);
         syncer.setHandlers<TestAlg>(t);

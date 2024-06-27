@@ -13,7 +13,7 @@ class Sync
 {
 
 public:
-    Sync(int neighbors,Node& n); 
+    Sync(int neighbors); 
 
     void msgHandler(std::string s);
 
@@ -22,7 +22,6 @@ public:
 
     void progressRound();
 
-    std::string wrapPayload(std::string payload);
 
     void init();
 
@@ -41,7 +40,6 @@ private:
     std::map<int,std::string> payloadCache;
 
     int mRound;
-    Node& rNode;
 
     bool affixedVectors;
 
