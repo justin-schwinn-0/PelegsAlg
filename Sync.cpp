@@ -31,7 +31,8 @@ std::string Sync::parseMsg(std::string r)
     int round = Utils::strToInt(segments[1]); 
     if(mRound != round)
     {   
-        Utils::log("msg round is wrong, caching wrapped msg");
+        Utils::log("msg round is wrong, caching wrapped msg", round);
+        Utils::log(r);
         payloadCache[uid] = r;
         return "";
     }
