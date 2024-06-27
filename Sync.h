@@ -22,6 +22,8 @@ public:
     void progressRound();
 
     std::string wrapPayload(std::string payload);
+
+    void init();
 private:
     //uid -> has recvd round msg
     std::vector<std::pair<int,bool>> mHasRecvd;

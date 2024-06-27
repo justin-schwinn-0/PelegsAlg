@@ -67,3 +67,8 @@ std::string Sync::wrapPayload(std::string payload)
 {
     return std::to_string(rNode.getUid()) + "::" + std::to_string(mRound) + "::" + payload;
 }
+
+void Sync::init()
+{
+    rNode.flood(wrapPayload("test"));
+}
