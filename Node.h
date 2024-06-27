@@ -36,7 +36,7 @@ public:
 
     void connectAll();
 
-    void listenToNeighbors();
+    void listenToNeighbors(int delayms);
 
     void recvMsg(int fd);
 

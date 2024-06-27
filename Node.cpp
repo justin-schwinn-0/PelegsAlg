@@ -85,11 +85,11 @@ void Node::acceptNeighbors()
     Utils::log("accepted all neighbors");
 }
 
-void Node::listenToNeighbors()
+void Node::listenToNeighbors(int delayms)
 {
     while(true)
     {
-        std::this_thread::sleep_for(std::chrono::milliseconds(2500));
+        std::this_thread::sleep_for(std::chrono::milliseconds(delayms));
         for(int fd : openRcv)
         {
             if(Utils::pollForFd(fd,100,POLLIN) > 0)
