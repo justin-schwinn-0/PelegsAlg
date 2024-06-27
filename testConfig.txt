@@ -8,8 +8,8 @@
 #89 dc36 26221
 # space delimited list of neighbors for each node
 23 1047
-5
-5
+5 1047
+5 23
 #5 23
 #123 1047  # lolololol
 #123 1047 89
