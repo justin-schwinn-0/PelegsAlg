@@ -137,6 +137,6 @@ void Node::flood(std::string str)
 {
     for(auto& n : mNeighbors)
     {
-        n.sendmsg(str);
+        n.sendMsg(str);
     }
 }
