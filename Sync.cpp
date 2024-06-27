@@ -25,6 +25,8 @@ std::string Sync::parseMsg(std::string r)
     int uid = Utils::strToInt(segments[0]); 
     int round = Utils::strToInt(segments[1]); 
 
+    affixVector(uid);
+
     for(auto& pair : mHasRecvd)
     {
         if(pair.first == uid)
