@@ -80,6 +80,7 @@ void Sync::progressRound()
         }
         //Utils::log("sent next round!");
         mProceedRound();
+        mIncRound();
     }
     else
     {

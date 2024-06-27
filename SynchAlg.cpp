@@ -5,3 +5,8 @@ std::string SynchAlg::wrapPayload(std::string payload)
 {
     return std::to_string(rNode.getUid()) + "::" + std::to_string(mRound) + "::" + payload;
 }
+
+void SynchAlg::incrementRound()
+{
+    mRound++;
+}

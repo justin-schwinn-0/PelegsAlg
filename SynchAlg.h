@@ -11,9 +11,11 @@ public:
     virtual void handlePayload(std::string str) = 0;
 
     virtual void proceedRound() = 0;
+    
+    virtual void incrementRound();
 
 private:
-    
+    int mRound; 
     Node& rNode;
 };
 
