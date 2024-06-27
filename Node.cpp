@@ -59,14 +59,6 @@ void Node::openSocket()
     Utils::log( "socket open!" );
 }
 
-void Node::connectNeighbors()
-{
-    for(auto& n : mNeighbors)
-    {
-        n.outGoingConnect();
-    }
-}
-
 void Node::acceptNeighbors()
 {
     if(mListenFd < 0)
@@ -184,18 +176,4 @@ void Node::flood(std::string str)
     {
         t.join();
     }
-}
-
-bool Node::connectedToNeighbors()
-{
-    bool con = true;
-    for(auto& n : mNeighbors)
-    {
-        if(!n.isConnected())
-        {
-            con = false;
-        }
-    }
-
-    return con;
 }
