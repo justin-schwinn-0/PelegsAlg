@@ -13,7 +13,7 @@ public:
 
     virtual void proceedRound(int round) = 0;
 
-private:
+protected:
     Node& rNode;
 };
 
