@@ -101,5 +101,5 @@ void Sync::progressRound()
 
 void Sync::init()
 {
-    mProceedRound(0);
+    mProceedRound(-5);
 }
