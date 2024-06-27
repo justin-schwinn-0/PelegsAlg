@@ -12,6 +12,7 @@ set(Sources
     Connection.cpp
     Utils.cpp
     Sync.cpp
+    SynchAlg.cpp
     TestAlg.cpp
 )
 
