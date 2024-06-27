@@ -79,10 +79,10 @@ void Node::acceptNeighbors()
             return;
         }
 
-        openRcv.push_back(rxFd);
+        recvMsg(rxFd)
     }
 
-    Utils::log("accepted all neighbors");
+    Utils::log("accepted all neighbors for round");
 }
 
 void Node::listenToNeighbors(int delayms)
@@ -90,19 +90,13 @@ void Node::listenToNeighbors(int delayms)
     while(true)
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(delayms));
-        for(int fd : openRcv)
-        {
-            if(Utils::pollForFd(fd,100,POLLIN) > 0)
-            {
-                recvMsg(fd); 
-            }
-        }
+        accpetNeighbors();
     }
 }
 
 void Node::recvMsg(int fd)
 {
-    const int bufSize = 128;
+    const int bufSize = 1024;
     char buf[bufSize];
 
     struct sctp_sndrcvinfo sndrcvinfo;
