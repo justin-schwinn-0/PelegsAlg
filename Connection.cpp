@@ -7,6 +7,8 @@
 #include <cerrno>
 #include <cstring>
 #include <netdb.h>
+#include <thread>
+#include <chrono>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <netinet/in.h>
@@ -27,6 +29,8 @@ void Connection::sendMsg(std::string msg)
 {
     
     std::string addr = Utils::getAddressFromHost(hostname);
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(150));
 
     struct sockaddr_in serverAddress;
     memset(&serverAddress,0,sizeof(serverAddress));
