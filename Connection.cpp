@@ -66,7 +66,7 @@ void Connection::sendMsg(std::string msg)
     }
     else
     {
-        Utils::log("sent:" ,msg);
+        //Utils::log("sent:" ,msg);
     }
 
     close(sd);
