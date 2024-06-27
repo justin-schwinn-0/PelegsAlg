@@ -46,7 +46,7 @@ void Connection::sendMsg(std::string msg)
         else
         {
             sent = true;
-            Utils::log("sent:" ,msg);
+            //Utils::log("sent:" ,msg);
         }
     }
     while(!sent);
