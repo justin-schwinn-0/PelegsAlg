@@ -102,6 +102,7 @@ void Node::listenToNeighbors()
 
 void Node::recvMsg(int fd)
 {
+    Utils::log("got msg");
     const int bufSize = 128;
     char buf[bufSize];
 
