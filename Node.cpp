@@ -30,21 +30,21 @@ void Node::openSocket()
 
     if(mListenFd < 0)
     {
-        std::cout << "couldn't make SCTP socket!" << std::endl; 
+        Utils::log( "couldn't make SCTP socket!" ); 
         return;
     }
 
     int ret = bind(mListenFd, (struct sockaddr*)&serverSocket,sizeof(serverSocket));
     if(ret < 0)
     {
-        std::cout << "coudn't bind socket: " << strerror(errno) << std::endl;
+        Utils::log( "coudn't bind socket: " , strerror(errno) );
         return;
     }
 
     ret = setsockopt(mListenFd, IPPROTO_SCTP, SCTP_INITMSG, &init,sizeof(init));
     if(ret < 0)
     {
-        std::cout << "coudn't set socket: " << strerror(errno) << std::endl;
+        Utils::log( "coudn't set socket: " , strerror(errno) );
         return;
     }
 
@@ -52,11 +52,11 @@ void Node::openSocket()
     ret = listen(mListenFd, init.sinit_max_instreams);
     if(ret < 0)
     {
-        std::cout << "coudn't listen!: " << strerror(errno) << std::endl;
+        Utils::log( "coudn't listen!: " , strerror(errno) );
         return;
     }
 
-    std::cout << "socket open!" << std::endl;
+    Utils::log( "socket open!" );
 }
 
 void Node::connectNeighbors()
@@ -73,15 +73,16 @@ void Node::initMessageThreads()
     {
         std::thread msgRxer(&Connection::msgRx,std::ref(con));
         msgRxer.detach();
+
     }
-    std::cout << "init msg threads!" << std::endl;
+    Utils::log( "init msg threads!" );
 }
 
 void Node::acceptNeighbors()
 {
     if(mListenFd < 0)
     {
-        std::cout << "bad listener!" << mListenFd << std::endl;
+        Utils::log( "bad listener!" , mListenFd );
         return;
     }
 
@@ -99,7 +100,7 @@ void Node::acceptNeighbors()
     
     if(poll(pfds,1,5000) == 0)// 5s timeout
     {
-        std::cout << "no connection found, moving on..." << std::endl;
+        Utils::log( "no connection found, moving on..." );
         return;
     }
 
@@ -108,7 +109,7 @@ void Node::acceptNeighbors()
 
     if(rxFd < 0)
     {
-        std::cout << "couldn't accept connection: " << strerror(errno) << std::endl;
+        Utils::log( "couldn't accept connection: " , strerror(errno) );
         return;
     }
 
@@ -132,21 +133,21 @@ void Node::acceptNeighbors()
                 {
                     con.setConnection(rxFd,addr);
                     connectionAccepted =true;
-                    std::cout << "incomming connection with  " << farAddress << std::endl;
+                    Utils::log( "incomming connection with  " , farAddress );
                 }
             }
         }
 
         if(!connectionAccepted)
         {
-            std::cout << "connection not added" << std::endl;
+            Utils::log( "connection not added" );
             close(rxFd);
         }
         return;
     }
     else
     {
-        std::cout << "could not get Peer name!" << std::endl;
+        Utils::log( "could not get Peer name!" );
         close(rxFd);
         return;
     }
@@ -173,7 +174,7 @@ void Node::print()
         c.print();
     }
 
-    std::cout<< std::endl;
+    std::cout << std::endl;
 }
 
 void Node::addConnection(Connection c)

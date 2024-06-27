@@ -127,7 +127,6 @@ void Connection::msgRx()
             break;
         }
 
-        Utils::log( "waiting for message from " , hostname , " ..." );
         struct sctp_sndrcvinfo sndrcv;
         char buf[128];
         int flags;
