@@ -1,12 +1,7 @@
 #include "SynchAlg.h"
 
 
-std::string SynchAlg::wrapPayload(std::string payload)
+std::string SynchAlg::wrapPayload(std::string payload,int round)
 {
-    return std::to_string(rNode.getUid()) + "::" + std::to_string(mRound) + "::" + payload;
-}
-
-void SynchAlg::incrementRound()
-{
-    mRound++;
+    return std::to_string(rNode.getUid()) + "::" + std::to_string(round) + "::" + payload;
 }

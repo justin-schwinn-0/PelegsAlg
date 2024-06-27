@@ -7,12 +7,11 @@
 class SynchAlg
 {
 public:
-    std::string wrapPayload(std::string payload);
+    std::string wrapPayload(std::string payload,int round);
+
     virtual void handlePayload(std::string str) = 0;
 
-    virtual void proceedRound() = 0;
-    
-    virtual void incrementRound();
+    virtual void proceedRound(int round) = 0;
 
 private:
     int mRound; 
