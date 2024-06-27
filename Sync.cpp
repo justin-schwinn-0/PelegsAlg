@@ -11,7 +11,6 @@ Sync::Sync(int neighbors) :
 void Sync::msgHandler(std::string s)
 {
 
-    Utils::log("got here", std::to_string(__LINE__));
     std::string payload = parseMsg(s);
 
     mHandlePayload(payload);
@@ -24,7 +23,6 @@ std::string Sync::parseMsg(std::string r)
 // uid::round::payload
 
     auto segments = Utils::split(r,"::");
-    Utils::log("got here", std::to_string(__LINE__));
 
     int uid = Utils::strToInt(segments[0]); 
     int round = Utils::strToInt(segments[1]); 
@@ -48,21 +46,20 @@ std::string Sync::parseMsg(std::string r)
         }
     }
 
-    if(mRound == round)
+    /*if(mRound == round)
     {   
         Utils::log(uid," is in rnd", mRound, "like me!");
     }
     else
     {
         Utils::log(uid," is in rnd", round, "unlike me in rnd",mRound);
-    }
+    }*/
 
     return segments[2];
 }
 
 void Sync::progressRound()
 {
-    Utils::log("got here", std::to_string(__LINE__));
     bool canProgress = true;
 
     for(auto& pair : mHasRecvd)
@@ -89,7 +86,6 @@ void Sync::progressRound()
         //Utils::log("cannot progress yet");
         //Utils::printVectorPair(mHasRecvd);
     }
-    Utils::log("got here", std::to_string(__LINE__));
 }
 
 void Sync::init()
