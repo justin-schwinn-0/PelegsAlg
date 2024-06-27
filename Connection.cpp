@@ -35,7 +35,7 @@ void Connection::sendMsg(std::string msg)
     bool sent = false;
     do
     {
-        ret = sctp_sendmsg(mCon,(void *)msg.c_str(),strlen(msg.c_str())+1,NULL,0,0,0,0,0,0);
+        int ret = sctp_sendmsg(mCon,(void *)msg.c_str(),strlen(msg.c_str())+1,NULL,0,0,0,0,0,0);
 
         if(ret < 0)
         {
