@@ -50,7 +50,7 @@ private:
     
     std::function<void(std::string)> msgHandler;
 
-    //std::vector<int> openRcv;
+    std::vector<int> openRcv;
 };
 
 #endif
