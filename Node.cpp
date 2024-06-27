@@ -75,46 +75,34 @@ void Node::acceptNeighbors()
         return;
     }
 
-    struct sockaddr_in socketAddress;
-    int addrLength = sizeof(socketAddress);
 
-
-    // blocking call to poll with timeout
-    
-    pollfd pfds[1];
-
-    pfds[0].fd= mListenFd;
-    pfds[0].events= POLLIN;
-
-    
-    if(poll(pfds,1,5000) == 0)// 5s timeout
+    while(true)
     {
-        Utils::log( "no connection found, moving on..." );
-        return;
+        int rxFd = accept(mListenFd, (struct sockaddr*)NULL,NULL);
+
+        if(rxFd < 0)
+        {
+            Utils::log( "couldn't accept connection: " , strerror(errno) );
+            return;
+        }
+
+
+        const int bufSize = 128;
+        char buf[bufSize];
+
+        struct sctp_sndrcvinfo sndrcvinfo;
+        int flags;
+        
+        int in = sctp_recvmsg(rxFd,buf,bufSize,NULL,0,&sndrcvinfo,&flags);
+
+        if(in > 0)
+        {
+            std::string strMsg(buf);
+            Utils::log("got msg: " , strMsg);
+        }
+
+        close(rxFd);
     }
-
-
-    int rxFd = accept(mListenFd, (struct sockaddr*)&socketAddress,(socklen_t*)&addrLength);
-
-    if(rxFd < 0)
-    {
-        Utils::log( "couldn't accept connection: " , strerror(errno) );
-        return;
-    }
-
-
-    const int bufSize = 128;
-    char buf[bufSize];
-
-    struct sctp_sndrcvinfo sndrcvinfo;
-    int flags;
-    
-    int in = sctp_recvmsg(rxFd,buf,bufSize,NULL,0,&sndrcvinfo,&flags);
-
-
-    std::string strMsg(buf);
-    Utils::log("got msg: " , strMsg);
-
     /*struct sockaddr addr;
     int peerLen = sizeof(addr);
     if(getpeername(rxFd,&addr,(socklen_t*)&peerLen) == 0)

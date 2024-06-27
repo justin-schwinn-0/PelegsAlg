@@ -175,10 +175,12 @@ int main(int argc,char** argv)
         if(uid != 5)
         {
             Utils::log( "testing connections" );
+            n.acceptNeighbors();
         }
         else
         {
             Utils::log( "testing accepts" );
+            n.sendmsg("hello from"+ n.getUid());
         }
         /*std::thread outConnector(outConnections,std::ref(n));
         std::thread inConnector(inConnections,std::ref(n));

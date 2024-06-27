@@ -21,12 +21,9 @@ Connection::Connection(std::string h, int p) :
 
 Connection::~Connection()
 {
-    if(isConnected())
-    {
-        close(mConFd);
-    }
 }
-void Connection::outGoingConnect()
+
+void Connection::sendMsg(std::string s)
 {
 
     if(isConnected())
@@ -50,105 +47,25 @@ void Connection::outGoingConnect()
         return;
     }
 
-    int ret;    
-    do
-    {
-        if(errno == ECONNREFUSED)
-        {
-            std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-        }
-        ret = connect(sd, (struct sockaddr*)&serverAddress,sizeof(serverAddress));
-    }
-    while(ret < 0 && errno == ECONNREFUSED);
+    int ret = connect(sd,(struct sockaddr*)&serverAddress,sizeof(serverAddress));
 
     if(ret < 0)
     {
-        Utils::log( "coudn't connect to socket: " , strerror(errno) );
-        close(sd);
-        return;
+        Utils::error("connect failed");
     }
 
-    struct sockaddr address;
-    int peerLen = sizeof(address);
-    if(getpeername(sd,&address,(socklen_t*)&peerLen) == 0)
+    ret = sctp_sendmsg(sd,(void *)msg.c_str(),strlen(msg.c_str()+1,NULL,0,0,0,0,0,0));
+
+    if(ret < 0)
     {
-        setConnection(sd,address);
-        Utils::log( "outgoing connection with  " , addr );
-    }
-    else
-    {
-        Utils::log( "could not get Peer name!" );
-        return;
+        Utils::error("send failed");
     }
 
+    close(sd);
 }
 
-void Connection::msgTx(std::string msg)
-{
-    if(mConFd < 0)
-    {
-        Utils::log( "Not connected to host!" );
-    }
-    else
-    {
-        Utils::log("try send");
-        int ret = Utils::pollForFd(mConFd,3000,POLLOUT);
-        Utils::log("poll done");
-        if(ret == 0)
-        {
-            Utils::log( "tx timed out..." );
-        }
-        else if(ret > 0)
-        {
-            ret = sctp_sendmsg(mConFd,(void *)msg.c_str(), msg.size(),NULL,0,0,0,0,1000,0);
-            
-            if( ret < 0)
-            {
-                Utils::log( "couldn't send message: " , strerror(errno) );
-
-                switch(errno)
-                {
-                    case ECONNRESET:
-                        close(mConFd);
-                        mConFd = -1;
-                        break;
-                    default:
-                        break;
-                }
-            }
-            else
-            {
-                Utils::log( "sent {" , msg , "} to " , hostname );
-            }
-        }
-        else
-        {
-            Utils::log( "tx polling error: " , strerror(errno) );
-        }
-
-    }
-}
 
 void Connection::print()
 {
     std::cout << "{ " << hostname << " " << port << " }";
-}
-
-bool Connection::isConnected()
-{
-    if(mConFd >= 0)
-    {
-        return true;
-    }
-    return false;
-}
-
-void Connection::setConnection(int fd,sockaddr farEnd)
-{
-    if(!isConnected())
-    {
-        mConFd = fd;
-        mFarAddress= farEnd;
-        Utils::log( "setting connection FD " , mConFd );
-    }
 }

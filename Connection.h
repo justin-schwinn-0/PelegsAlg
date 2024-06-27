@@ -28,12 +28,6 @@ public:
 
     void outGoingConnect();
 
-    void setConnection(int fd,sockaddr farEnd);
-
-    void msgTx(std::string msg);
-
-    bool isConnected();
-
     uint32_t getPort()
     { return port; }
 

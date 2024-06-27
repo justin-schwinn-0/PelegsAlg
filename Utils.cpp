@@ -44,6 +44,11 @@ std::string Utils::getAddressFromHost(std::string host)
     return addr;
 }
 
+void Utils::error(std::string s)
+{
+    log(s+":",strerror(errno));
+}
+
 int Utils::pollForFd(int fd, int time, int flag )
 {
     pollfd pfds[1];
