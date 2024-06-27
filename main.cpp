@@ -159,8 +159,8 @@ int main(int argc,char** argv)
 
 
         //std::thread tester(testThread,std::ref(n));
-        n.acceptNeighbors();
         syncer.init();
+        n.acceptNeighbors();
 
        // tester.detach();
 
