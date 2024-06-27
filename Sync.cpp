@@ -26,14 +26,14 @@ std::string Sync::parseMsg(std::string r)
     int uid = Utils::strToInt(segments[0]); 
     int round = Utils::strToInt(segments[1]); 
 
-    auto it = mHasRcvd.find(uid);
-    if(it != mHasRcvd.end())
+    auto it = mHasRecvd.find(uid);
+    if(it != mHasRecvd.end())
     {   
         it.second = true;
     }
     else
     {
-        mHasRcvd[uid] = true;
+        mHasRecvd[uid] = true;
     }
 
     for(auto& pair : mHasRecvd)
