@@ -138,7 +138,7 @@ Node readConfig(std::string configFile, int popId = -1)
 
 void testThread(Node& n)
 {
-    //n.acceptNeighbors();
+    n.acceptNeighbors();
 }
 
 int main(int argc,char** argv)
@@ -161,7 +161,6 @@ int main(int argc,char** argv)
 
         std::thread tester(testThread,std::ref(n));
         syncer.init();
-        n.acceptNeighbors();
 
         tester.join();
 
