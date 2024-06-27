@@ -101,21 +101,31 @@ void Connection::msgTx(std::string msg)
         else if(ret > 0)
         {
             ret = sctp_sendmsg(mConFd,(void *)msg.c_str(), msg.size(),NULL,0,0,0,0,1000,0);
+            
+            if( ret < 0)
+            {
+                Utils::log( "couldn't send message: " , strerror(errno) );
+
+                switch(errno)
+                {
+                    case ECONNRESET:
+                        close(mConFd);
+                        mConFd = -1;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                Utils::log( "sent {" , msg , "} to " , hostname );
+            }
         }
         else
         {
             Utils::log( "tx polling error: " , strerror(errno) );
         }
 
-        if( ret < 0)
-        {
-            Utils::log( "couldn't send message: " , strerror(errno) );
-        }
-
-        else
-        {
-            Utils::log( "sent {" , msg , "} to " , hostname );
-        }
     }
 }
 
