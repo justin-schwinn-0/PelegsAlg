@@ -90,49 +90,12 @@ void Node::acceptNeighbors()
         if(in > 0)
         {
             std::string strMsg(buf);
+            Utils::log("len" , in , strMsg.size());
             Utils::log("got msg: " , strMsg);
         }
 
         close(rxFd);
     }
-    /*struct sockaddr addr;
-    int peerLen = sizeof(addr);
-    if(getpeername(rxFd,&addr,(socklen_t*)&peerLen) == 0)
-    {
-        bool connectionAccepted = false;
-        char farAddress[INET_ADDRSTRLEN];
-        inet_ntop(AF_INET,&(socketAddress.sin_addr),farAddress,INET_ADDRSTRLEN);
-        
-        for(auto& con : mNeighbors)
-        {
-            if(!con.isConnected())
-            {
-                // if con.hostname and socketAddress resolve to the same ip...
-                std::string conAddr = Utils::getAddressFromHost(con.getHostname());
-
-                std::string farAddressStr(farAddress);
-                if(conAddr == farAddressStr)
-                {
-                    con.setConnection(rxFd,addr);
-                    connectionAccepted =true;
-                    Utils::log( "incomming connection with  " , farAddress );
-                }
-            }
-        }
-
-        if(!connectionAccepted)
-        {
-            Utils::log( "connection not added" );
-            close(rxFd);
-        }
-        return;
-    }
-    else
-    {
-        Utils::log( "could not get Peer name!" );
-        close(rxFd);
-        return;
-    }*/
 }
 
 Connection Node::getOwnConnection()
