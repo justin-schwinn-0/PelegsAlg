@@ -41,7 +41,13 @@ void Connection::sendMsg(std::string msg)
         return;
     }
 
-    int ret = connect(sd,(struct sockaddr*)&serverAddress,sizeof(serverAddress));
+    int ret;
+    do
+    {
+        sleep(2);
+        ret = connect(sd,(struct sockaddr*)&serverAddress,sizeof(serverAddress));
+    }
+    while(ret == ECONNREFUED);
 
     if(ret < 0)
     {
