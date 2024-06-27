@@ -120,7 +120,7 @@ void Connection::msgTx(std::string msg)
 
 void Connection::msgRx()
 {
-    Utils::log( "just run retard" );
+    Utils::log( "just run retard", hostname );
     while(true)
     {
         if(!isConnected())
