@@ -5,6 +5,7 @@
 
 #include "SynchAlg.h"
 #include "Node.h"
+#include "Utils.h"
 
 class TestAlg : SynchAlg
 {
