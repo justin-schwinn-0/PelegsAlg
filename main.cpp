@@ -159,7 +159,7 @@ Node readConfig(std::string configFile, int popId = -1)
     return nodes[0];
 }
 
-void testFun(const Node& n)
+void testFun(Node& n)
 {
     Utils::log( "testing accepts" );
     n.flood("hello from "+ std::to_string(n.getUid()));
