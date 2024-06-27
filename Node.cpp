@@ -169,7 +169,7 @@ void Node::flood(std::string str)
     std::vector<std::thread> msgers;
     for(auto& n : mNeighbors)
     {
-        msgers.push_back(std::thread(&Connection::sendMsg,std::ref(n),str));
+        m.sendMsg(str);
     }
 
     for(auto& t : msgers)
