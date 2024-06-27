@@ -85,3 +85,48 @@ void Sync::init()
 {
     rNode.flood(wrapPayload("test"));
 }
+
+void Sync::affixVector(int uid)
+{
+    bool affixed = false;
+    for(auto& pair : mHasRecvd)
+    {
+        if(pair.first == uid)
+        {
+            affixed=true;
+            break;
+        }
+
+        if(pair.first == -1)
+        {
+            affixed=true;
+            pair.first=uid;
+            break;
+        }
+    }
+    if(!affixed)
+    {
+        Utils::log("uid not added or found, try a debug mayhaps");
+    }
+
+    affixed = false;
+    for(auto& pair : payloadCache)
+    {
+        if(pair.first == uid)
+        {
+            affixed=true;
+            break;
+        }
+
+        if(pair.first == -1)
+        {
+            affixed=true;
+            pair.first=uid;
+            break;
+        }
+    }
+    if(!affixed)
+    {
+        Utils::log("uid not added or found, try a debug mayhaps");
+    }
+}
