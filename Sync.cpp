@@ -13,9 +13,12 @@ void Sync::msgHandler(std::string s)
 
     std::string payload = parseMsg(s);
 
-    mHandlePayload(payload);
+    if(!payload.epmty())
+    {
+        mHandlePayload(payload);
 
-    progressRound();
+        progressRound();
+    }
 }
 
 std::string Sync::parseMsg(std::string r)
@@ -26,6 +29,12 @@ std::string Sync::parseMsg(std::string r)
 
     int uid = Utils::strToInt(segments[0]); 
     int round = Utils::strToInt(segments[1]); 
+    if(mRound != round)
+    {   
+        Utils::log("msg round is wrong, caching wrapped msg");
+        payloadCache[uid] = r;
+        return "";
+    }
 
     auto it = mHasRecvd.find(uid);
     if(it != mHasRecvd.end())
@@ -46,20 +55,13 @@ std::string Sync::parseMsg(std::string r)
         }
     }
 
-    /*if(mRound == round)
-    {   
-        Utils::log(uid," is in rnd", mRound, "like me!");
-    }
-    else
-    {
-        Utils::log(uid," is in rnd", round, "unlike me in rnd",mRound);
-    }*/
 
     return segments[2];
 }
 
 void Sync::progressRound()
 {
+
     bool canProgress = true;
 
     for(auto& pair : mHasRecvd)
@@ -80,11 +82,13 @@ void Sync::progressRound()
         }
         //Utils::log("sent next round!");
         mProceedRound(mRound);
-    }
-    else
-    {
-        //Utils::log("cannot progress yet");
-        //Utils::printVectorPair(mHasRecvd);
+
+        //process all cached msgs
+        
+        for(auto pair : payloadCache)
+        {
+            msgHandler(pair->second);
+        }
     }
 }
 
