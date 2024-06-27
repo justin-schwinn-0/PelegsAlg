@@ -13,13 +13,10 @@ void Sync::msgHandler(std::string s)
 
     Utils::log("got here", std::to_string(__LINE__));
     std::string payload = parseMsg(s);
-    Utils::log("got here", std::to_string(__LINE__));
 
     mHandlePayload(payload);
-    Utils::log("got here", std::to_string(__LINE__));
 
     progressRound();
-    Utils::log("got here", std::to_string(__LINE__));
 }
 
 std::string Sync::parseMsg(std::string r)
@@ -27,11 +24,14 @@ std::string Sync::parseMsg(std::string r)
 // uid::round::payload
 
     auto segments = Utils::split(r,"::");
+    Utils::log("got here", std::to_string(__LINE__));
 
     int uid = Utils::strToInt(segments[0]); 
     int round = Utils::strToInt(segments[1]); 
+    Utils::log("got here", std::to_string(__LINE__));
 
     auto it = mHasRecvd.find(uid);
+    Utils::log("got here", std::to_string(__LINE__));
     if(it != mHasRecvd.end())
     {   
         it->second = true;
@@ -40,6 +40,7 @@ std::string Sync::parseMsg(std::string r)
     {
         mHasRecvd[uid] = true;
     }
+    Utils::log("got here", std::to_string(__LINE__));
 
     //Utils::printVectorPair(mHasRecvd);
     for(auto& pair : mHasRecvd)
