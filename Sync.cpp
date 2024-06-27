@@ -59,6 +59,13 @@ void Sync::progressRound()
 
     if(canProgress)
     {
+        mRound++;
+
+        for(auto& pair : mHasRecvd)
+        {
+            pair.second = false;
+        }
+
         rNode.flood(wrapPayload("test"));
     }
 }
