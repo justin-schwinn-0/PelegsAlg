@@ -87,7 +87,7 @@ void Connection::msgTx(std::string msg)
 {
     if(mConFd < 0)
     {
-        Utils::log( "No connected to host!" );
+        Utils::log( "Not connected to host!" );
     }
     else
     {
