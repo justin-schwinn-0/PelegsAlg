@@ -18,6 +18,10 @@ public:
 
     //parses the message, updating mHasRecvd and adding to payload cache if needed
     std::string parseMsg(std::string);
+
+    void progressRound();
+
+    std::string wrapPayload(std::string payload);
 private:
     //uid -> has recvd round msg
     std::vector<std::pair<int,bool>> mHasRecvd;

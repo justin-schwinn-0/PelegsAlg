@@ -9,7 +9,7 @@ void Sync::msgHandler(std::string s)
 
 }
 
-std::string parseMsg(std::string r)
+std::string Sync::parseMsg(std::string r)
 {
 // uid::round::payload
 
@@ -39,7 +39,7 @@ std::string parseMsg(std::string r)
     return segments[2];
 }
 
-void progressRound()
+void Sync::progressRound()
 {
     bool canProgress = true;
 
@@ -57,7 +57,7 @@ void progressRound()
     }
 }
 
-std::string wrapPayload(std::string payload)
+std::string Sync::wrapPayload(std::string payload)
 {
     return std::to_string(rNode.getUid) + "::" + std::to_string(mRound) + "::" + payload;
 }
