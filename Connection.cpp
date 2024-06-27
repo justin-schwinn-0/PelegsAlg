@@ -122,6 +122,10 @@ void Connection::msgRx()
     Utils::log( "just run retard" );
     while(true)
     {
+        if(!isConnected())
+        {
+            break;
+        }
 
         Utils::log( "waiting for message from " , hostname , " ..." );
         struct sctp_sndrcvinfo sndrcv;
@@ -152,6 +156,8 @@ void Connection::msgRx()
                 {
                     case EBADF:
                         Utils::log( "fd: " , mConFd );
+                        close(mConFd);
+                        mConFd= -1;
                         break;
                     default:
                         break;
