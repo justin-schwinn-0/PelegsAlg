@@ -39,7 +39,7 @@ private:
     int mListenFd;
     // this probably isn't right
     
-    std::function msgHandler;
+    std::function<void(std::string)> msgHandler;
 };
 
 #endif
