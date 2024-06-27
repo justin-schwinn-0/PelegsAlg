@@ -4,8 +4,7 @@
 #include "Utils.h"
 
 TestAlg::TestAlg(Node& n) : 
-    rNode(n),
-    roundNum(0)
+    rNode(n)
 {
 }
 

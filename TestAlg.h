@@ -14,8 +14,6 @@ public:
 
     void proceedRound(int round);
 
-private:
-    int roundNum;
 };
 
 #endif
