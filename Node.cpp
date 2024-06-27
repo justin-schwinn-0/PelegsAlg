@@ -67,18 +67,6 @@ void Node::connectNeighbors()
     }
 }
 
-void Node::initMessageThreads()
-{
-    for(auto& con: mNeighbors)
-    {
-        std::thread msgRxer(&Connection::msgRx,std::ref(con));
-        msgRxer.detach();
-        Utils::log("running msg Rx for", con.getHostname());
-
-    }
-    Utils::log( "init msg threads!" );
-}
-
 void Node::acceptNeighbors()
 {
     if(mListenFd < 0)
@@ -114,7 +102,7 @@ void Node::acceptNeighbors()
         return;
     }
 
-    struct sockaddr addr;
+    /*struct sockaddr addr;
     int peerLen = sizeof(addr);
     if(getpeername(rxFd,&addr,(socklen_t*)&peerLen) == 0)
     {
@@ -151,7 +139,7 @@ void Node::acceptNeighbors()
         Utils::log( "could not get Peer name!" );
         close(rxFd);
         return;
-    }
+    }*/
 }
 
 Connection Node::getOwnConnection()

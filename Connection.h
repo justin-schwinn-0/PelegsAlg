@@ -31,7 +31,6 @@ public:
     void setConnection(int fd,sockaddr farEnd);
 
     void msgTx(std::string msg);
-    void msgRx();
 
     bool isConnected();
 

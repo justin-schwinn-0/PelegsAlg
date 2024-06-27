@@ -20,13 +20,9 @@ public:
     void connectNeighbors();
     void acceptNeighbors();
 
-
-
     bool connectedToNeighbors();
     Connection getOwnConnection();
     int getUid();
-
-    void initMessageThreads();
 
     void flood(std::string str);
 

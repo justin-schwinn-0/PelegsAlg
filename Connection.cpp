@@ -129,59 +129,6 @@ void Connection::msgTx(std::string msg)
     }
 }
 
-void Connection::msgRx()
-{
-    while(true)
-    {
-        if(!isConnected())
-        {
-            break;
-        }
-
-        struct sctp_sndrcvinfo sndrcv;
-        char buf[128];
-        int flags;
-
-        int in = -1;
-        int ret =Utils::pollForFd(mConFd,3000,POLLIN);
-        if(ret == 0)
-        {   
-            Utils::log( "rx timed out..." );
-            
-        }
-        else if( ret > 0)
-        {
-            in = sctp_recvmsg(mConFd,buf,sizeof(buf),NULL,0,&sndrcv,&flags);
-            if(in != -1)
-            {
-                std::string msg = buf;
-                Utils::log( "msg size: " , msg.size() , " " , in);
-                Utils::log( "rx msg: " , msg );
-            }
-            else
-            {
-                Utils::log( "rx message error ", hostname , " : " , strerror(errno) );
-
-                switch(errno)
-                {
-                    case EBADF:
-                        Utils::log( "fd: " , mConFd );
-                        close(mConFd);
-                        mConFd= -1;
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-        else
-        {
-            Utils::log( "rx polling error: " , strerror(errno) );
-        }
-
-    }
-}
-
 void Connection::print()
 {
     std::cout << "{ " << hostname << " " << port << " }";
