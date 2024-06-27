@@ -35,7 +35,7 @@ private:
     int mRound;
     Node& rNode;
 
-    bool affixedVecrtors;
+    bool affixedVectors;
 };
 
 #endif
