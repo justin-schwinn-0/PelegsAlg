@@ -55,13 +55,6 @@ void Utils::printVector(std::vector<T> vec)
     }
     std::cout << std::endl;
 }
-
-template<class T, class Y>
-bool Utils::mapContains(std::map<T,Y> map, T key)
-{
-    return map.find(key) != map.end();
-}
-
 std::string Utils::getAddressFromHost(std::string host)
 {
     struct addrinfo *result;
