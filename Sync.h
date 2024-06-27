@@ -29,10 +29,10 @@ public:
     void affixVector(int uid);
 
     template<class T>
-    void setHandlers()
+    void setHandlers(T t)
     {
-        mHandlePayload = T::handlePayload;
-        mProceedRound = T::proceedRound;
+        mHandlePayload = std::bind(&T::handlePayload,t,std::placeholders::_1);
+        mProceedRound = std::bind(&T::proceedRound,t);
     }
 private:
     //uid -> has recvd round msg
