@@ -41,7 +41,7 @@ int strToInt(std::string s)
 {
     std::istringstream intss(s);
     int ret;
-    s >> ret;
+    intss >> ret;
     return ret;
 
 }

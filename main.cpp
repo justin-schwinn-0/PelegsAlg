@@ -66,7 +66,6 @@ Node readConfig(std::string configFile, int popId = -1)
         std::istringstream iss(firstLine[0]);
 
         iss >> numNodes;
-
     }
 
 
