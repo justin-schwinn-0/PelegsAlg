@@ -51,7 +51,7 @@ void Utils::printVector(std::vector<T> vec)
 {
     for(auto t : vec)
     {
-        std::cout << t << "\n"; 
+        std::cout << t << ":"; 
     }
     std::cout << std::endl;
 }

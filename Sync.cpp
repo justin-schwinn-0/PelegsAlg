@@ -69,6 +69,11 @@ void Sync::progressRound()
         Utils::log("sent next round!");
         rNode.flood(wrapPayload("test"));
     }
+    else
+    {
+        Utils::log("cannot progress yet")
+        Utils::printVector(mHasRecvd);
+    }
 }
 
 std::string Sync::wrapPayload(std::string payload)
