@@ -80,7 +80,7 @@ void Node::acceptNeighbors()
             return;
         }
 
-        recvMsg(rxFd)
+        recvMsg(rxFd);
         msgsRxd++;
     }
 
