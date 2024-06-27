@@ -48,7 +48,7 @@ void Connection::sendMsg(std::string msg)
         Utils::error("connect failed");
     }
 
-    ret = sctp_sendmsg(sd,(void *)msg.c_str(),strlen(msg.c_str())+1,NULL,0,0,0,0,0,0));
+    ret = sctp_sendmsg(sd,(void *)msg.c_str(),strlen(msg.c_str())+1,NULL,0,0,0,0,0,0);
 
     if(ret < 0)
     {
