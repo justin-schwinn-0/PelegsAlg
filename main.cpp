@@ -139,7 +139,7 @@ Node readConfig(std::string configFile, int popId = -1)
 
 void testThread(Node& n)
 {
-    n.listenToNeighbors(8000);
+    n.listenToNeighbors(3000);
 }
 
 int main(int argc,char** argv)
