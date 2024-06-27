@@ -30,7 +30,7 @@ std::string Utils::getAddressFromHost(std::string host)
 
     if(err != 0)
     {
-        std::cout << "getaddrinfo failed" << err << gai_strerror(errno) << std::endl;
+        Utils::log( "getaddrinfo failed" , err , gai_strerror(errno) );
 
         return "";
     }
