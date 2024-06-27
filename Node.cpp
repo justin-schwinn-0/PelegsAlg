@@ -111,6 +111,10 @@ void Node::acceptNeighbors()
     
     int in = sctp_recvmsg(rxFd,buf,bufSize,NULL,0,&sndrcvinfo,&flags);
 
+
+    std::string strMsg(buf);
+    Utils::log("got msg: " , strMsg);
+
     /*struct sockaddr addr;
     int peerLen = sizeof(addr);
     if(getpeername(rxFd,&addr,(socklen_t*)&peerLen) == 0)
