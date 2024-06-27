@@ -21,9 +21,9 @@ public:
     void acceptNeighbors();
 
     Connection getOwnConnection();
-    int getUid();
+    int getUid() const;
 
-    void flood(std::string str);
+    void flood(std::string str) const;
 
     void print();
     void addConnection(Connection c);
