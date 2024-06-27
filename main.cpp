@@ -11,6 +11,7 @@
 #include "Node.h"
 #include "Connection.h"
 #include "Sync.h"
+#include "TestAlg.h"
 #include "Utils.h"
 
 
@@ -155,6 +156,8 @@ int main(int argc,char** argv)
         n.openSocket();
 
         Sync syncer(n.getNeighborsSize(),n);
+
+        syncer.setHandlers<TestAlg>();
 
         n.setHandler(std::bind(&Sync::msgHandler,syncer,std::placeholders::_1));
 
