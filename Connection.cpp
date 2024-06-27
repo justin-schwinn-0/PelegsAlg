@@ -85,7 +85,7 @@ void Connection::makeConnection()
     }
     else
     {
-        mCon = ret;
+        mCon = sd;
         Utils::log("connection with",hostname,"fd:",ret);
     }
 }
