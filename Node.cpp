@@ -98,7 +98,7 @@ void Node::acceptNeighbors()
     }
 }
 
-void listenToNeighbors()
+void Node::listenToNeighbors()
 {
     while(true)
     {
@@ -112,7 +112,7 @@ void listenToNeighbors()
     }
 }
 
-void recvMsg(int fd)
+void Node::recvMsg(int fd)
 {
     const int bufSize = 128;
     char buf[bufSize];
