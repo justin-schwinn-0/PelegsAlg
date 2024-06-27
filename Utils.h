@@ -19,6 +19,8 @@ public:
 
     static int pollForFd(int fd, int time, int flag = POLLIN);
 
+    static void error(std::string s);
+
     template<typename Arg,typename... Args>
     static void log(Arg arg,Args... args)
     {
