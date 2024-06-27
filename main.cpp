@@ -159,40 +159,6 @@ Node readConfig(std::string configFile, int popId = -1)
     return nodes[0];
 }
 
-void outConnections(Node& n)
-{
-
-    while(!n.connectedToNeighbors())
-    {
-        n.connectNeighbors();
-        std::this_thread::sleep_for(std::chrono::milliseconds(1500));
-    }
-    Utils::log( "set up out going connections!" );
-}
-
-void inConnections(Node& n)
-{
-
-    while(!n.connectedToNeighbors())
-    {
-        n.acceptNeighbors();
-        std::this_thread::sleep_for(std::chrono::milliseconds(1500));
-    }
-    Utils::log( "accepted incomming connections!" );
-}
-
-void slowPoll(Node& n, int uid)
-{
-    Utils::log( "testing this process!" );
-    int i;
-    while(true)
-    {
-        n.flood("hello from " + std::to_string(uid) + " #" +std::to_string(i));
-        std::this_thread::sleep_for(std::chrono::milliseconds(4000));
-    }
-    Utils::log( "exited somehow..." );
-}
-
 int main(int argc,char** argv)
 {
     int uid;
@@ -209,17 +175,10 @@ int main(int argc,char** argv)
         if(uid != 5)
         {
             Utils::log( "testing connections" );
-            std::thread outConnector(outConnections,std::ref(n));
-            outConnector.join();
-            std::thread slowTest(slowPoll,std::ref(n),uid);
-            slowTest.join();
         }
         else
         {
             Utils::log( "testing accepts" );
-            std::thread inConnector(inConnections,std::ref(n));
-            inConnector.join();
-            n.initMessageThreads();
         }
         /*std::thread outConnector(outConnections,std::ref(n));
         std::thread inConnector(inConnections,std::ref(n));
