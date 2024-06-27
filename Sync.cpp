@@ -65,7 +65,7 @@ void Sync::progressRound()
 
     bool canProgress = true;
 
-    if(mHasRecvd.size() != rNode.getNeighborSize())
+    if(mHasRecvd.size() != mKnownNeighbors)
     {
         return;
     }
