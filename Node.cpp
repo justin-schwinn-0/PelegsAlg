@@ -67,11 +67,11 @@ void Node::acceptNeighbors()
         return;
     }
 
-    Utils::log("waiting for msgs");
 
 
     while(true)
     {
+        Utils::log("waiting for accept");
         int rxFd = accept(mListenFd, (struct sockaddr*)NULL,NULL);
 
         if(rxFd < 0)
