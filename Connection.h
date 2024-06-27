@@ -27,7 +27,7 @@ public:
 */
     void sendMsg(std::string msg);
 
-    void connect();
+    void makeConnection();
 
     uint32_t getPort()
     { return port; }

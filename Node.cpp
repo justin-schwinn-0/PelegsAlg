@@ -124,7 +124,7 @@ void Node::connectAll()
 {
     for(auto& n : mNeighbors)
     {
-        n.connect();
+        n.makeConnection();
     }
 }
 

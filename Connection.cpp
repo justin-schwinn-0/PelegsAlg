@@ -50,7 +50,7 @@ void Connection::sendMsg(std::string msg)
     while(!sent);
 }
 
-void Connection::connect()
+void Connection::makeConnection()
 {
 
     std::string addr = Utils::getAddressFromHost(hostname);
@@ -63,7 +63,7 @@ void Connection::connect()
     serverAddress.sin_port = port;
     serverAddress.sin_addr.s_addr = inet_addr(addr.c_str());
 
-    int sd= socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
+    int sd = socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
     if(sd < 0)
     {
         Utils::log( "couldn't make SCTP socket!" ); 
