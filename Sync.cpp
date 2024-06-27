@@ -13,6 +13,7 @@ void Sync::msgHandler(std::string s)
 
     std::string payload = parseMsg(s);
 
+    progressRound();
 }
 
 std::string Sync::parseMsg(std::string r)
@@ -66,6 +67,7 @@ void Sync::progressRound()
             pair.second = false;
         }
 
+        
         rNode.flood(wrapPayload("test"));
     }
 }
