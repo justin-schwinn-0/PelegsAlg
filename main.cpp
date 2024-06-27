@@ -161,6 +161,8 @@ int main(int argc,char** argv)
         std::thread tester(testThread,std::ref(n));
         syncer.init();
 
+        tester.detach();
+
     }
     else
     {
