@@ -13,7 +13,7 @@ void Sync::msgHandler(std::string s)
 
     std::string payload = parseMsg(s);
 
-    if(!payload.epmty())
+    if(!payload.empty())
     {
         mHandlePayload(payload);
 
