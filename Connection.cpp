@@ -23,7 +23,7 @@ Connection::~Connection()
 {
 }
 
-void Connection::sendMsg(std::string s)
+void Connection::sendMsg(std::string msg)
 {
     
     std::string addr = Utils::getAddressFromHost(hostname);
