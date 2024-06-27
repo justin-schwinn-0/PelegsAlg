@@ -12,7 +12,7 @@ public:
 
     void handlePayload(std::string payload);
 
-    void proceedRound();
+    void proceedRound(int round);
 
 private:
     int roundNum;
