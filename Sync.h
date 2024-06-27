@@ -32,7 +32,6 @@ public:
     {
         mHandlePayload = std::bind(&T::handlePayload,t,std::placeholders::_1);
         mProceedRound = std::bind(&T::proceedRound,t);
-        mIncRound = std::bind(&T::incrementRound,t);
     }
 private:
     //uid -> has recvd round msg
@@ -45,7 +44,7 @@ private:
     bool affixedVectors;
 
     std::function<void(std::string)> mHandlePayload;
-    std::function<void()> mProceedRound, mIncRound;
+    std::function<void(int)> mProceedRound;
 };
 
 #endif
