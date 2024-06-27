@@ -4,7 +4,7 @@
 #include "Utils.h"
 
 TestAlg::TestAlg(Node& n) : 
-    rNode(n)
+    SynchAlg(n)
 {
 }
 
