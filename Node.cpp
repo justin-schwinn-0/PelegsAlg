@@ -166,14 +166,9 @@ void Node::addConnection(Connection c)
 
 void Node::flood(std::string str)
 {
-    std::vector<std::thread> msgers;
     for(auto& n : mNeighbors)
     {
-        m.sendMsg(str);
+        n.sendMsg(str);
     }
 
-    for(auto& t : msgers)
-    {
-        t.join();
-    }
 }
