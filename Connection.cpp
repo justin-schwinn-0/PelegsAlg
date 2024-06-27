@@ -33,7 +33,7 @@ void Connection::sendMsg(std::string msg)
         return;
     }
     bool sent = false;
-    Utils::log("try send",msg);
+    //Utils::log("try send",msg);
     do
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(250));
@@ -52,7 +52,7 @@ void Connection::sendMsg(std::string msg)
     }
     while(!sent);
 
-    Utils::log("sent", msg);
+    //Utils::log("sent", msg);
 }
 
 void Connection::makeConnection()
