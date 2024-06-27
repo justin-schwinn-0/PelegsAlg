@@ -29,7 +29,7 @@ private:
     std::vector<std::pair<int,std::string>> payloadCache;
 
     int mRound;
-    const Node& rNode;
+    Node& rNode;
 };
 
 #endif
