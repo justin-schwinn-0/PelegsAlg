@@ -4,7 +4,7 @@
 
 Sync::Sync(int neighbors) : 
     mRound(0), 
-    affixedVectors(false)
+    mKnownNeighbors(neighbors)
 {
 }
 

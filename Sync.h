@@ -24,8 +24,6 @@ public:
 
     void init();
 
-    void affixVector(int uid);
-
     template<class T>
     void setHandlers(T& t)
     {
@@ -40,10 +38,10 @@ private:
 
     int mRound;
 
-    bool affixedVectors;
-
     std::function<void(std::string)> mHandlePayload;
     std::function<void(int)> mProceedRound;
+
+    int mKnownNeighbors;
 };
 
 #endif
