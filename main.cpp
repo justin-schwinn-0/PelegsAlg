@@ -152,6 +152,8 @@ int main(int argc,char** argv)
 
         n.setHandler(std::bind(&Sync::msgHandler,syncer,std::placeholders::_1));
 
+
+        syncer.init();
         n.acceptNeighbors();
 
     }
