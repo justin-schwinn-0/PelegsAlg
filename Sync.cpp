@@ -79,8 +79,7 @@ void Sync::progressRound()
             pair.second = false;
         }
         //Utils::log("sent next round!");
-        mProceedRound();
-        mIncRound();
+        mProceedRound(mRound);
     }
     else
     {
