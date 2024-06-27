@@ -102,7 +102,6 @@ void Node::listenToNeighbors()
 
 void Node::recvMsg(int fd)
 {
-    Utils::log("got here", std::to_string(__LINE__));
     const int bufSize = 128;
     char buf[bufSize];
 
@@ -110,14 +109,11 @@ void Node::recvMsg(int fd)
     int flags;
     
     int in = sctp_recvmsg(fd,buf,bufSize,NULL,0,&sndrcvinfo,&flags);
-    Utils::log("got here", std::to_string(__LINE__));
 
     if(in > 0)
     {
-    Utils::log("got here", std::to_string(__LINE__));
         std::string strMsg(buf);
         msgHandler(strMsg);
-    Utils::log("got here", std::to_string(__LINE__));
     }
 }
 
