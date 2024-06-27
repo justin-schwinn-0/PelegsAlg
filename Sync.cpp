@@ -87,3 +87,8 @@ void Sync::progressRound()
         //Utils::printVectorPair(mHasRecvd);
     }
 }
+
+void Sync::init()
+{
+    mProceedRound(0);
+}

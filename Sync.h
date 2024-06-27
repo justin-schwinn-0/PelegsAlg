@@ -22,9 +22,6 @@ public:
 
     void progressRound();
 
-
-    void init();
-
     void affixVector(int uid);
 
     template<class T>
