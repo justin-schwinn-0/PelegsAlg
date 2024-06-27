@@ -25,6 +25,7 @@ public:
     void resetRemoteConnection();
 
 */
+    void sendMsg(std::string s)
 
     void outGoingConnect();
 
