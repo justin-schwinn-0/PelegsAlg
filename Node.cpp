@@ -120,7 +120,7 @@ void Node::recvMsg(int fd)
     struct sctp_sndrcvinfo sndrcvinfo;
     int flags;
     
-    int in = sctp_recvmsg(rxFd,buf,bufSize,NULL,0,&sndrcvinfo,&flags);
+    int in = sctp_recvmsg(fd,buf,bufSize,NULL,0,&sndrcvinfo,&flags);
 
     if(in > 0)
     {
