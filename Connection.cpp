@@ -47,7 +47,7 @@ void Connection::sendMsg(std::string msg)
         sleep(2);
         ret = connect(sd,(struct sockaddr*)&serverAddress,sizeof(serverAddress));
     }
-    while(ret == ECONNREFUED);
+    while(ret == ECONNREFUSED);
 
     if(ret < 0)
     {
