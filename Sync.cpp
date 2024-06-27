@@ -2,7 +2,7 @@
 #include "Node.h"
 #include "Utils.h"
 
-Sync::Sync(int neighbors, Node& n) : rNode(n), mRound(0)
+Sync::Sync(int neighbors, Node& n) : rNode(n), mRound(0), affixedVectors(false)
 {
     mHasRecvd = std::vector<std::pair<int,bool>>(neighbors,std::pair<int,bool>(-1,false));
     payloadCache = std::vector<std::pair<int,std::string>>(neighbors,std::pair<int,std::string>(-1,""));
