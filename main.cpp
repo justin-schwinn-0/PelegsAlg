@@ -157,7 +157,7 @@ int main(int argc,char** argv)
 
         Sync syncer(n.getNeighborsSize(),n);
 
-        TestAlg t;
+        TestAlg t(n);
         syncer.setHandlers<TestAlg>(t);
 
         n.setHandler(std::bind(&Sync::msgHandler,syncer,std::placeholders::_1));
