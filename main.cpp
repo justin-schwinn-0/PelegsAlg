@@ -6,6 +6,7 @@
 #include <sstream>
 #include <thread>
 #include <chrono>
+#include <functional>
 
 #include "Node.h"
 #include "Connection.h"
