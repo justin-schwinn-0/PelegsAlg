@@ -39,7 +39,7 @@ void Connection::sendMsg(std::string msg)
 
         if(ret < 0)
         {
-            Utils::error("send failed");
+            Utils::error("send failed " + std::to_string(ret));
         }
         else
         {
