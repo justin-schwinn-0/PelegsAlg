@@ -11,11 +11,15 @@ Sync::Sync(int neighbors) :
 void Sync::msgHandler(std::string s)
 {
 
+    Utils::log("got here", std::to_string(__LINE__));
     std::string payload = parseMsg(s);
+    Utils::log("got here", std::to_string(__LINE__));
 
     mHandlePayload(payload);
+    Utils::log("got here", std::to_string(__LINE__));
 
     progressRound();
+    Utils::log("got here", std::to_string(__LINE__));
 }
 
 std::string Sync::parseMsg(std::string r)
@@ -60,6 +64,7 @@ std::string Sync::parseMsg(std::string r)
 
 void Sync::progressRound()
 {
+    Utils::log("got here", std::to_string(__LINE__));
     bool canProgress = true;
 
     for(auto& pair : mHasRecvd)
@@ -86,6 +91,7 @@ void Sync::progressRound()
         //Utils::log("cannot progress yet");
         //Utils::printVectorPair(mHasRecvd);
     }
+    Utils::log("got here", std::to_string(__LINE__));
 }
 
 void Sync::init()
