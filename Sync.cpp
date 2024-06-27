@@ -2,8 +2,7 @@
 #include "Node.h"
 #include "Utils.h"
 
-Sync::Sync(int neighbors, Node& n) : 
-    rNode(n), 
+Sync::Sync(int neighbors) : 
     mRound(0), 
     affixedVectors(false)
 {
@@ -13,6 +12,8 @@ void Sync::msgHandler(std::string s)
 {
 
     std::string payload = parseMsg(s);
+
+    mHandlePayload(payload);
 
     progressRound();
 }
@@ -78,21 +79,11 @@ void Sync::progressRound()
             pair.second = false;
         }
         //Utils::log("sent next round!");
-        rNode.flood(wrapPayload("test"));
+        mProceedRound();
     }
     else
     {
         //Utils::log("cannot progress yet");
         //Utils::printVectorPair(mHasRecvd);
     }
-}
-
-std::string Sync::wrapPayload(std::string payload)
-{
-    return std::to_string(rNode.getUid()) + "::" + std::to_string(mRound) + "::" + payload;
-}
-
-void Sync::init()
-{
-    rNode.flood(wrapPayload("test"));
 }

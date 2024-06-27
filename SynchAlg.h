@@ -10,6 +10,10 @@ public:
     virtual void handlePayload(std::string str) = 0;
 
     virtual void proceedRound() = 0;
+
+private:
+    
+    Node& rNode;
 };
 
 #endif
