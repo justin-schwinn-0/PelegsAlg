@@ -85,6 +85,7 @@ void Connection::outGoingConnect()
 
 void Connection::msgTx(std::string msg)
 {
+    Utils::log("try send");
     if(mConFd < 0)
     {
         Utils::log( "No connected to host!" );
