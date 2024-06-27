@@ -16,11 +16,15 @@ public:
 
     void msgHandler(std::string s);
 
+    //parses the message, updating mHasRecvd and adding to payload cache if needed
+    std::string parseMsg(std::string);
 private:
     //uid -> has recvd round msg
     std::vector<std::pair<int,bool>> mHasRecvd;
 
-    int round;
+    std::vector<std::pair<int,std::string>> payloadCache;
+
+    int mRound;
     const Node& rNode;
 };
 

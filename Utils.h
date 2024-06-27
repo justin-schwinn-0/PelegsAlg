@@ -13,6 +13,9 @@ class Utils
 public:
 
     static std::vector<std::string> split(std::string str, std::string delim);
+    
+    static int strToInt(std::string s)
+    
     template<typename T>
     static void printVector(std::vector<T> vec);
 

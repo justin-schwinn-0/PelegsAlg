@@ -36,6 +36,15 @@ std::vector<std::string> Utils::split(std::string str, std::string delim)
     return splits;
 }
 
+int strToInt(std::string s)
+{
+    std::istringstream intss(s);
+    int ret;
+    s >> ret;
+    return ret;
+
+}
+
 template<typename T>
 void Utils::printVector(std::vector<T> vec)
 {

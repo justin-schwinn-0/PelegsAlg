@@ -9,6 +9,7 @@
 
 #include "Node.h"
 #include "Connection.h"
+#include "Sync.h"
 #include "Utils.h"
 
 
@@ -151,6 +152,10 @@ int main(int argc,char** argv)
 
         n.print();
         n.openSocket();
+
+        Sync syncer;
+
+        n.setHandler(std::bind(&Sync::msgHandler,syncer,std::placeholder::_1));
         
         std::thread tester(testFun,std::ref(n));
 
