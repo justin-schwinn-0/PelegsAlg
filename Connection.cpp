@@ -35,11 +35,13 @@ void Connection::sendMsg(std::string msg)
     bool sent = false;
     do
     {
+        std::this_thread::sleep_for(std::chrono::milliseconds(250));
         int ret = sctp_sendmsg(mCon,(void *)msg.c_str(),strlen(msg.c_str())+1,NULL,0,0,0,0,0,0);
 
         if(ret < 0)
         {
-            Utils::error("send failed " + std::to_string(ret));
+            Utils::error("send failed");
+            Utils::log("send faied with ",ret,mCon );
         }
         else
         {
@@ -55,7 +57,6 @@ void Connection::makeConnection()
 
     std::string addr = Utils::getAddressFromHost(hostname);
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(150));
 
     struct sockaddr_in serverAddress;
     memset(&serverAddress,0,sizeof(serverAddress));
