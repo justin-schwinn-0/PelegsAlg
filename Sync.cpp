@@ -59,5 +59,5 @@ void Sync::progressRound()
 
 std::string Sync::wrapPayload(std::string payload)
 {
-    return std::to_string(rNode.getUid) + "::" + std::to_string(mRound) + "::" + payload;
+    return std::to_string(rNode.getUid()) + "::" + std::to_string(mRound) + "::" + payload;
 }
