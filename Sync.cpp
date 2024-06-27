@@ -87,7 +87,7 @@ void Sync::progressRound()
         
         for(auto pair : payloadCache)
         {
-            msgHandler(pair->second);
+            msgHandler(pair.second);
         }
     }
 }
