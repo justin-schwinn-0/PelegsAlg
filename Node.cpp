@@ -106,7 +106,7 @@ void Node::listenToNeighbors()
     {
         for(int fd : openRcv)
         {
-            if(Utils::pollForFd(fd,300,POLLIN) > 0)
+            if(Utils::pollForFd(fd,100,POLLIN) > 0)
             {
                 recvMsg(fd); 
             }
