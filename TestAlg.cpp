@@ -18,5 +18,5 @@ void TestAlg::proceedRound()
 {
     roundNum++;
 
-    n.flood(std::to_string(n.getUid())+" at round " + std::to_string(roundNum));
+    rNode.flood(std::to_string(n.getUid())+" at round " + std::to_string(roundNum));
 }
