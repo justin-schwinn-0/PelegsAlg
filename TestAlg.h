@@ -4,6 +4,7 @@
 #include <string>
 
 #include "SynchAlg.h"
+#include "Node.h"
 
 class TestAlg : SynchAlg
 {
