@@ -69,7 +69,7 @@ void Node::acceptNeighbors()
 
 
 
-    while(true)
+    while(openRcv.size() < mNeighbors.size())
     {
         Utils::log("waiting for accept");
         int rxFd = accept(mListenFd, (struct sockaddr*)NULL,NULL);
@@ -94,7 +94,7 @@ void Node::acceptNeighbors()
             msgHandler(strMsg);
         }
 
-        close(rxFd);
+        openRcv.push_bacK(rxFd);
     }
 }
 
