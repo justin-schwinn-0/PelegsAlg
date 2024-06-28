@@ -45,15 +45,6 @@ int Utils::strToInt(std::string s)
     return ret;
 }
 
-template<typename T>
-void Utils::printVector(std::vector<T> vec)
-{
-    for(auto t : vec)
-    {
-        std::cout << t << ":"; 
-    }
-    std::cout << std::endl;
-}
 std::string Utils::getAddressFromHost(std::string host)
 {
     struct addrinfo *result;

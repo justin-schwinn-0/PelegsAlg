@@ -19,6 +19,13 @@ public:
     
     template<typename T>
     static void printVector(std::vector<T> vec);
+    {
+        for(auto t : vec)
+        {
+            std::cout << t << ":"; 
+        }
+        std::cout << std::endl;
+    }
 
     template<typename T>
     static void printVectorPair(T vec)
