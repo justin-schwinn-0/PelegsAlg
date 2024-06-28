@@ -102,6 +102,7 @@ void Node::listenToNeighbors(int delayms)
 
 void Node::recvMsg(int fd)
 {
+    Utils::log("getting msg fd",fd);
     const int bufSize = 128;
     char buf[bufSize];
 
@@ -113,7 +114,6 @@ void Node::recvMsg(int fd)
     if(in > 0)
     {
         std::string strMsg(buf);
-        Utils::log("got ",strMsg);
         msgHandler(strMsg);
     }
 }
