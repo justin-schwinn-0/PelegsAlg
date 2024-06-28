@@ -170,13 +170,13 @@ int main(int argc,char** argv)
         auto n = readConfig("testConfig.txt",uid);
 
         //runAlg<PelegsAlg>(n);
-    int parentId;
+    int parentId = -1;
 
     auto bfsLambda = [&](std::string msg)
     {
         auto data = Utils::split(msg,"==");
         int uid = Utils::strToInt(data[0]);
-        if(data[1] == "parent")
+        if(parentId ==-1 &&data[1] == "parent")
         {
             parentId = uid;
 
