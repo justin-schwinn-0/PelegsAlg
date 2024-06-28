@@ -172,6 +172,8 @@ int main(int argc,char** argv)
 
         //runAlg<PelegsAlg>(n);
         //Utils::log("FOUND LEADER");
+        //:w
+        //
         int parentId = -1;
         std::vector<int> childIds;
         int responsesLeft = n.getNeighborsSize(); 
@@ -228,7 +230,7 @@ int main(int argc,char** argv)
         Utils::log("parent", parentId);
 
         Utils::log("children:");
-        Utils::printVector(childIds)
+        Utils::printVector(childIds);
     }
     else
     {
