@@ -5,7 +5,7 @@
 
 #include <algorithm>
 
-PelegsAlg::TestAlg(Node& n) : 
+PelegsAlg::PelegsAlg(Node& n) : 
     SynchAlg(n),
     knownHighest(n.getUid()),
     dist(0),
