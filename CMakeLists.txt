@@ -15,7 +15,6 @@ set(Sources
     SynchAlg.cpp
     TestAlg.cpp
     PelegsAlg.cpp
-    SyncTree.cpp
 )
 
 set(Headers
@@ -26,7 +25,6 @@ set(Headers
     SynchAlg.h
     TestAlg.h
     PelegsAlg.h
-    SyncTree.h
 )
 
 find_library(SCTP_LIB libsctp.so)
