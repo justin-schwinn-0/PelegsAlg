@@ -16,7 +16,7 @@ PelegsAlg::PelegsAlg(Node& n) :
 
 void PelegsAlg::handlePayload(std::string payload)
 {
-    auto triplet = Utils::split(payload);
+    auto triplet = Utils::split(payload,"~~");
 
     int otherHighest = Utils::strToInt(triplet[0]);
     int otherDist = Utils::strToInt(triplet[0]);
