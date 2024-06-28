@@ -1,5 +1,7 @@
 #include "BfsAlg.h"
 
+#include "Node.h"
+#include "Utils.h"
 BfsAlg::BfsAlg(Node& n) : 
     SynchAlg(n),
     parentUid(1),
