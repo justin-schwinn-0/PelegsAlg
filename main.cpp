@@ -181,7 +181,7 @@ int main(int argc,char** argv)
 
         n.setHandler(std::bind(&Sync::msgHandler,syncBfs,std::placeholders::_1));
 
-        n.resetAlg()
+        n.resetAlg();
 
         syncBfs.init();
 
