@@ -84,7 +84,7 @@ void Node::acceptNeighbors()
 
     Utils::log("accepted all neighbors");
 }
-void sendTo(int uid, std::string msg)
+void Node::sendTo(int uid, std::string msg)
 {
     for(auto& c : mNeighbors)
     {
