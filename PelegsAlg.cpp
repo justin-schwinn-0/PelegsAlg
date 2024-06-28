@@ -21,8 +21,8 @@ void PelegsAlg::handlePayload(std::string payload)
     auto triplet = Utils::split(payload,"~~");
 
     int otherHighest = Utils::strToInt(triplet[0]);
-    int otherDist = Utils::strToInt(triplet[0]);
-    int otherDistMax = Utils::strToInt(triplet[0]);
+    int otherDist = Utils::strToInt(triplet[1]);
+    int otherDistMax = Utils::strToInt(triplet[2]);
 
     Utils::log("compare",knownHighest,otherHighest);
 
