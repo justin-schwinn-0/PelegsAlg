@@ -168,7 +168,12 @@ int main(int argc,char** argv)
 
         auto n = readConfig("testConfig.txt",uid);
 
-        runAlg<PelegsAlg>(n);
+        if(n.getUid() == 1047)
+        {
+            n.setIsLeader();
+        }
+
+        runAlg<BfsAlg>(n);
 
         Utils::log("FOUND LEADER");
 
