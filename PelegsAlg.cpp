@@ -64,6 +64,7 @@ void PelegsAlg::proceedRound(int round)
         roundsSinceChange++;
         Utils::log("rounds since change:",roundsSinceChange);
     }
+    mChanged = false;
 
     // send payload with format
     // knownHighest~~dist~~distMax
