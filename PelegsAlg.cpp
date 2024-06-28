@@ -11,8 +11,7 @@ PelegsAlg::PelegsAlg(Node& n) :
     dist(0),
     distMax(0),
     roundsSinceChange(0),
-    mChanged(false),
-    mLeaderFound(false)
+    mChanged(false)
 {
 }
 
@@ -23,8 +22,7 @@ void PelegsAlg::handlePayload(std::string payload)
     {
         Utils::log("Leader is", knownHighest);
         rNode.setIsLeader(knownHighest);
-        mLeaderFound =true;
-        rNode.finishAlg()
+        rNode.finishAlg();
         return;
     }
 
@@ -67,7 +65,7 @@ void PelegsAlg::proceedRound(int round)
     }
     mChanged = false;
     
-    if(roundsSinceChange >= 3 || mLeaderFound)
+    if(roundsSinceChange >= 3)
     {
         Utils::log("================== Leader elected:", knownHighest);
         rNode.flood(SynchAlg::wrapPayload(FOUND_LEADER,round));
