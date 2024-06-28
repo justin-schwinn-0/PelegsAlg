@@ -171,17 +171,25 @@ int main(int argc,char** argv)
 
         //runAlg<PelegsAlg>(n);
     int parentId = -1;
+    std::vector<int> childIds;
+
 
     auto bfsLambda = [&](std::string msg)
     {
         auto data = Utils::split(msg,"==");
         int uid = Utils::strToInt(data[0]);
-        if(parentId ==-1 &&data[1] == "parent")
+        if(data[1] == "parent")
         {
-            parentId = uid;
-
-            n.sendExcept(uid,std::to_string(n.getUid())+"==parent");
-        }
+            if(parentId ==-1)
+            {
+                parentId = uid;
+                Utils::log("parent is ",uid);
+                n.sendExcept(uid,std::to_string(n.getUid())+"==parent");
+            }
+            else 
+            {
+                n.sendTo(uid,std::to_string(n.getUid())+"==refuse");
+            }
 
     };
 
