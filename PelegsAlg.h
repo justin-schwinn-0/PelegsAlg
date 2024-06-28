@@ -10,7 +10,7 @@ class PelegsAlg : public SynchAlg
 public:
     PelegsAlg(Node& n);
 
-    void handlePayload(std::string payload);
+    void handlePayload(int uid,std::string payload);
 
     void proceedRound(int round);
 

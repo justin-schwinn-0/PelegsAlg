@@ -16,7 +16,7 @@ PelegsAlg::PelegsAlg(Node& n) :
 {
 }
 
-void PelegsAlg::handlePayload(std::string payload)
+void PelegsAlg::handlePayload(int uid,std::string payload)
 {
 
     if(payload == FOUND_LEADER) 
@@ -26,6 +26,8 @@ void PelegsAlg::handlePayload(std::string payload)
         mLeaderFound =true;
         return;
     }
+
+    if(payload == )
 
     auto triplet = Utils::split(payload,"~~");
 

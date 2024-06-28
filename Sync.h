@@ -10,6 +10,11 @@
 #include <map>
 
 
+struct payloadData
+{
+    std::string payload;
+    int uid;
+};
 
 class Sync
 {

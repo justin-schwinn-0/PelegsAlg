@@ -56,6 +56,7 @@ std::string Sync::parseMsg(std::string r)
         }
     }
 
+    payloadData d(segments[2],uid);
 
     return segments[2];
 }
