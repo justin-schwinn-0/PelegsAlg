@@ -170,7 +170,7 @@ int main(int argc,char** argv)
 
         if(n.getUid() == 1047)
         {
-            n.setIsLeader();
+            n.setIsLeader(1047);
         }
 
         runAlg<BfsAlg>(n);
