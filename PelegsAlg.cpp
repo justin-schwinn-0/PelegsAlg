@@ -23,7 +23,7 @@ void PelegsAlg::handlePayload(std::string payload)
     if(payload == FOUND_LEADER) 
     {
         Utils::log("Leader is", knownHighest);
-        ;
+        return;
     }
 
     auto triplet = Utils::split(payload,"~~");
