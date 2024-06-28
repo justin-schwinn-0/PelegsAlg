@@ -2,7 +2,6 @@
 #include "Utils.h"
 
 #include <iostream>
-#include <ostream>
 #include <thread>
 #include <unistd.h>
 #include <cerrno>
@@ -103,7 +102,7 @@ void Node::listenToNeighbors(int delayms)
 
 void Node::recvMsg(int fd)
 {
-    std::flush;
+    Utils::log("");
     const int bufSize = 128;
     char buf[bufSize];
 
