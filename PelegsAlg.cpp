@@ -12,6 +12,7 @@ PelegsAlg::PelegsAlg(Node& n) :
     distMax(0),
     roundsSinceChange(0)
 {
+    Utils::log("made alg")
 }
 
 void PelegsAlg::handlePayload(std::string payload)
