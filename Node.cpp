@@ -134,6 +134,7 @@ void Node::listenToNeighbors(int delayms)
 
 void Node::recvMsg(int fd)
 {
+    Utils::log("load bearing print");
     const int bufSize = 128;
     char buf[bufSize];
 
