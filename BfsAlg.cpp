@@ -22,7 +22,7 @@ void BfsAlg::handlePayload(std::string payload)
             int lead = Utils::strToInt(data[2]);
             parentUid = uid;
             mLeader = lead;
-            mClaimChildren = true;
+            rNode.sendExcept(parentUid,wrapPayload(parentStr(),0));
         }
     }
     else if(data[1] == "child")
@@ -47,7 +47,6 @@ void BfsAlg::proceedRound(int round)
     else if(mClaimChildren)
     {
         mClaimChildren = false;
-        rNode.sendExcept(parentUid,wrapPayload(parentStr(),round));
     }
 }
 
