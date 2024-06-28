@@ -28,7 +28,15 @@ void BfsAlg::handlePayload(std::string payload)
             mClaimChildren = true;
         }
     }
-    else
+    else if(data[1] == "child")
+    {
+
+    }
+    else if(data[1] == "refuse")
+    {
+        
+    }
+
 
 }
 
@@ -48,6 +56,11 @@ void BfsAlg::proceedRound(int round)
 std::string BfsAlg::parentStr()
 {
     return std::string(rNode.getUid()) + "||parent||" + std::to_string(mLeader);
+}
+
+std::string BfsAlg::amChild()
+{
+    return std::string(rNode.getUid()) + "||child||" + std::to_string(mLeader);
 }
 
 void BfsAlg::rootTree()
