@@ -12,7 +12,7 @@
 
 struct payloadData
 {
-    payload(std::string str,int s) : payload(str), uid(s);
+    payloadData(std::string str,int s) : payload(str), uid(s);
     std::string payload;
     int uid;
 };
