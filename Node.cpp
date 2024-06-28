@@ -84,11 +84,23 @@ void Node::acceptNeighbors()
 
     Utils::log("accepted all neighbors");
 }
+
 void Node::sendTo(int uid, std::string msg)
 {
     for(auto& c : mNeighbors)
     {
         if(c.getUid() == uid)
+        {
+            c.sendMsg(msg);
+        }
+    }
+}
+
+void Node::sendExcept(int uid, std::string msg)
+{
+    for(auto& c : mNeighbors)
+    {
+        if(c.getUid() != uid)
         {
             c.sendMsg(msg);
         }
