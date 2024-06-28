@@ -148,7 +148,7 @@ void runAlg(Node& n)
     Sync sync(n.getNeighborsSize());
 
     T t(n);
-    syncPeleg.setHandlers<T>(t);
+    sync.setHandlers<T>(t);
 
     n.setHandler(std::bind(&Sync::msgHandler,sync,std::placeholders::_1));
 
