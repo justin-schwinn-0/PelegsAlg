@@ -23,6 +23,8 @@ private:
 
     bool mChanged;
 
+    bool mLeaderFound;
+
     const std::string FOUND_LEADER = "Found Leader!";
 };
 

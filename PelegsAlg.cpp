@@ -23,6 +23,7 @@ void PelegsAlg::handlePayload(std::string payload)
         Utils::log("Leader is", knownHighest);
         rNode.setIsLeader(knownHighest);
         rNode.finishAlg();
+        mLeaderFound =true;
         return;
     }
 
@@ -65,7 +66,7 @@ void PelegsAlg::proceedRound(int round)
     }
     mChanged = false;
     
-    if(roundsSinceChange >= 3)
+    if(roundsSinceChange >= 3 || mLeaderFound)
     {
         Utils::log("================== Leader elected:", knownHighest);
         rNode.flood(SynchAlg::wrapPayload(FOUND_LEADER,round));
