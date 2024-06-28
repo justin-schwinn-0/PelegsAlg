@@ -2,6 +2,7 @@
 #include "Utils.h"
 
 #include <iostream>
+#include <ostream>
 #include <thread>
 #include <unistd.h>
 #include <cerrno>
