@@ -118,18 +118,15 @@ void Node::sendExcept(int uid, std::string msg)
 
 void Node::listenToNeighbors(int delayms)
 {
-    bool noMoreMsgs = false;
-    while(!finishedAlg || !noMoreMsgs)
+    while(!finishedAlg )
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(delayms));
 
         for(int fd : openRcv)
         {
-            noMoreMsgs = true;
             if(Utils::pollForFd(fd,100,POLLIN) > 0)
             {
                 recvMsg(fd); 
-                noMoreMsgs = false;
             }
         }
     }
