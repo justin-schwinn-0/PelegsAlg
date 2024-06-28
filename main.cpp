@@ -86,7 +86,7 @@ Node readConfig(std::string configFile, int popId = -1)
             uidSS >> uid;
             portSS >> port;
 
-            Node n(uid,{splitNode[1],port});
+            Node n(uid,{uid,splitNode[1],port});
             nodes.push_back(n);
             //Utils::log( "adding node " , uid );
 
