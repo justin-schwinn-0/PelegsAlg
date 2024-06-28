@@ -11,11 +11,11 @@ Sync::Sync(int neighbors) :
 void Sync::msgHandler(std::string s)
 {
 
-    std::string payload = parseMsg(s);
+    auto data = parseMsg(s);
 
-    if(!payload.empty())
+    if(!data.payload.empty())
     {
-        mHandlePayload(payload);
+        mHandlePayload(data.uid,data.payload);
 
         progressRound();
     }
@@ -58,7 +58,7 @@ std::string Sync::parseMsg(std::string r)
 
     payloadData d(segments[2],uid);
 
-    return segments[2];
+    return d;
 }
 
 void Sync::progressRound()
