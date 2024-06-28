@@ -16,7 +16,6 @@ PelegsAlg::PelegsAlg(Node& n) :
 
 void PelegsAlg::handlePayload(std::string payload)
 {
-    Utils::log("current state:",knownHighest,dist,distMax);
 
     auto triplet = Utils::split(payload,"~~");
 
@@ -51,6 +50,7 @@ void PelegsAlg::handlePayload(std::string payload)
 
 void PelegsAlg::proceedRound(int round)
 {
+    Utils::log("current state:",knownHighest,dist,distMax);
     // send payload with format
     // knownHighest~~dist~~distMax
     Utils::log("========= NEXT ROUND =========", round);
