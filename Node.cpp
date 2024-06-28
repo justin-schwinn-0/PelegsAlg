@@ -126,6 +126,7 @@ void Node::listenToNeighbors(int delayms)
         {
             if(Utils::pollForFd(fd,100,POLLIN) > 0)
             {
+                Utils::log("reading for fd", fd);
                 recvMsg(fd); 
             }
         }
@@ -134,7 +135,6 @@ void Node::listenToNeighbors(int delayms)
 
 void Node::recvMsg(int fd)
 {
-    Utils::log("load bearing");
     const int bufSize = 128;
     char buf[bufSize];
 
