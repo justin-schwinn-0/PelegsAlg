@@ -54,7 +54,7 @@ void Connection::sendMsg(std::string msg)
     while(!sent);
 
     //load bearing log statment
-    //Utils::log("sent", msg);
+    Utils::log("sent", msg);
 }
 
 void Connection::makeConnection()
