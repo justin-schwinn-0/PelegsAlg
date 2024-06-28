@@ -16,7 +16,7 @@
 #include <arpa/inet.h>
 
 Connection::Connection(int uid,std::string h, int p) : 
-    mUid(uid)
+    mUid(uid),
     hostname(h),
     port(p)
 {
