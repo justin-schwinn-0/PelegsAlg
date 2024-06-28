@@ -168,10 +168,7 @@ int main(int argc,char** argv)
 
         auto n = readConfig("testConfig.txt",uid);
 
-        if(n.getUid() == 1047)
-        {
-            n.setIsLeader(1047);
-        }
+        n.setIsLeader(1047);
 
         runAlg<BfsAlg>(n);
     }

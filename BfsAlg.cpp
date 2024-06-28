@@ -12,8 +12,6 @@ BfsAlg::BfsAlg(Node& n) :
 
 void BfsAlg::handlePayload(std::string payload)
 {
-    Utils::log("got", payload);
-
     auto data = Utils::split(payload,"||");
 
     if(data[1] == "parent")
