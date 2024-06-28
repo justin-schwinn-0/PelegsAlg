@@ -113,7 +113,7 @@ void Node::recvMsg(int fd)
     if(in > 0)
     {
         std::string strMsg(buf);
-        //Utils::log("got ",strMsg);
+        Utils::log("got ",strMsg);
         msgHandler(strMsg);
     }
 }
