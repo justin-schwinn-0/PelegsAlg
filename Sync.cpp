@@ -11,6 +11,7 @@ Sync::Sync(int neighbors) :
 void Sync::msgHandler(std::string s)
 {
 
+    Utils::log("got",s)
     std::string payload = parseMsg(s);
 
     if(!payload.empty())
