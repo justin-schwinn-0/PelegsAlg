@@ -20,7 +20,7 @@ void PelegsAlg::handlePayload(std::string payload)
 {
     Utils::log("got", payload);
 
-    if(payload == "Found leader")
+    if(payload == FOUND_LEADER) 
     {
         Utils::log("Leader is", knownHighest);
         return;
@@ -68,7 +68,7 @@ void PelegsAlg::proceedRound(int round)
     if(roundsSinceChange >= 3)
     {
         Utils::log("================== Leader elected:", knownHighest);
-        rNode.flood(SynchAlg::wrapPayload("Found Leader",round));
+        rNode.flood(SynchAlg::wrapPayload(FOUND_LEADER,round));
     }
 
     // send payload with format

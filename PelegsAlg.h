@@ -22,6 +22,8 @@ private:
     int roundsSinceChange;
 
     bool mChanged;
+
+    const std::string FOUND_LEADER = "Found Leader!";
 };
 
 #endif
