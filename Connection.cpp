@@ -61,7 +61,6 @@ void Connection::makeConnection()
 
     std::string addr = Utils::getAddressFromHost(hostname);
 
-
     struct sockaddr_in serverAddress;
     memset(&serverAddress,0,sizeof(serverAddress));
     serverAddress.sin_family = AF_INET;
