@@ -21,6 +21,7 @@ private:
 
     int roundsSinceChange;
 
+    bool mChanged;
 };
 
 #endif

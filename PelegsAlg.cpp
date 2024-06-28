@@ -10,7 +10,8 @@ PelegsAlg::PelegsAlg(Node& n) :
     knownHighest(n.getUid()),
     dist(0),
     distMax(0),
-    roundsSinceChange(0)
+    roundsSinceChange(0),
+    mChanged(false)
 {
     Utils::log("made alg");
 }
@@ -25,14 +26,13 @@ void PelegsAlg::handlePayload(std::string payload)
     int otherDist = Utils::strToInt(triplet[1]);
     int otherDistMax = Utils::strToInt(triplet[2]);
 
-    bool changed = false;
 
     if(otherHighest > knownHighest)
     {
         knownHighest = otherHighest;
         dist = otherDist+1;
         distMax = std::max(otherDistMax,dist);
-        changed = true;
+        mChanged = true;
     }
     else if( otherHighest == knownHighest)
     {
@@ -40,7 +40,7 @@ void PelegsAlg::handlePayload(std::string payload)
         if(newDistMax != distMax)
         {
             distMax = newDistMax;
-            changed = true;
+            mChanged = true;
         }
     }
     
@@ -50,7 +50,12 @@ void PelegsAlg::handlePayload(std::string payload)
         exit(1);
     }
 
-    if(changed)
+}
+
+void PelegsAlg::proceedRound(int round)
+{
+    Utils::log("current state:",knownHighest,dist,distMax);
+    if(mChanged)
     {   
         roundsSinceChange = 0;
     }
@@ -60,11 +65,6 @@ void PelegsAlg::handlePayload(std::string payload)
         Utils::log("rounds since change:",roundsSinceChange);
     }
 
-}
-
-void PelegsAlg::proceedRound(int round)
-{
-    Utils::log("current state:",knownHighest,dist,distMax,round);
     // send payload with format
     // knownHighest~~dist~~distMax
     Utils::log("========= NEXT ROUND =========", round);
