@@ -24,9 +24,6 @@ void PelegsAlg::handlePayload(std::string payload)
     int otherDist = Utils::strToInt(triplet[1]);
     int otherDistMax = Utils::strToInt(triplet[2]);
 
-    Utils::log("payload address",this);
-    Utils::log("compare",knownHighest,otherHighest);
-
     if(otherHighest > knownHighest)
     {
         knownHighest = otherHighest;
@@ -54,7 +51,6 @@ void PelegsAlg::handlePayload(std::string payload)
 
 void PelegsAlg::proceedRound(int round)
 {
-    Utils::log("proceed address",this);
     Utils::log("current state:",knownHighest,dist,distMax);
     // send payload with format
     // knownHighest~~dist~~distMax
