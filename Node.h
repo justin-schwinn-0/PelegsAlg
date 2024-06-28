@@ -25,6 +25,8 @@ public:
 
     void flood(std::string str);
 
+    void sendTo(int uid, std::string msg);
+
     void print();
     void addConnection(Connection c);
 
