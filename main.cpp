@@ -12,6 +12,7 @@
 #include "Connection.h"
 #include "Sync.h"
 #include "TestAlg.h"
+#include "PelegsAlg.h"
 #include "Utils.h"
 
 
@@ -156,8 +157,8 @@ int main(int argc,char** argv)
 
         Sync syncer(n.getNeighborsSize());
 
-        TestAlg t(n);
-        syncer.setHandlers<TestAlg>(t);
+        PelegsAlg t(n);
+        syncer.setHandlers<PelegsAlg>(t);
 
         n.setHandler(std::bind(&Sync::msgHandler,syncer,std::placeholders::_1));
 
