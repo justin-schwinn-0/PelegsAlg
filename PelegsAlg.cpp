@@ -23,7 +23,6 @@ void PelegsAlg::handlePayload(std::string payload)
     {
         Utils::log("Leader is", knownHighest);
         rNode.setIsLeader(knownHighest);
-        rNode.finishAlg();
         mLeaderFound =true;
         return;
     }
