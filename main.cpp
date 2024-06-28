@@ -146,6 +146,7 @@ void runAlg(Node& n)
     n.print();
     n.openSocket();
 
+
     Sync sync(n.getNeighborsSize());
 
     T t(n);
@@ -170,45 +171,64 @@ int main(int argc,char** argv)
         auto n = readConfig("testConfig.txt",uid);
 
         //runAlg<PelegsAlg>(n);
-    int parentId = -1;
-    std::vector<int> childIds;
-
-
-    auto bfsLambda = [&](std::string msg)
-    {
-        auto data = Utils::split(msg,"==");
-        int uid = Utils::strToInt(data[0]);
-        if(data[1] == "parent")
-        {
-            if(parentId ==-1)
-            {
-                parentId = uid;
-                Utils::log("parent is ",uid);
-                n.sendExcept(uid,std::to_string(n.getUid())+"==parent");
-            }
-            else 
-            {
-                n.sendTo(uid,std::to_string(n.getUid())+"==refuse");
-            }
-
-    };
-
         //Utils::log("FOUND LEADER");
-    n.print();
-    n.openSocket();
-
-    n.setHandler(bfsLambda);
-
-    n.connectAll();
-
-    n.acceptNeighbors();
-    if(n.getUid() == 5)
-    {
-        n.flood(std::to_string(n.getUid())+"==parent");
-    }
-    n.listenToNeighbors(500);
+        int parentId = -1;
+        std::vector<int> childIds;
+        int responsesLeft = n.getNeighborsSize(); 
 
 
+        auto bfsLambda = [&](std::string msg)
+        {
+            auto data = Utils::split(msg,"==");
+            int uid = Utils::strToInt(data[0]);
+            if(data[1] == "parent")
+            {
+                if(parentId ==-1)
+                {
+                    parentId = uid;
+                    Utils::log("parent is ",uid);
+                    n.sendExcept(uid,std::to_string(n.getUid())+"==parent");
+                }
+                else 
+                {
+                    n.sendTo(uid,std::to_string(n.getUid())+"==ref");
+                }
+            }
+            else if(data[1] == "ref")
+            {
+                Utils::log("refuse parentage of ",uid);    
+            }
+            else if(data[1] == "child")
+            {
+                childIds.push_back(uid);
+            }
+            responsesLeft--;
+
+            if(responsesLeft == 0)
+            {
+                n.finishAlg();
+            }
+
+        };
+
+        n.print();
+        n.openSocket();
+
+        n.setHandler(bfsLambda);
+
+        n.connectAll();
+
+        n.acceptNeighbors();
+        if(n.getUid() == 5)
+        {
+            n.flood(std::to_string(n.getUid())+"==parent");
+        }
+        n.listenToNeighbors(500);
+
+        Utils::log("parent", parentId);
+
+        Utils::log("children:");
+        Utils::printVector(childIds)
     }
     else
     {
