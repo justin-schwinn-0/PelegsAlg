@@ -169,7 +169,7 @@ int main(int argc,char** argv)
 
         n.acceptNeighbors();
         syncPeleg.init();
-        n.listenToNeighbors(2000);
+        n.listenToNeighbors(500);
 
         //std::thread listener(testThread,std::ref(n));
 
