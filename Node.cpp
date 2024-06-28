@@ -119,7 +119,7 @@ void Node::sendExcept(int uid, std::string msg)
 void Node::listenToNeighbors(int delayms)
 {
     bool noMoreMsgs = false;
-    while(!finishedAlg && noMoreMsgs)
+    while(!finishedAlg || !noMoreMsgs)
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(delayms));
 
