@@ -27,19 +27,19 @@ void PelegsAlg::handlePayload(std::string payload)
         knownHighest = otherHighest;
         dist = otherDist+1;
         distMax = std::max(otherDistMax,dist);
-        roundsSinceChance = 0;
+        roundsSinceChange = 0;
     }
     else if( otherHighest == knownHighest)
     {
         distMax = std::max(distMax,otherDistMax);
-        roundsSinceChance = 0;
+        roundsSinceChange = 0;
     }
     else
     {
-        roundsSinceChance++;
+        roundsSinceChange++;
     }
 
-    if(roundsSinceChance == 3)
+    if(roundsSinceChange == 3)
     {
         Utils::log("Leader elected:", knownHighest);
 
