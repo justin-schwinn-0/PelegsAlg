@@ -11,7 +11,8 @@ PelegsAlg::PelegsAlg(Node& n) :
     dist(0),
     distMax(0),
     roundsSinceChange(0),
-    mChanged(false)
+    mChanged(false),
+    mLeaderFound(false)
 {
 }
 
