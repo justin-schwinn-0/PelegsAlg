@@ -34,7 +34,7 @@ payloadData Sync::parseMsg(std::string r)
         Utils::log("msg round is wrong, caching wrapped msg", round);
         Utils::log(r);
         payloadCache[uid] = r;
-        return {0,""};
+        return{"",0};
     }
 
     auto it = mHasRecvd.find(uid);
