@@ -208,7 +208,7 @@ int main(int argc,char** argv)
 
             if(responsesLeft == 0)
             {
-                n.sendTo(uid,std::to_string(n.getUid())+"==child")
+                n.sendTo(uid,std::to_string(n.getUid())+"==child");
                 n.finishAlg();
             }
 
