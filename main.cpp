@@ -196,6 +196,10 @@ int main(int argc,char** argv)
     n.acceptNeighbors();
     n.listenToNeighbors(500);
 
+    if(n.getUid() == 5)
+    {
+        n.flood(std::to_string(n.getUid())+"==parent");
+    }
 
     }
     else
