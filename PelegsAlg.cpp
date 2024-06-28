@@ -20,6 +20,12 @@ void PelegsAlg::handlePayload(std::string payload)
 {
     Utils::log("got", payload);
 
+    if(payload == "Found leader")
+    {
+        Utils::log("Leader is", knownHighest);
+        return;
+    }
+
     auto triplet = Utils::split(payload,"~~");
 
     int otherHighest = Utils::strToInt(triplet[0]);
@@ -48,7 +54,7 @@ void PelegsAlg::handlePayload(std::string payload)
 
 void PelegsAlg::proceedRound(int round)
 {
-    Utils::log("current state:",knownHighest,dist,distMax);
+    //Utils::log("current state:",knownHighest,dist,distMax);
     if(mChanged)
     {   
         roundsSinceChange = 0;
@@ -56,14 +62,13 @@ void PelegsAlg::proceedRound(int round)
     else
     {
         roundsSinceChange++;
-        Utils::log("rounds since change:",roundsSinceChange);
     }
     mChanged = false;
     
-    if(roundsSinceChange == 3)
+    if(roundsSinceChange >= 3)
     {
         Utils::log("================== Leader elected:", knownHighest);
-        exit(1);
+        rNode.flood(SynchAlg::wrapPayload("Found Leader",round));
     }
 
     // send payload with format
