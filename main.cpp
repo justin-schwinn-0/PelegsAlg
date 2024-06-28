@@ -174,10 +174,6 @@ int main(int argc,char** argv)
         }
 
         runAlg<BfsAlg>(n);
-
-        Utils::log("FOUND LEADER");
-
-
     }
     else
     {

@@ -64,5 +64,6 @@ std::string BfsAlg::amChild()
 
 void BfsAlg::rootTree()
 {
+    Utils::log("i am the leader!");
     rNode.flood(wrapPayload(parentStr(),0));
 }
