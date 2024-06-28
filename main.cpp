@@ -194,7 +194,6 @@ int main(int argc,char** argv)
     n.connectAll();
 
     n.acceptNeighbors();
-    sync.init();
     n.listenToNeighbors(500);
 
 
