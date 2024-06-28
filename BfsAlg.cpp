@@ -41,6 +41,7 @@ void BfsAlg::handlePayload(std::string payload)
 
 void BfsAlg::proceedRound(int round)
 {
+    Utils::log("========= NEXT ROUND =========", round);
     if(round == 0 && rNode.isLeader())
     {
         rootTree();
