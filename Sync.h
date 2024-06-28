@@ -4,9 +4,11 @@
 
 #include "Node.h"
 #include "Utils.h"
+#include "SyncAlg.h"
 
 #include <string>
 #include <map>
+
 
 
 class Sync
@@ -25,10 +27,10 @@ public:
     void init();
 
     template<class T>
-    void setHandlers(T& t)
+    void setHandlers(SynchAlg& t)
     {
-        mHandlePayload = std::bind(&T::handlePayload,t,std::placeholders::_1);
-        mProceedRound = std::bind(&T::proceedRound,t,std::placeholders::_1);
+        mHandlePayload = std::bind(&T::handlePayload,static_cast<T>(t),std::placeholders::_1);
+        mProceedRound = std::bind(&T::proceedRound,static_cast<T>(t),std::placeholders::_1);
     }
 private:
     //uid -> has recvd round msg
