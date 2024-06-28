@@ -10,7 +10,7 @@ class PelegsAlg : public SynchAlg
 public:
     PelegsAlg(Node& n);
 
-    void handlePayload(int uid,std::string payload);
+    void handlePayload(std::string payload);
 
     void proceedRound(int round);
 
@@ -23,11 +23,7 @@ private:
 
     bool mChanged;
 
-    bool mLeaderFound;
-
-    const std::string FOUND_LEADER = "Found Leader!";
-    const std::string ID_PAR = "id parent";
-    const std::string ID_CHILD = "id child";
+    const std::string FOUND_LEADER = "Found Leader!"
 };
 
 #endif
