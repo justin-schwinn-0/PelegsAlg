@@ -4,6 +4,7 @@
 #include <string>
 
 #include "Node.h"
+#include "SynchAlg.h"
 class BfsAlg
 {
 public:
