@@ -10,13 +10,13 @@ class BfsAlg : SynchAlg
 public:
     BfsAlg(Node& n); 
 
-    virtual void handlePayload(std::string str) = 0;
+    void handlePayload(std::string str);
 
-    virtual void proceedRound(int round) = 0;
+    void proceedRound(int round);
 
     void rootTree();
 
-    std::string parentStr()
+    std::string parentStr();
 
 private:
     int parentUid;
