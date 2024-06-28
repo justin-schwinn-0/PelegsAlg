@@ -4,7 +4,7 @@
 
 #include "Node.h"
 #include "Utils.h"
-#include "SyncAlg.h"
+#include "SynchAlg.h"
 
 #include <string>
 #include <map>
