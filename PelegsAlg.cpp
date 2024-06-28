@@ -43,12 +43,6 @@ void PelegsAlg::handlePayload(std::string payload)
             mChanged = true;
         }
     }
-    
-    if(roundsSinceChange == 3)
-    {
-        Utils::log("================== Leader elected:", knownHighest);
-        exit(1);
-    }
 
 }
 
@@ -65,6 +59,12 @@ void PelegsAlg::proceedRound(int round)
         Utils::log("rounds since change:",roundsSinceChange);
     }
     mChanged = false;
+    
+    if(roundsSinceChange == 3)
+    {
+        Utils::log("================== Leader elected:", knownHighest);
+        exit(1);
+    }
 
     // send payload with format
     // knownHighest~~dist~~distMax
