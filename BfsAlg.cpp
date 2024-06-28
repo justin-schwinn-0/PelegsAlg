@@ -20,7 +20,6 @@ void BfsAlg::handlePayload(std::string payload)
     {
         if(!rNode.isLeader() && parentUid == -1)
         {
-
             int uid = Utils::strToInt(data[0]);
             int lead = Utils::strToInt(data[2]);
             parentUid = uid;
