@@ -15,7 +15,8 @@
 #include <netinet/sctp.h>
 #include <arpa/inet.h>
 
-Connection::Connection(std::string h, int p) : 
+Connection::Connection(int uid,std::string h, int p) : 
+    mUid(uid)
     hostname(h),
     port(p)
 {

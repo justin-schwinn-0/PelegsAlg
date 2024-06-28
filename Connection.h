@@ -10,7 +10,7 @@
 class Connection
 {    
 public:
-    Connection(std::string h, int p); 
+    Connection(int uid ,std::string h, int p); 
 
     Connection(); 
     ~Connection();
@@ -25,6 +25,9 @@ public:
     void resetRemoteConnection();
 
 */
+    int getUid()
+    { return mUid; }
+
     void sendMsg(std::string msg);
 
     void makeConnection();
@@ -42,6 +45,8 @@ private:
     uint32_t port;
 
     int mCon;
+
+    int mUid;
 };
 
 #endif

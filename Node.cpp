@@ -84,6 +84,16 @@ void Node::acceptNeighbors()
 
     Utils::log("accepted all neighbors");
 }
+void sendTo(int uid, std::string msg)
+{
+    for(auto& c : mNeighbors)
+    {
+        if(c.getUid() == uid)
+        {
+            c.sendMsg(msg);
+        }
+    }
+}
 
 void Node::listenToNeighbors(int delayms)
 {
