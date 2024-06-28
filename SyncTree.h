@@ -29,7 +29,7 @@ private:
     int mKnownNeighbors;
 
     int parentUid;
-    it leaderUid;
+    int leaderUid;
 };
 
 #endif
