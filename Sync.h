@@ -10,14 +10,6 @@
 #include <map>
 
 
-struct payloadData
-{
-    payloadData(std::string str,int s) : payload(str), uid(s)
-    {
-    }
-    std::string payload;
-    int uid;
-};
 
 class Sync
 {
@@ -28,7 +20,7 @@ public:
     void msgHandler(std::string s);
 
     //parses the message, updating mHasRecvd and adding to payload cache if needed
-    payloadData parseMsg(std::string);
+    std::string parseMsg(std::string);
 
     void progressRound();
 
@@ -37,7 +29,7 @@ public:
     template<class T>
     void setHandlers(T& t)
     {
-        mHandlePayload = std::bind(&T::handlePayload,&t,std::placeholders::_1,std::placeholders::_2);
+        mHandlePayload = std::bind(&T::handlePayload,&t,std::placeholders::_1);
         mProceedRound = std::bind(&T::proceedRound,&t,std::placeholders::_1);
     }
 private:
@@ -48,7 +40,7 @@ private:
 
     int mRound;
 
-    std::function<void(int,std::string)> mHandlePayload;
+    std::function<void(std::string)> mHandlePayload;
     std::function<void(int)> mProceedRound;
 
     int mKnownNeighbors;

@@ -9,7 +9,7 @@ class SynchAlg
 public:
     SynchAlg(Node& n); 
 
-    virtual void handlePayload(int uid, std::string str) = 0;
+    virtual void handlePayload(std::string str) = 0;
 
 
     virtual void proceedRound(int round) = 0;
