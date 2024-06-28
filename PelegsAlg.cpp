@@ -17,6 +17,7 @@ PelegsAlg::PelegsAlg(Node& n) :
 
 void PelegsAlg::handlePayload(std::string payload)
 {
+    Utils::log("got", payload);
 
     auto triplet = Utils::split(payload,"~~");
 
