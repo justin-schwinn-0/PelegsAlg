@@ -51,7 +51,7 @@ void PelegsAlg::handlePayload(std::string payload)
 
 void PelegsAlg::proceedRound(int round)
 {
-    Utils::log("current state:",knownHighest,dist,distMax);
+    Utils::log("current state:",knownHighest,dist,distMax,round);
     // send payload with format
     // knownHighest~~dist~~distMax
     Utils::log("========= NEXT ROUND =========", round);
