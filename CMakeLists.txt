@@ -14,6 +14,7 @@ set(Sources
     Sync.cpp
     SynchAlg.cpp
     TestAlg.cpp
+    PelegsAlg.cpp
 )
 
 set(Headers
@@ -23,6 +24,7 @@ set(Headers
     Sync.h
     SynchAlg.h
     TestAlg.h
+    PelegsAlg.h
 )
 
 find_library(SCTP_LIB libsctp.so)
