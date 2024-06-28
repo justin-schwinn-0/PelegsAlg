@@ -14,7 +14,7 @@ void BfsAlg::handlePayload(std::string payload)
     Utils::log("got", payload);
     auto data = Utils::split(payload,"||");
 
-    int uid = Utils::strToOInt(data[0]);
+    int uid = Utils::strToInt(data[0]);
 
 
     if(parentUid == -1)
