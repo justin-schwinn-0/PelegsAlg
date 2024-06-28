@@ -15,6 +15,7 @@ public:
 
 private:
     int parentUid;
+    bool mClaimChildren;
 };
 
 #endif
