@@ -160,8 +160,8 @@ int main(int argc,char** argv)
         //TestAlg t(n);
         //syncer.setHandlers<TestAlg>(t);
 
-        PelegsAlg t(n);
-        syncPeleg.setHandlers<PelegsAlg>(t);
+        PelegsAlg p(n);
+        syncPeleg.setHandlers<PelegsAlg>(p);
 
         n.setHandler(std::bind(&Sync::msgHandler,syncPeleg,std::placeholders::_1));
 
@@ -177,7 +177,7 @@ int main(int argc,char** argv)
 
         BfsAlg b(n);
         Sync syncBfs(n.getNeighborsSize());
-        syncBfs.setHandlers<BfsAlg>(t);
+        syncBfs.setHandlers<BfsAlg>(b);
 
         n.setHandler(std::bind(&Sync::msgHandler,syncBfs,std::placeholders::_1));
 
