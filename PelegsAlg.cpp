@@ -19,24 +19,20 @@ void PelegsAlg::handlePayload(std::string payload)
 {
     Utils::log("got", payload);
 
-    if(roundsSinceChange == 3)
-    {
-        Utils::log("================== Leader elected:", knownHighest);
-        exit(1);
-    }
-
     auto triplet = Utils::split(payload,"~~");
 
     int otherHighest = Utils::strToInt(triplet[0]);
     int otherDist = Utils::strToInt(triplet[1]);
     int otherDistMax = Utils::strToInt(triplet[2]);
 
+    bool changed = false;
+
     if(otherHighest > knownHighest)
     {
         knownHighest = otherHighest;
         dist = otherDist+1;
         distMax = std::max(otherDistMax,dist);
-        roundsSinceChange = 0;
+        changed = true;
     }
     else if( otherHighest == knownHighest)
     {
@@ -44,15 +40,25 @@ void PelegsAlg::handlePayload(std::string payload)
         if(newDistMax != distMax)
         {
             distMax = newDistMax;
-            roundsSinceChange = 0;
-        }
-        else
-        {
-            roundsSinceChange++;
-            Utils::log("rounds since change:",roundsSinceChange);
+            changed = true;
         }
     }
     
+    if(roundsSinceChange == 3)
+    {
+        Utils::log("================== Leader elected:", knownHighest);
+        exit(1);
+    }
+
+    if(changed)
+    {   
+        roundsSinceChange = 0;
+    }
+    else
+    {
+        roundSinceChange++;
+        Utils::log("rounds since change:",roundsSinceChange);
+    }
 
 }
 
