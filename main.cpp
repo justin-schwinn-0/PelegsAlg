@@ -154,7 +154,7 @@ int main(int argc,char** argv)
         n.print();
         n.openSocket();
 
-        Sync syncer(n.getNeighborsSize());
+        Sync syncPeleg(n.getNeighborsSize());
 
         //TestAlg t(n);
         //syncer.setHandlers<TestAlg>(t);
@@ -175,6 +175,7 @@ int main(int argc,char** argv)
         //tester.join();
 
         Bfs b(n);
+        Sync syncBfs(n.getNeighborsSize());
         syncBfs.setHandlers<BfsAlg>(t);
 
         n.setHandler(std::bind(&Sync::msgHandler,syncBfs,std::placeholders::_1));
