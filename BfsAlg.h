@@ -5,7 +5,7 @@
 
 #include "Node.h"
 #include "SynchAlg.h"
-class BfsAlg
+class BfsAlg : SynchAlg
 {
 public:
     BfsAlg(Node& n); 
