@@ -46,7 +46,7 @@ void BfsAlg::proceedRound(int round)
     {
         rootTree();
     }
-    else if(mClaimChildren || )
+    else if(mClaimChildren)
     {
         mClaimChildren = false;
         rNode.sendExcept(parentUid,wrapPayload(parentStr(),round));
