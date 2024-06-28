@@ -180,7 +180,7 @@ int main(int argc,char** argv)
         {
             parentId = uid;
 
-            n.sentExcept(uid,std::to_string(n.getUid())+"==parent");
+            n.sendExcept(uid,std::to_string(n.getUid())+"==parent");
         }
 
     };
