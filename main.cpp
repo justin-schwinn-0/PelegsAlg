@@ -167,7 +167,7 @@ int main(int argc,char** argv)
         n.connectAll();
 
         n.acceptNeighbors();
-        syncer.init();
+        syncPeleg.init();
         n.listenToNeighbors(2000);
 
         //std::thread listener(testThread,std::ref(n));
@@ -181,6 +181,8 @@ int main(int argc,char** argv)
         n.setHandler(std::bind(&Sync::msgHandler,syncBfs,std::placeholders::_1));
 
         n.resetAlg()
+
+        syncBfs.init();
 
         if(n.isLeader())
         {
