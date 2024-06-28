@@ -16,6 +16,8 @@ PelegsAlg::PelegsAlg(Node& n) :
 
 void PelegsAlg::handlePayload(std::string payload)
 {
+    Utils::log("current state:",knownHighest,dist,distMax);
+
     auto triplet = Utils::split(payload,"~~");
 
     int otherHighest = Utils::strToInt(triplet[0]);
