@@ -139,6 +139,7 @@ Node readConfig(std::string configFile, int popId = -1)
     return nodes[0];
 }
 
+
 template<class T>
 void runAlg(Node& n)
 {
@@ -168,9 +169,40 @@ int main(int argc,char** argv)
 
         auto n = readConfig("testConfig.txt",uid);
 
-        n.setIsLeader(1047);
+        //runAlg<PelegsAlg>(n);
+    int parentId;
 
-        runAlg<BfsAlg>(n);
+    auto bfsLambda = [&](std::string msg)
+    {
+        auto data = Utils::split(msg,"==");
+        int uid = Utils::strToInt(data[0])
+        if(data[1] == "parent")
+        {
+            parentId = uid;
+
+            n.sentExcept(uid,std::to_string(n.getUid())+"==parent");
+        }
+
+    };
+
+        //Utils::log("FOUND LEADER");
+    n.print();
+    n.openSocket();
+
+    Sync sync(n.getNeighborsSize());
+
+    T t(n);
+    sync.setHandlers<T>(t);
+
+    n.setHandler(bfsLambda);
+
+    n.connectAll();
+
+    n.acceptNeighbors();
+    sync.init();
+    n.listenToNeighbors(500);
+
+
     }
     else
     {
