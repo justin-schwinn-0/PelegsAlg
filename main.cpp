@@ -140,7 +140,6 @@ Node readConfig(std::string configFile, int popId = -1)
 
 void testThread(Node& n)
 {
-    n.listenToNeighbors(2000);
 }
 
 int main(int argc,char** argv)
@@ -161,17 +160,32 @@ int main(int argc,char** argv)
         //syncer.setHandlers<TestAlg>(t);
 
         PelegsAlg t(n);
-        syncer.setHandlers<PelegsAlg>(t);
+        syncPeleg.setHandlers<PelegsAlg>(t);
 
-        n.setHandler(std::bind(&Sync::msgHandler,syncer,std::placeholders::_1));
+        n.setHandler(std::bind(&Sync::msgHandler,syncPeleg,std::placeholders::_1));
 
         n.connectAll();
 
         n.acceptNeighbors();
         syncer.init();
-        std::thread tester(testThread,std::ref(n));
+        n.listenToNeighbors(2000);
 
-        tester.join();
+        //std::thread listener(testThread,std::ref(n));
+
+        //tester.join();
+
+        Bfs b(n);
+        syncBfs.setHandlers<BfsAlg>(t);
+
+        n.setHandler(std::bind(&Sync::msgHandler,syncBfs,std::placeholders::_1));
+
+        n.resetAlg()
+
+        if(n.isLeader())
+        {
+            b.rootTree();
+        }
+        n.listenToNeighbors(2000);
 
     }
     else

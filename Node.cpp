@@ -109,7 +109,7 @@ void Node::sendExcept(int uid, std::string msg)
 
 void Node::listenToNeighbors(int delayms)
 {
-    while(true)
+    while(!finishedAlg)
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(delayms));
         for(int fd : openRcv)
@@ -182,4 +182,9 @@ void Node::flood(std::string str)
     {
         n.sendMsg(str);
     }
+}
+
+bool Node::isLeader()
+{
+    return leader == mUid;
 }

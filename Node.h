@@ -12,7 +12,8 @@ class Node
 public:
     Node(int uid, Connection con):
         mUid(uid),
-        mListener(con)
+        mListener(con),
+        finishedAlg(false)
     {
     }
 
@@ -43,6 +44,15 @@ public:
 
     void recvMsg(int fd);
 
+    void finishAlg()
+    { finishedAlg = true; }
+
+    void resetAlg()
+    { finishedAlg = false; }
+
+    void setIsLeader(int l)
+    { leader = l; }
+
 private:
     int mUid;
     Connection mListener;
@@ -54,6 +64,10 @@ private:
     std::function<void(std::string)> msgHandler;
 
     std::vector<int> openRcv;
+
+    bool finishedAlg;
+
+    int leader;
 };
 
 #endif

@@ -18,11 +18,12 @@ PelegsAlg::PelegsAlg(Node& n) :
 
 void PelegsAlg::handlePayload(std::string payload)
 {
-    Utils::log("got", payload);
 
     if(payload == FOUND_LEADER) 
     {
         Utils::log("Leader is", knownHighest);
+        rNode.setIsLeader(knownHighest);
+        rNode.finishAlg();
         return;
     }
 

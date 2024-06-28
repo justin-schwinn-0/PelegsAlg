@@ -14,6 +14,10 @@ public:
 
     virtual void proceedRound(int round) = 0;
 
+    void rootTree();
+
+    std::string parentStr()
+
 private:
     int parentUid;
     bool mClaimChildren;
