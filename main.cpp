@@ -189,11 +189,6 @@ int main(int argc,char** argv)
     n.print();
     n.openSocket();
 
-    Sync sync(n.getNeighborsSize());
-
-    T t(n);
-    sync.setHandlers<T>(t);
-
     n.setHandler(bfsLambda);
 
     n.connectAll();
