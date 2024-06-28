@@ -139,8 +139,24 @@ Node readConfig(std::string configFile, int popId = -1)
     return nodes[0];
 }
 
-void testThread(Node& n)
+template<class T>
+void runAlg(Node& n)
 {
+    n.print();
+    n.openSocket();
+
+    Sync sync(n.getNeighborsSize());
+
+    T t(n);
+    syncPeleg.setHandlers<T>(t);
+
+    n.setHandler(std::bind(&Sync::msgHandler,sync,std::placeholders::_1));
+
+    n.connectAll();
+
+    n.acceptNeighbors();
+    sync.init();
+    n.listenToNeighbors(500);
 }
 
 int main(int argc,char** argv)
@@ -152,45 +168,10 @@ int main(int argc,char** argv)
 
         auto n = readConfig("testConfig.txt",uid);
 
-        n.print();
-        n.openSocket();
+        runAlg<PelegsAlg>(n);
 
-        Sync syncPeleg(n.getNeighborsSize());
+        Utils::log("FOUND LEADER");
 
-        //TestAlg t(n);
-        //syncer.setHandlers<TestAlg>(t);
-
-        PelegsAlg p(n);
-        syncPeleg.setHandlers<PelegsAlg>(p);
-
-        n.setHandler(std::bind(&Sync::msgHandler,syncPeleg,std::placeholders::_1));
-
-        n.connectAll();
-
-        n.acceptNeighbors();
-        syncPeleg.init();
-        n.listenToNeighbors(500);
-
-        //std::thread listener(testThread,std::ref(n));
-
-        //tester.join();
-         Utils::log("FOUND LEADER, STARTING BFS");
-
-        BfsAlg b(n);
-        Sync syncBfs(n.getNeighborsSize());
-        syncBfs.setHandlers<BfsAlg>(b);
-
-        n.setHandler(std::bind(&Sync::msgHandler,syncBfs,std::placeholders::_1));
-
-        n.resetAlg();
-
-        syncBfs.init();
-
-        if(n.isLeader())
-        {
-            b.rootTree();
-        }
-        n.listenToNeighbors(2000);
 
     }
     else

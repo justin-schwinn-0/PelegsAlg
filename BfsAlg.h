@@ -20,7 +20,10 @@ public:
 
 private:
     int parentUid;
+    int mLeader;
     bool mClaimChildren;
+
+
 };
 
 #endif

@@ -5,29 +5,40 @@
 BfsAlg::BfsAlg(Node& n) : 
     SynchAlg(n),
     parentUid(1),
-    mClaimChildren(false)
+    mClaimChildren(false),
+    mLeader(-1)
 {
 }
 
 void BfsAlg::handlePayload(std::string payload)
 {
     Utils::log("got", payload);
+
     auto data = Utils::split(payload,"||");
 
-    int uid = Utils::strToInt(data[0]);
-
-
-    if(parentUid == -1)
+    if(data[1] == "parent")
     {
-        parentUid = uid;
-        mClaimChildren = true;
+        if(!rNode.isLeader() && parentUid == -1)
+        {
+
+            int uid = Utils::strToInt(data[0]);
+            int lead = Utils::strToInt(data[2]);
+            parentUid = uid;
+            mLeader = lead;
+            mClaimChildren = true;
+        }
     }
+    else
 
 }
 
 void BfsAlg::proceedRound(int round)
 {
-    if(mClaimChildren)
+    if(round == 0 && rNode.isLeader())
+    {
+        rootTree();
+    }
+    else if(mClaimChildren || )
     {
         mClaimChildren = false;
         rNode.sendExcept(parentUid,wrapPayload(parentStr(),round));
@@ -36,7 +47,7 @@ void BfsAlg::proceedRound(int round)
 
 std::string BfsAlg::parentStr()
 {
-    return rNode.getUid() + "||parent";
+    return std::string(rNode.getUid()) + "||parent||" + std::to_string(mLeader);
 }
 
 void BfsAlg::rootTree()

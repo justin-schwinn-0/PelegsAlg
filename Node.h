@@ -17,6 +17,8 @@ public:
     {
     }
 
+    ~Node();
+
     void openSocket();
 
     void acceptNeighbors();
@@ -62,7 +64,6 @@ private:
     std::vector<Connection> mNeighbors;
 
     int mListenFd;
-    // this probably isn't right
     
     std::function<void(std::string)> msgHandler;
 

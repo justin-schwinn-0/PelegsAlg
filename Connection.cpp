@@ -24,6 +24,7 @@ Connection::Connection(int uid,std::string h, int p) :
 
 Connection::~Connection()
 {
+    close(mCon);
 }
 
 void Connection::sendMsg(std::string msg)

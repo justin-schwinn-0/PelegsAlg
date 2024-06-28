@@ -15,6 +15,15 @@
 #include <netinet/sctp.h>
 #include <arpa/inet.h>
 
+Node::~Node()
+{
+    for(int fd : openRcv)
+    {
+        close(fd);
+    }
+
+    close(mListenFd);
+}
 
 void Node::openSocket()
 {
