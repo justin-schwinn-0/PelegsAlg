@@ -210,7 +210,7 @@ int main(int argc,char** argv)
             {
                 if(parentId != -1)
                 {
-                    n.sendTo(uid,std::to_string(n.getUid())+"==child");
+                    n.sendTo(parentId,std::to_string(n.getUid())+"==child");
                 }
                 n.finishAlg();
             }
