@@ -18,7 +18,7 @@ public:
     static int strToInt(std::string s);
     
     template<typename T>
-    static void printVector(std::vector<T> vec);
+    static void printVector(std::vector<T> vec)
     {
         for(auto t : vec)
         {
