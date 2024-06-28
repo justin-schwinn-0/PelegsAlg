@@ -19,6 +19,12 @@ void PelegsAlg::handlePayload(std::string payload)
 {
     Utils::log("got", payload);
 
+    if(roundsSinceChange == 3)
+    {
+        Utils::log("================== Leader elected:", knownHighest);
+        exit(1);
+    }
+
     auto triplet = Utils::split(payload,"~~");
 
     int otherHighest = Utils::strToInt(triplet[0]);
@@ -47,11 +53,6 @@ void PelegsAlg::handlePayload(std::string payload)
         }
     }
     
-    if(roundsSinceChange == 3)
-    {
-        Utils::log("================== Leader elected:", knownHighest);
-        exit(1);
-    }
 
 }
 
