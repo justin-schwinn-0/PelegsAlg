@@ -30,7 +30,7 @@ void BfsAlg::proceedRound(int round)
     if(mClaimChildren)
     {
         mClaimChildren = false;
-        rNode.sendExcept(parentUid,wrapPayload(msg,round));
+        rNode.sendExcept(parentUid,wrapPayload(parentStr(),round));
     }
 }
 
@@ -41,5 +41,5 @@ std::string BfsAlg::parentStr()
 
 void BfsAlg::rootTree()
 {
-    rNode.flood(wrapPayload(msg,0));
+    rNode.flood(wrapPayload(parentStr(),0));
 }
