@@ -16,7 +16,7 @@ PelegsAlg::PelegsAlg(Node& n) :
 {
 }
 
-void PelegsAlg::handlePayload(int uid,std::string payload)
+void PelegsAlg::handlePayload(std::string payload)
 {
 
     if(payload == FOUND_LEADER) 
@@ -24,10 +24,9 @@ void PelegsAlg::handlePayload(int uid,std::string payload)
         Utils::log("Leader is", knownHighest);
         rNode.setIsLeader(knownHighest);
         mLeaderFound =true;
+        rNode.finishAlg()
         return;
     }
-
-    if(payload == )
 
     auto triplet = Utils::split(payload,"~~");
 

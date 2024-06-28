@@ -26,6 +26,8 @@ private:
     bool mLeaderFound;
 
     const std::string FOUND_LEADER = "Found Leader!";
+    const std::string ID_PAR = "id parent";
+    const std::string ID_CHILD = "id child";
 };
 
 #endif
