@@ -56,7 +56,7 @@ void PelegsAlg::handlePayload(std::string payload)
     }
     else
     {
-        roundSinceChange++;
+        roundsSinceChange++;
         Utils::log("rounds since change:",roundsSinceChange);
     }
 
