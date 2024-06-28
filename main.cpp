@@ -175,7 +175,7 @@ int main(int argc,char** argv)
     auto bfsLambda = [&](std::string msg)
     {
         auto data = Utils::split(msg,"==");
-        int uid = Utils::strToInt(data[0])
+        int uid = Utils::strToInt(data[0]);
         if(data[1] == "parent")
         {
             parentId = uid;
