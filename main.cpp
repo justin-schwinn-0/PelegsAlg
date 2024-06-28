@@ -13,6 +13,7 @@
 #include "Sync.h"
 #include "TestAlg.h"
 #include "PelegsAlg.h"
+#include "BfsAlg.h"
 #include "Utils.h"
 
 
