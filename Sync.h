@@ -34,7 +34,7 @@ public:
     template<class T>
     void setHandlers(T& t)
     {
-        mHandlePayload = std::bind(&T::handlePayload,&t,std::placeholders::_1);
+        mHandlePayload = std::bind(&T::handlePayload,&t,std::placeholders::_1,std::placeholders::_2);
         mProceedRound = std::bind(&T::proceedRound,&t,std::placeholders::_1);
     }
 private:
@@ -45,7 +45,7 @@ private:
 
     int mRound;
 
-    std::function<void(std::string)> mHandlePayload;
+    std::function<void(int,std::string)> mHandlePayload;
     std::function<void(int)> mProceedRound;
 
     int mKnownNeighbors;
