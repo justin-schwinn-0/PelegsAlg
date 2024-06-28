@@ -174,7 +174,7 @@ int main(int argc,char** argv)
         //std::thread listener(testThread,std::ref(n));
 
         //tester.join();
-         Utils::log("FOUND LEADER, STARTING BFS")
+         Utils::log("FOUND LEADER, STARTING BFS");
 
         BfsAlg b(n);
         Sync syncBfs(n.getNeighborsSize());
