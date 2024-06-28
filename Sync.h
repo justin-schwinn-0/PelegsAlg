@@ -29,7 +29,7 @@ public:
     template<class T>
     void setHandlers(SynchAlg& t)
     {
-        mHandlePayload = std::bind(&T::handlePayload,static_cast<T>(t),std::placeholders::_1);
+        mHandlePayload = std::bind(&T::handlePayload,reinterperet_cast<T>(t),std::placeholders::_1);
         mProceedRound = std::bind(&T::proceedRound,static_cast<T>(t),std::placeholders::_1);
     }
 private:
