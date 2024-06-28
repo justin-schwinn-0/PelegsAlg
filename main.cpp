@@ -174,7 +174,7 @@ int main(int argc,char** argv)
 
         //tester.join();
 
-        Bfs b(n);
+        BfsAlg b(n);
         Sync syncBfs(n.getNeighborsSize());
         syncBfs.setHandlers<BfsAlg>(t);
 
