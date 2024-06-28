@@ -53,6 +53,9 @@ public:
     void setIsLeader(int l)
     { leader = l; }
 
+    bool isLeader();
+
+
 private:
     int mUid;
     Connection mListener;
