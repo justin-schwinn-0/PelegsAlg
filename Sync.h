@@ -25,7 +25,7 @@ public:
     void msgHandler(std::string s);
 
     //parses the message, updating mHasRecvd and adding to payload cache if needed
-    std::string parseMsg(std::string);
+    payloadData parseMsg(std::string);
 
     void progressRound();
 

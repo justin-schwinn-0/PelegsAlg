@@ -21,7 +21,7 @@ void Sync::msgHandler(std::string s)
     }
 }
 
-std::string Sync::parseMsg(std::string r)
+payloadData Sync::parseMsg(std::string r)
 {
 // uid::round::payload
 
