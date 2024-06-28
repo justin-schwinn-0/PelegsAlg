@@ -17,6 +17,7 @@ public:
     void rootTree();
 
     std::string parentStr();
+    std::string amChild();
 
 private:
     int parentUid;
