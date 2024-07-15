@@ -5,12 +5,14 @@
 
 #include "SynchAlg.h"
 
+struct SyncMsg;
+
 class PelegsAlg : public SynchAlg
 {
 public:
     PelegsAlg(Node& n);
 
-    void handlePayload(std::string payload);
+    void handlePayload(SyncMsg payload);
 
     void proceedRound(int round);
 
@@ -22,6 +24,9 @@ private:
     int roundsSinceChange;
 
     bool mChanged;
+
+    bool mFoundLeader;
+    int leaderProp;
 
     const std::string FOUND_LEADER = "Found Leader!";
 };

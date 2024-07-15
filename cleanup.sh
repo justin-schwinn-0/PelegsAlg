@@ -5,7 +5,7 @@
 netid=jts200006
 
 # Root directory of your project
-PROJDIR=/home/justin/Desktop/code/CS6380/Pelegs
+PROJDIR=/home/010/j/jt/jts200006/cs6380/PelegsAlg
 # Directory where the config file is located on your local system
 CONFIGLOCAL=$PROJDIR/testConfig.txt
 

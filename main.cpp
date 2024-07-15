@@ -170,14 +170,13 @@ int main(int argc,char** argv)
 
         auto n = readConfig("testConfig.txt",uid);
 
-        //runAlg<PelegsAlg>(n);
-        //Utils::log("FOUND LEADER");
-        //:w
-        //
+        runAlg<PelegsAlg>(n);
+        Utils::log("FOUND LEADER");
+	
+	/*
         int parentId = -1;
         std::vector<int> childIds;
         int responsesLeft = n.getNeighborsSize(); 
-
 
         auto bfsLambda = [&](std::string msg)
         {
@@ -190,31 +189,37 @@ int main(int argc,char** argv)
                     parentId = uid;
                     Utils::log("parent is ",uid);
                     n.sendExcept(uid,std::to_string(n.getUid())+"==parent");
+                    responsesLeft--;
                 }
                 else 
                 {
+		    Utils::log("ref parent ", uid);
                     n.sendTo(uid,std::to_string(n.getUid())+"==ref");
+		    Utils::log("sent to ", uid);
                 }
             }
             else if(data[1] == "ref")
             {
                 Utils::log("refuse parentage of ",uid);    
+                responsesLeft--;
             }
             else if(data[1] == "child")
             {
                 childIds.push_back(uid);
+                responsesLeft--;
             }
-            responsesLeft--;
 
             if(responsesLeft == 0)
             {
                 if(parentId != -1)
                 {
+			Utils::log("conf parent");
                     n.sendTo(parentId,std::to_string(n.getUid())+"==child");
                 }
                 n.finishAlg();
             }
 
+	Utils::log("|");
         };
 
         n.print();
@@ -225,16 +230,16 @@ int main(int argc,char** argv)
         n.connectAll();
 
         n.acceptNeighbors();
-        if(n.getUid() == 5)
+        if(n.getUid() == 89)
         {
             n.flood(std::to_string(n.getUid())+"==parent");
         }
-        n.listenToNeighbors(500);
+        n.listenToNeighbors(1500);
 
         Utils::log("parent", parentId);
 
         Utils::log("children:");
-        Utils::printVector(childIds);
+        Utils::printVector(childIds);*/
     }
     else
     {

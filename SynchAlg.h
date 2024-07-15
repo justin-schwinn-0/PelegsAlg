@@ -3,13 +3,17 @@
 
 #include <string>
 
+#include "Sync.h"
 #include "Node.h"
+
+struct SyncMsg;
+
 class SynchAlg
 {
 public:
     SynchAlg(Node& n); 
 
-    virtual void handlePayload(std::string str) = 0;
+    virtual void handlePayload(SyncMsg payload) = 0;
 
 
     virtual void proceedRound(int round) = 0;

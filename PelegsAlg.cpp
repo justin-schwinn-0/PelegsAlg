@@ -2,6 +2,8 @@
 
 #include "Node.h"
 #include "Utils.h"
+#include<unistd.h>
+
 
 #include <algorithm>
 
@@ -11,18 +13,19 @@ PelegsAlg::PelegsAlg(Node& n) :
     dist(0),
     distMax(0),
     roundsSinceChange(0),
-    mChanged(false)
-{
-}
+    mChanged(false),
+    mFoundLeader(false)
+{}
 
-void PelegsAlg::handlePayload(std::string payload)
-{
+void PelegsAlg::handlePayload(SyncMsg msg)
+{ 
+    std::string payload = msg.payload;
+    int uid = msg.uid;
 
-    if(payload == FOUND_LEADER) 
+    if(payload == FOUND_LEADER || mFoundLeader) 
     {
-        Utils::log("Leader is", knownHighest);
-        rNode.setIsLeader(knownHighest);
-        rNode.finishAlg();
+    	mFoundLeader = true;
+	leaderProp = uid;
         return;
     }
 
@@ -54,8 +57,16 @@ void PelegsAlg::handlePayload(std::string payload)
 
 void PelegsAlg::proceedRound(int round)
 {
-    //Utils::log("current state:",knownHighest,dist,distMax);
-    if(mChanged)
+    if(mFoundLeader)
+    {
+        Utils::log("Leader is", knownHighest);
+        rNode.sendExcept(leaderProp,SynchAlg::wrapPayload(FOUND_LEADER,round));
+        rNode.setIsLeader(knownHighest);
+        rNode.finishAlg();
+	sleep(2);
+	return;
+    }
+    else if(mChanged)
     {   
         roundsSinceChange = 0;
     }
@@ -65,10 +76,11 @@ void PelegsAlg::proceedRound(int round)
     }
     mChanged = false;
     
-    if(roundsSinceChange >= 3)
+    if(roundsSinceChange >= 3 && knownHighest == rNode.getUid())
     {
         Utils::log("================== Leader elected:", knownHighest);
         rNode.flood(SynchAlg::wrapPayload(FOUND_LEADER,round));
+	mFoundLeader = true;
     }
     else
     {

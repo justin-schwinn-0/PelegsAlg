@@ -10,11 +10,9 @@ Sync::Sync(int neighbors) :
 
 void Sync::msgHandler(std::string s)
 {
+    auto payload = parseMsg(s);
 
-    Utils::log("got",s);
-    std::string payload = parseMsg(s);
-
-    if(!payload.empty())
+    if(!payload.payload.empty())
     {
         mHandlePayload(payload);
 
@@ -22,7 +20,7 @@ void Sync::msgHandler(std::string s)
     }
 }
 
-std::string Sync::parseMsg(std::string r)
+SyncMsg Sync::parseMsg(std::string r)
 {
 // uid::round::payload
 
@@ -35,7 +33,7 @@ std::string Sync::parseMsg(std::string r)
         Utils::log("msg round is wrong, caching wrapped msg", round);
         Utils::log(r);
         payloadCache[uid] = r;
-        return "";
+        return {0,""};
     }
 
     auto it = mHasRecvd.find(uid);
@@ -57,8 +55,11 @@ std::string Sync::parseMsg(std::string r)
         }
     }
 
+    SyncMsg s;
+    s.uid = uid;
+    s.payload = segments[2];
 
-    return segments[2];
+    return s;
 }
 
 void Sync::progressRound()

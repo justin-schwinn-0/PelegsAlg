@@ -10,6 +10,11 @@
 #include <map>
 
 
+struct SyncMsg
+{
+    int uid;
+    std::string payload;
+};
 
 class Sync
 {
@@ -20,7 +25,7 @@ public:
     void msgHandler(std::string s);
 
     //parses the message, updating mHasRecvd and adding to payload cache if needed
-    std::string parseMsg(std::string);
+    SyncMsg parseMsg(std::string);
 
     void progressRound();
 
@@ -40,7 +45,7 @@ private:
 
     int mRound;
 
-    std::function<void(std::string)> mHandlePayload;
+    std::function<void(SyncMsg)> mHandlePayload;
     std::function<void(int)> mProceedRound;
 
     int mKnownNeighbors;
